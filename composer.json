@@ -1,0 +1,39 @@
+{
+    "name": "sysotel/bbr-ota-common",
+    "description": "Common files shared among sysotel OTA apps",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ravish",
+            "email": "ravish@sysotel.ai"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "url": "https://github.com/delta4op/laravel-mongodb-odm",
+            "type": "git"
+        }
+    ],
+    "require": {
+        "delta4op/laravel-mongodb-odm": "0.*",
+        "illuminate/support": "^6|^7|^8|^9",
+        "jenssegers/mongodb": "^3.8",
+        "tymon/jwt-auth": "1.0.x-dev",
+        "intervention/image": "^2.7",
+        "ext-mongodb": "*",
+        "ext-bcmath": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "6.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "SYSOTEL\\OTA\\Common\\": "src/"
+        },
+        "files":  [
+            "src/Helpers/Constants.php",
+            "src/Helpers/Helpers.php"
+        ]
+    }
+}
