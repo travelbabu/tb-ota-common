@@ -1,6 +1,6 @@
 {
-    "name": "sysotel/tb-ota-common",
-    "description": "Common files shared among sysotel OTA apps",
+    "name": "travelbabu/tb-ota-common",
+    "description": "Common files shared among tb OTA apps",
     "type": "library",
     "authors": [
         {
