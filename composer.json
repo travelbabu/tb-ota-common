@@ -1,5 +1,5 @@
 {
-    "name": "sysotel/bbr-ota-common",
+    "name": "sysotel/tb-ota-common",
     "description": "Common files shared among sysotel OTA apps",
     "type": "library",
     "authors": [
