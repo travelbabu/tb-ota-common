@@ -68,7 +68,7 @@ class GeoLocation extends EmbeddedDocument
         return "https://maps.google.com/maps?q={$this->latitude},{$this->longitude}";
     }
 
-    public function googleMapIframUrl($zoom = 14)
+    public function googleMapIframeUrl($zoom = 14)
     {
         return "https://maps.google.com/maps?q={$this->latitude},{$this->longitude}&hl=es&z={$zoom}&output=embed";
     }
