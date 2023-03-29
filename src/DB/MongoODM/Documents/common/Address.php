@@ -5,7 +5,6 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\common;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use SYSOTEL\OTA\Common\Helpers\Parsers\PropertyAddressParser;
-use function SYSOTEL\OTA\Common\Helpers\googleMapURL;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
 
@@ -57,6 +56,12 @@ class Address extends EmbeddedDocument implements AddressContract
     public $geoLocation;
 
     /**
+     * @var GoogleMapDetails
+     * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\GoogleMapDetails::class)
+     */
+    public $googleMapDetails;
+
+    /**
      * Returns google map url for the address
      *
      * @return ?string
@@ -80,6 +85,7 @@ class Address extends EmbeddedDocument implements AddressContract
             'state'        => toArrayOrNull($this->state),
             'country'      => toArrayOrNull($this->country),
             'geoLocation'  => toArrayOrNull($this->geoLocation),
+            'googleMapDetails'  => toArrayOrNull($this->googleMapDetails),
         ]);
     }
 
@@ -112,6 +118,16 @@ class Address extends EmbeddedDocument implements AddressContract
     {
         return $this->postalCode ?? null;
     }
+
+    /**
+     * @return GoogleMapDetails
+     */
+    public function getGoogleMapDetails(): GoogleMapDetails
+    {
+        return $this->googleMapDetails;
+    }
+
+
 
     /**
      * Returns address parser

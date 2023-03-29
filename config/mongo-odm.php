@@ -24,7 +24,7 @@ return [
     'paths' => [
         base_path('app/Services/ODM/Documents')
     ],
-    
+
     'metadata' => [
         base_path('src/DB/MongoODM/Metadata')
     ],
