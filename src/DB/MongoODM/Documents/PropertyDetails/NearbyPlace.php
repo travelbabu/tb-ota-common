@@ -7,6 +7,7 @@ use Delta4op\MongoODM\Traits\HasDefaultAttributes;
 use Delta4op\MongoODM\Traits\HasTimestamps;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\GeoLocation;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\GoogleMapDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Supplier;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
@@ -50,6 +51,12 @@ class NearbyPlace extends EmbeddedDocument
     public $geoLocation;
 
     /**
+     * @var GoogleMapDetails
+     * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\GoogleMapDetails::class)
+     */
+    public $googleMapDetails;
+
+    /**
      * @var int
      * @ODM\Field(type="int")
      */
@@ -75,6 +82,7 @@ class NearbyPlace extends EmbeddedDocument
             'name' => $this->name,
             'distanceInKm' => $this->distanceInKm,
             'geoLocation' => toArrayOrNull($this->geoLocation),
+            'googleMapDetails' => toArrayOrNull($this->googleMapDetails),
             'sortOrder' => $this->sortOrder,
             'createdAt' => $this->createdAt,
             'updatedAt' => $this->updatedAt,

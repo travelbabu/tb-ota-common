@@ -15,67 +15,79 @@ class GoogleMapDetails extends EmbeddedDocument
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $placeId;
+    public $placeId;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $name;
+    public $name;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $addr1;
+    public $addr1;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $city;
+    public $city;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $province;
+    public $province;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $country;
+    public $country;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $countryCode;
+    public $countryCode;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $postalCode;
+    public $postalCode;
 
     /**
      * @var ?float
      * @ODM\Field(type="float")
      */
-    protected $longitude;
+    public $longitude;
 
     /**
      * @var ?float
      * @ODM\Field(type="float")
      */
-    protected $latitude;
+    public $latitude;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $phone;
+    public $phone;
+
+    /**
+     * @var ?string[]
+     * @ODM\Field(type="collection")
+     */
+    public $types;
+
+    /**
+     * @var ?string
+     * @ODM\Field(type="string")
+     */
+    public $url;
 
     /**
      * @inheritDoc
@@ -94,94 +106,8 @@ class GoogleMapDetails extends EmbeddedDocument
             'longitude' => $this->longitude,
             'latitude' => $this->latitude,
             'phone' => $this->phone,
+            'types' => $this->types,
+            'url' => $this->url,
         ]);
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getPlaceId(): ?string
-    {
-        return $this->placeId;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getAddr1(): ?string
-    {
-        return $this->addr1;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCity(): ?string
-    {
-        return $this->city;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getProvince(): ?string
-    {
-        return $this->province;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCountryCode(): ?string
-    {
-        return $this->countryCode;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getPostalCode(): ?string
-    {
-        return $this->postalCode;
-    }
-
-    /**
-     * @return float|null
-     */
-    public function getLongitude(): ?float
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * @return float|null
-     */
-    public function getLatitude(): ?float
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getPhone(): ?string
-    {
-        return $this->phone;
     }
 }
