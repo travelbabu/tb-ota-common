@@ -133,6 +133,12 @@ abstract class User extends Document implements AuthenticatableContract
      */
     public $password;
 
+    /**
+     * @var UserReference
+     * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\UserReference::class)
+     */
+    public $creator;
+
     protected $defaults = [
         'status' => self::STATUS_ACTIVE
     ];
@@ -223,6 +229,7 @@ abstract class User extends Document implements AuthenticatableContract
             'status'         => $this->status,
             'email'          => toArrayOrNull($this->email),
             'mobile'         => toArrayOrNull($this->mobile),
+            'creator'         => toArrayOrNull($this->creator),
             'createdAt'      => $this->createdAt,
             'updatedAt'      => $this->updatedAt,
         ]);
