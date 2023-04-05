@@ -34,9 +34,9 @@ class CouponMarketplace extends Document
      * @ODM\Field(type="string")
      */
     public $type;
-    public const TYPE_BBRSILVER = 'BBRSILVER';
-    public const TYPE_BBRGOLD = 'BBRGOLD';
-    public const TYPE_BBRPLATINUM = 'BBRPLATINUM';
+    public const TYPE_SILVER = 'SILVER';
+    public const TYPE_GOLD = 'GOLD';
+    public const TYPE_PLATINUM = 'PLATINUM';
 
     /**
      * @var string
