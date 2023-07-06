@@ -330,7 +330,7 @@ if (!function_exists('getAdminSetting')) {
         $setting = AdminSetting::repository()->find($id);
 
         if(!$setting && $strictMode) {
-            throw new Exception('Admin settings not found for id ' . $id);
+            throw new Exception('BasicPromotion settings not found for id ' . $id);
         }
 
         return $setting->value ?? $default;

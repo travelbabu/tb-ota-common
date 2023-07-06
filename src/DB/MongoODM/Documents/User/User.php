@@ -33,7 +33,7 @@ use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
  * @ODM\DiscriminatorField("type")
  * @ODM\DiscriminatorMap({
  *     "EXTRANET_USER":SYSOTEL\OTA\Common\DB\MongoODM\Documents\User\ExtranetUser\ExtranetUser::class,
- *     "ADMIN"=SYSOTEL\OTA\Common\DB\MongoODM\Documents\User\Admin\Admin::class,
+ *     "ADMIN"=SYSOTEL\OTA\Common\DB\MongoODM\Documents\User\BasicPromotion\BasicPromotion::class,
  *     "GUEST"=SYSOTEL\OTA\Common\DB\MongoODM\Documents\User\Guest\Guest::class,
  *     "AGENT"=SYSOTEL\OTA\Common\DB\MongoODM\Documents\User\Agent\Agent::class,
  *     "CORPORATE_USER"=SYSOTEL\OTA\Common\DB\MongoODM\Documents\User\CorporateUser\CorporateUser::class,
