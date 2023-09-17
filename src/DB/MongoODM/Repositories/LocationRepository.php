@@ -3,6 +3,7 @@
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Repositories;
 
 use Delta4op\MongoODM\DocumentRepositories\DocumentRepository;
+use MongoDB\BSON\ObjectId;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\LocationV2\Location;
 
 class LocationRepository extends DocumentRepository
@@ -38,7 +39,7 @@ class LocationRepository extends DocumentRepository
     {
         $criteria = [
             'type' => Location::TYPE_STATE,
-            'country.id' => $countryId
+            'country.id' => new ObjectId($countryId)
         ];
 
         $orderBy = ['name' => 1];
@@ -54,7 +55,7 @@ class LocationRepository extends DocumentRepository
     {
         $criteria = [
             'type' => Location::TYPE_CITY,
-            'country.id' => $stateId
+            'country.id' => new ObjectId($stateId)
         ];
 
         $orderBy = ['name' => 1];
@@ -70,7 +71,7 @@ class LocationRepository extends DocumentRepository
     {
         $criteria = [
             'type' => Location::TYPE_AREA,
-            'country.id' => $areaId
+            'country.id' => new ObjectId($areaId)
         ];
 
         $orderBy = ['name' => 1];
