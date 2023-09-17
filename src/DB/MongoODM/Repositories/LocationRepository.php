@@ -55,7 +55,7 @@ class LocationRepository extends DocumentRepository
     {
         $criteria = [
             'type' => Location::TYPE_CITY,
-            'country.id' => new ObjectId($stateId)
+            'state.id' => new ObjectId($stateId)
         ];
 
         $orderBy = ['name' => 1];
@@ -71,7 +71,7 @@ class LocationRepository extends DocumentRepository
     {
         $criteria = [
             'type' => Location::TYPE_AREA,
-            'country.id' => new ObjectId($areaId)
+            'city.id' => new ObjectId($areaId)
         ];
 
         $orderBy = ['name' => 1];
