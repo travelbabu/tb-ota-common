@@ -10,6 +10,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\GeoLocation;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Location\PropertyCount;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\LocationV2\common\LocationReference;
+use SYSOTEL\OTA\Common\DB\MongoODM\Repositories\LocationRepository;
 use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
 
 /**
@@ -129,7 +130,7 @@ class Location extends Document
         ]);
     }
 
-    public static function repository(): DocumentRepository
+    public static function repository(): LocationRepository
     {
         return DocumentManager::getRepository(self::class);
     }

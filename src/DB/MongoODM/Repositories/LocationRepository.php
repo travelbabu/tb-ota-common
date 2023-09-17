@@ -8,6 +8,17 @@ use SYSOTEL\OTA\Common\DB\MongoODM\Documents\LocationV2\Location;
 class LocationRepository extends DocumentRepository
 {
     /**
+     * @return Location
+     */
+    public function getIndiaCountry(): Location
+    {
+        return $this->findOneBy([
+            'type' => Location::TYPE_COUNTRY,
+            'code' => 'IND'
+        ]);
+    }
+
+    /**
      * @return array
      */
     public function getAllCountries(): array
