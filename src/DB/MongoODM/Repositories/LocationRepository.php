@@ -28,7 +28,7 @@ class LocationRepository extends DocumentRepository
 
         $orderBy = ['nane' => 1];
 
-        return $this->findBy($criteria, $orderBy);
+        return $this->getCollectionBy($criteria, $orderBy);
     }
 
     /**
@@ -44,7 +44,7 @@ class LocationRepository extends DocumentRepository
 
         $orderBy = ['name' => 1];
 
-        return $this->findBy($criteria, $orderBy);
+        return $this->getCollectionBy($criteria, $orderBy);
     }
 
     /**
@@ -60,7 +60,7 @@ class LocationRepository extends DocumentRepository
 
         $orderBy = ['name' => 1];
 
-        return $this->findBy($criteria, $orderBy);
+        return $this->getCollectionBy($criteria, $orderBy);
     }
 
     /**
@@ -76,6 +76,6 @@ class LocationRepository extends DocumentRepository
 
         $orderBy = ['name' => 1];
 
-        return $this->findBy($criteria, $orderBy);
+        return $this->getCollectionBy($criteria, $orderBy);
     }
 }
