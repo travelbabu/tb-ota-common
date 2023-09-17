@@ -4,7 +4,6 @@ namespace SYSOTEL\OTA\Common\Helpers\Parsers;
 
 use Illuminate\Support\Str;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\AddressContract;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\RawAddress;
 
 class PropertyAddressParser
 {
