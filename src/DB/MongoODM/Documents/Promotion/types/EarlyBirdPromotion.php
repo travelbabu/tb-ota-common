@@ -4,13 +4,13 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\types;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\embedded\PromotionDiscountConfig;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\User\User;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\Promotion;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 
 /**
  * @ODM\Document
  */
-class EarlyBirdPromotion extends User
+class EarlyBirdPromotion extends Promotion
 {
     public $type = 'EARLY_BIRD';
 
