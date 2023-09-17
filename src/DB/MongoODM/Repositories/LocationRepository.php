@@ -3,6 +3,7 @@
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Repositories;
 
 use Delta4op\MongoODM\DocumentRepositories\DocumentRepository;
+use Illuminate\Support\Collection;
 use MongoDB\BSON\ObjectId;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\LocationV2\Location;
 
@@ -20,9 +21,9 @@ class LocationRepository extends DocumentRepository
     }
 
     /**
-     * @return array
+     * @return Collection
      */
-    public function getAllCountries(): array
+    public function getAllCountries(): Collection
     {
         $criteria = ['type' => Location::TYPE_COUNTRY];
 
@@ -33,9 +34,9 @@ class LocationRepository extends DocumentRepository
 
     /**
      * @param string $countryId
-     * @return array<Location>
+     * @return Collection<Location>
      */
-    public function getAllStatesForCountry(string $countryId): array
+    public function getAllStatesForCountry(string $countryId): Collection
     {
         $criteria = [
             'type' => Location::TYPE_STATE,
@@ -49,9 +50,9 @@ class LocationRepository extends DocumentRepository
 
     /**
      * @param string $stateId
-     * @return array<Location>
+     * @return Collection<Location>
      */
-    public function getAllCitiesForState(string $stateId): array
+    public function getAllCitiesForState(string $stateId): Collection
     {
         $criteria = [
             'type' => Location::TYPE_CITY,
@@ -65,9 +66,9 @@ class LocationRepository extends DocumentRepository
 
     /**
      * @param string $areaId
-     * @return array<Location>
+     * @return Collection<Location>
      */
-    public function getAllAreasForState(string $areaId): array
+    public function getAllAreasForState(string $areaId): Collection
     {
         $criteria = [
             'type' => Location::TYPE_AREA,
