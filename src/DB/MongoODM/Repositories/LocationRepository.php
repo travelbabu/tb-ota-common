@@ -79,4 +79,65 @@ class LocationRepository extends DocumentRepository
 
         return $this->getCollectionBy($criteria, $orderBy);
     }
+
+    /**
+     * @param string $id
+     * @param string $type
+     * @return Location|null
+     */
+    public function findByIdAndType(string $id, string $type): Location|null
+    {
+        return $this->findOneBy([
+            'id' => $id,
+            'type' => $type
+        ]);
+    }
+
+    /**
+     * @param string $id
+     * @return Location|null
+     */
+    public function findCountry(string $id): ?Location
+    {
+        return $this->findByIdAndType(
+            $id,
+            Location::TYPE_COUNTRY
+        );
+    }
+
+    /**
+     * @param string $id
+     * @return Location|null
+     */
+    public function findState(string $id): ?Location
+    {
+        return $this->findByIdAndType(
+            $id,
+            Location::TYPE_STATE
+        );
+    }
+
+    /**
+     * @param string $id
+     * @return Location|null
+     */
+    public function findCity(string $id): ?Location
+    {
+        return $this->findByIdAndType(
+            $id,
+            Location::TYPE_CITY
+        );
+    }
+
+    /**
+     * @param string $id
+     * @return Location|null
+     */
+    public function findArea(string $id): ?Location
+    {
+        return $this->findByIdAndType(
+            $id,
+            Location::TYPE_AREA
+        );
+    }
 }
