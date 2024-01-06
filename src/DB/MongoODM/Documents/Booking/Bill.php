@@ -354,16 +354,16 @@ class Bill extends EmbeddedDocument
             }
         }
 
-        $this->chargesAfterAllDiscounts = round($this->propertySellPrice - $this->otaDiscount, self::DEFAULT_PRECISION);
+        $this->chargesAfterAllDiscounts = round($this->propertySellPrice - $this->otaDiscount, 2);
 
         // tds and tcs and commission
-        $this->tds = (float) bcdiv(bcmul($this->propertySellPrice, $this->tdsPercentage), 100, self::DEFAULT_PRECISION);
-        $this->tcs = (float) bcdiv(bcmul($this->propertySellPrice, $this->tcsPercentage), 100, self::DEFAULT_PRECISION);
+        $this->tds = (float) bcdiv(bcmul($this->propertySellPrice, $this->tdsPercentage), 100, 2);
+        $this->tcs = (float) bcdiv(bcmul($this->propertySellPrice, $this->tcsPercentage), 100, 2);
         $this->otaToPayPropertyAmount = round($this->propertyGrossCharges - $this->finalOtaCommission - $this->tds - $this->tcs);
 
-        $this->taxAndCharges = round($this->propertyTax + $this->finalOtaServiceCharges, self::DEFAULT_PRECISION);
+        $this->taxAndCharges = round($this->propertyTax + $this->finalOtaServiceCharges, 2);
 
-        $this->guestPayableAmount = round($this->propertyGrossCharges - $this->otaDiscount + $this->finalOtaServiceCharges, self::GUEST_AMOUNT_PRECISION);
+        $this->guestPayableAmount = round($this->propertyGrossCharges - $this->otaDiscount + $this->finalOtaServiceCharges, 2);
         $this->calculateGuestAmounts();
 
         return $this;
@@ -376,12 +376,12 @@ class Bill extends EmbeddedDocument
     public function calculateOtaServiceCharges(int $perc): static
     {
         $this->otaServiceChargePercentage = $perc;
-        $this->otaServiceCharges = (float) bcdiv(bcmul($this->propertySellPrice, $perc), 100, self::DEFAULT_PRECISION);
+        $this->otaServiceCharges = (float) bcdiv(bcmul($this->propertySellPrice, $perc), 100, 2);
         $this->otaServiceChargeTax = 0;
         $this->otaServiceChargeTaxItems = new ArrayCollection;
 
 
-        $tax = (float) bcdiv(bcmul($this->otaServiceCharges, 9), 100, self::DEFAULT_PRECISION);
+        $tax = (float) bcdiv(bcmul($this->otaServiceCharges, 9), 100, 2);
 
         $this->otaServiceChargeTax += $tax;
         $this->otaServiceChargeTaxItems->add(new TaxItem([
@@ -397,11 +397,11 @@ class Bill extends EmbeddedDocument
             'percentage' => 9
         ]));
 
-        $this->finalOtaServiceCharges = round($this->otaServiceCharges + $this->otaServiceChargeTax, self::DEFAULT_PRECISION);
+        $this->finalOtaServiceCharges = round($this->otaServiceCharges + $this->otaServiceChargeTax, 2);
 
-        $this->guestPayableAmount = round($this->propertyGrossCharges - $this->otaDiscount + $this->finalOtaServiceCharges, self::GUEST_AMOUNT_PRECISION);
+        $this->guestPayableAmount = round($this->propertyGrossCharges - $this->otaDiscount + $this->finalOtaServiceCharges, 2);
 
-        $this->taxAndCharges = round($this->propertyTax + $this->finalOtaServiceCharges, self::DEFAULT_PRECISION);
+        $this->taxAndCharges = round($this->propertyTax + $this->finalOtaServiceCharges, 2);
 
         $this->calculateGuestAmounts();
 
@@ -427,14 +427,14 @@ class Bill extends EmbeddedDocument
                     abort(500, 'Invalid partial payment percentage value');
                 }
                 // todo
-                $this->guestPayNowAmount = (float) bcdiv(bcmul($this->guestPayableAmount, $this->partialPayment->value), 100, self::GUEST_AMOUNT_PRECISION);
-                $this->guestPayLaterAmount = round($this->guestPayableAmount - $this->guestPayNowAmount, self::GUEST_AMOUNT_PRECISION);
+                $this->guestPayNowAmount = (float) bcdiv(bcmul($this->guestPayableAmount, $this->partialPayment->value), 100, 2);
+                $this->guestPayLaterAmount = round($this->guestPayableAmount - $this->guestPayNowAmount, 2);
             } elseif($this->partialPayment->valueType == PartialPayment::VALUE_TYPE_FLAT) {
                 if($this->partialPayment->value >= $this->guestPayableAmount) {
                     abort(500, 'partial payment value is more than guest total payable amount');
                 }
                 $this->guestPayNowAmount = $this->partialPayment->value;
-                $this->guestPayLaterAmount = round($this->guestPayableAmount - $this->guestPayNowAmount, self::GUEST_AMOUNT_PRECISION);
+                $this->guestPayLaterAmount = round($this->guestPayableAmount - $this->guestPayNowAmount, 2);
             } else {
                 abort(500, 'unknown partial payment value type');
             }
@@ -457,7 +457,7 @@ class Bill extends EmbeddedDocument
         if($discountItem) {
             $this->otaDiscountItems->add($discountItem);
         }
-        $this->otaDiscount = round($this->otaDiscount + $discount, self::DEFAULT_PRECISION);
+        $this->otaDiscount = round($this->otaDiscount + $discount, 2);
         $this->calculate();
     }
 

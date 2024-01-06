@@ -55,7 +55,7 @@ class AffiliateCommission extends EmbeddedDocument
     public function setTds(int $perc = 5): static
     {
         $this->tdsPercentage = $perc;
-        $this->tds = (float)bcdiv(bcmul($this->commission, $perc), 100, Bill::DEFAULT_PRECISION);
+        $this->tds = (float)bcdiv(bcmul($this->commission, $perc), 100, 2);
         return $this;
     }
 

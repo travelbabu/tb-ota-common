@@ -2,10 +2,9 @@
 
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking;
 
-use Carbon\Carbon;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
+use function SYSOTEL\OTA\Common\Helpers\isSignedNumber;
 
 /**
  * @ODM\EmbeddedDocument
@@ -26,13 +25,32 @@ class TaxItem extends EmbeddedDocument
      * @var float
      * @ODM\Field(type="float")
      */
-    public $amount;
+    public $amount = 0;
 
     /**
      * @var float
      * @ODM\Field(type="float")
      */
-    public $percentage;
+    public $percentage = 0;
+
+    /**
+     * @param int|float $newAmount
+     * @return static
+     */
+    public function addAmount(int|float $newAmount): TaxItem
+    {
+        if (!isSignedNumber($this->amount)) {
+            return $this;
+        }
+
+        if (!isSignedNumber($newAmount)) {
+            return $this;
+        }
+
+        $this->amount = round($this->amount + $newAmount, 2);
+
+        return $this;
+    }
 
     /**
      * @inheritDoc

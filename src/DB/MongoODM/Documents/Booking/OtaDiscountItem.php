@@ -36,6 +36,12 @@ class OtaDiscountItem extends EmbeddedDocument
     public $amount;
 
     /**
+     * @var float
+     * @ODM\Field(type="float")
+     */
+    public $percentage;
+
+    /**
      * @var string
      * @ODM\Field(type="string")
      */

@@ -2,7 +2,6 @@
 
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking;
 
-use Carbon\Carbon;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
@@ -14,6 +13,12 @@ use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
  */
 class BookingSpace extends EmbeddedDocument
 {
+    /**
+     * @var int
+     * @ODM\Field(type="int")
+     */
+    public $spaceNo;
+
     /**
      * @var GuestCount
      * @ODM\EmbedOne(targetDocument=GuestCount::class)
@@ -127,20 +132,21 @@ class BookingSpace extends EmbeddedDocument
     public function toArray(): array
     {
         return [
-            'spaceID'           => $this->spaceID,
-            'supplierSpaceID'           => $this->supplierSpaceID,
-            'spaceName'         => $this->spaceName,
-            'productID'         => $this->productID,
-            'supplierProductID'         => $this->supplierProductID,
-            'productName'       => $this->productName,
-            'guestCount'        => toArrayOrNull($this->guestCount),
-            'guestCounts'        => collect($this->guestCounts)->toArray(),
-            'paymentMode'       => $this->paymentMode,
-            'partialPayment'    => toArrayOrNull($this->partialPayment),
-            'guestIDs'          => $this->guestIDs,
+            'spaceNo' => $this->spaceNo,
+            'spaceID' => $this->spaceID,
+            'supplierSpaceID' => $this->supplierSpaceID,
+            'spaceName' => $this->spaceName,
+            'productID' => $this->productID,
+            'supplierProductID' => $this->supplierProductID,
+            'productName' => $this->productName,
+            'guestCount' => toArrayOrNull($this->guestCount),
+            'guestCounts' => collect($this->guestCounts)->toArray(),
+            'paymentMode' => $this->paymentMode,
+            'partialPayment' => toArrayOrNull($this->partialPayment),
+            'guestIDs' => $this->guestIDs,
             'dailyCalculations' => collect($this->dailyCalculations)->toArray(),
-            'charges'           => $this->charges,
-            'tax'               => toArrayOrNull($this->tax),
+            'charges' => $this->charges,
+            'tax' => toArrayOrNull($this->tax),
         ];
     }
 }

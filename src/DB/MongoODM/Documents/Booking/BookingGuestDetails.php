@@ -5,31 +5,31 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
+use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
 
 /**
  * @ODM\EmbeddedDocument
  */
-class TaxDetails extends EmbeddedDocument
+class BookingGuestDetails extends EmbeddedDocument
 {
     /**
-     * @var float
-     * @ODM\Field(type="float")
+     * @var GuestCount
+     * @ODM\EmbedOne(targetDocument=GuestCount::class)
      */
-    public $value;
+    public $guestCount;
 
     /**
-     * @var ArrayCollection & TaxItem[]
-     * @ODM\EmbedMany(targetDocument=TaxItem::class)
+     * @var ArrayCollection & GuestProfile[]
+     * @ODM\EmbedMany(targetDocument=BookingSpace::class)
      */
-    public $items;
+    public $profiles;
 
     /**
      * CONSTRUCTOR
      */
     public function __construct(array $attributes = [])
     {
-        $this->value = 0;
-        $this->items = new ArrayCollection;
+        $this->profiles = new ArrayCollection;
 
         parent::__construct($attributes);
     }
@@ -40,8 +40,8 @@ class TaxDetails extends EmbeddedDocument
     public function toArray(): array
     {
         return [
-            'value' => $this->value,
-            'items' => collect($this->items)->toArray(),
+            'guestCount' => toArrayOrNull($this->guestCount),
+            'profile' => collect($this->profiles)->toArray(),
         ];
     }
 }

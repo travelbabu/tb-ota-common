@@ -4,7 +4,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
-use MongoDB\BSON\ObjectId;
+use function SYSOTEL\OTA\Common\Helpers\isSignedNumber;
 
 /**
  * @ODM\EmbeddedDocument
@@ -12,8 +12,20 @@ use MongoDB\BSON\ObjectId;
 class PropertyDiscountItem extends EmbeddedDocument
 {
     /**
-     * @var ObjectId
+     * @var string
+     * @ODM\Field(type="string")
+     */
+    public $appliedOn;
+
+    /**
+     * @var string
      * @ODM\Field(type="object_id")
+     */
+    public $promotionDocumentID;
+
+    /**
+     * @var ?int
+     * @ODM\Field(type="int")
      */
     public $promotionID;
 
@@ -36,10 +48,35 @@ class PropertyDiscountItem extends EmbeddedDocument
     public $amount;
 
     /**
+     * @var float
+     * @ODM\Field(type="float")
+     */
+    public $percentage;
+
+    /**
      * @var string
      * @ODM\Field(type="string")
      */
     public $description;
+
+    /**
+     * @param int|float $newAmount
+     * @return static
+     */
+    public function addAmount(int|float $newAmount): static
+    {
+        if (!isSignedNumber($this->amount)) {
+            return $this;
+        }
+
+        if (!isSignedNumber($newAmount)) {
+            return $this;
+        }
+
+        $this->amount = round($this->amount + $newAmount, 2);
+
+        return $this;
+    }
 
     /**
      * @inheritDoc

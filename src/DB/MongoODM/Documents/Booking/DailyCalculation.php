@@ -185,7 +185,7 @@ class DailyCalculation extends EmbeddedDocument
                 $this->extraAdultCharges += $appliedRate->charges;
             }
         }
-        $this->extraAdultCharges = round($this->extraAdultCharges, Bill::DEFAULT_PRECISION);
+        $this->extraAdultCharges = round($this->extraAdultCharges, 2);
 
         $this->extraChildCharges = 0;
         $extraChildRates = collect($this->appliedRates)->where('type', SpaceRateItem::TYPE_EXTRA_CHILD_CHARGES);
@@ -196,12 +196,12 @@ class DailyCalculation extends EmbeddedDocument
         }
         $this->extraChildCharges = round($this->extraChildCharges, 2);
 
-        $this->extraGuestCharges = round($this->extraAdultCharges + $this->extraChildCharges, Bill::DEFAULT_PRECISION);
-        $this->spaceCharges = round($this->baseCharges + $this->extraGuestCharges, Bill::DEFAULT_PRECISION);
-        $this->spaceSellPrice = round($this->spaceCharges - $this->propertyDiscount, Bill::DEFAULT_PRECISION);
-        $this->spaceGrossCharges = round($this->spaceSellPrice + $this->propertyTax, Bill::DEFAULT_PRECISION);
+        $this->extraGuestCharges = round($this->extraAdultCharges + $this->extraChildCharges, 2);
+        $this->spaceCharges = round($this->baseCharges + $this->extraGuestCharges, 2);
+        $this->spaceSellPrice = round($this->spaceCharges - $this->propertyDiscount, 2);
+        $this->spaceGrossCharges = round($this->spaceSellPrice + $this->propertyTax, 2);
 
-        $this->spaceNetCharges = round($this->spaceGrossCharges - $this->otaCommission, Bill::DEFAULT_PRECISION);
+        $this->spaceNetCharges = round($this->spaceGrossCharges - $this->otaCommission, 2);
 
 
         if($commissionPerc > 0) {
@@ -231,7 +231,7 @@ class DailyCalculation extends EmbeddedDocument
             else $perc = 18;
         }
 
-        $this->propertyTax = (float)bcdiv(bcmul($totalAmount, $perc), 100, Bill::DEFAULT_PRECISION);
+        $this->propertyTax = (float)bcdiv(bcmul($totalAmount, $perc), 100, 2);
         $this->propertyTaxItems = new ArrayCollection;
         $this->propertyTaxItems->add(new TaxItem([
             'type' => TaxItem::TYPE_GST,
@@ -265,8 +265,8 @@ class DailyCalculation extends EmbeddedDocument
         $this->otaCommissionTaxItems = new ArrayCollection;
         $this->otaCommissionPercentage = $perc;
 
-        $this->otaCommission = (float)bcdiv(bcmul($this->spaceSellPrice, $perc), 100, Bill::DEFAULT_PRECISION);
-        $this->otaCommissionTax = (float) bcdiv(bcmul($this->otaCommission, 18), 100, Bill::DEFAULT_PRECISION);
+        $this->otaCommission = (float)bcdiv(bcmul($this->spaceSellPrice, $perc), 100, 2);
+        $this->otaCommissionTax = (float) bcdiv(bcmul($this->otaCommission, 18), 100, 2);
         if($this->otaCommissionTax && $this->otaCommissionTax > 0) {
             $this->otaCommissionTaxItems->add(new TaxItem([
                 'type' => TaxItem::TYPE_GST,
@@ -274,8 +274,8 @@ class DailyCalculation extends EmbeddedDocument
                 'percentage' => 18
             ]));
         }
-        $this->finalOtaCommission = round($this->otaCommission + $this->otaCommissionTax, Bill::DEFAULT_PRECISION);
-        $this->spaceNetCharges = round($this->spaceGrossCharges - $this->finalOtaCommission, Bill::DEFAULT_PRECISION);
+        $this->finalOtaCommission = round($this->otaCommission + $this->otaCommissionTax, 2);
+        $this->spaceNetCharges = round($this->spaceGrossCharges - $this->finalOtaCommission, 2);
 
         return $this;
     }
@@ -294,7 +294,7 @@ class DailyCalculation extends EmbeddedDocument
 
         $this->affiliateCommission = (new AffiliateCommission([
             'agentAccountSettingsID' => $accountSettings->id,
-            'commission' => (float)bcdiv(bcmul($this->spaceSellPrice, $perc), 100, Bill::DEFAULT_PRECISION),
+            'commission' => (float)bcdiv(bcmul($this->spaceSellPrice, $perc), 100, 2),
             'commissionPercentage' => $perc,
         ]))->setTds();
 

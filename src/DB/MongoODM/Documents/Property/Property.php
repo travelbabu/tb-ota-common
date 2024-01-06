@@ -217,6 +217,12 @@ class Property extends Document
     public const VALID_BASE_CURRENCIES = ['INR'];
 
     /**
+     * @var string
+     * @ODM\Field(type="string")
+     */
+    public $timezone;
+
+    /**
      * @var Carbon
      * @ODM\Field(type="carbon")
      */

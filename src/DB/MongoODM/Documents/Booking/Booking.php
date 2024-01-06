@@ -16,6 +16,7 @@ use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyReference;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\UserReference;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Counter;
 use SYSOTEL\OTA\Common\DB\MongoODM\Repositories\BookingRepository;
+use SYSOTEL\OTA\Common\Helpers\Enums;
 use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
 
 /**
@@ -35,10 +36,16 @@ class Booking extends Document
     protected string $collection = 'bookings';
 
     /**
-     * @var string
-     * @ODM\Id
+     * @var int
+     * @ODM\Id(strategy="CUSTOM", type="int", options={"class"=SYSOTEL\OTA\Common\DB\MongoODM\StorageStrategies\AutoIncrementID::class })
      */
     public $id;
+
+    /**
+     * @var string
+     * @ODM\Field(type="string")
+     */
+    public $baseCurrency;
 
     /**
      * @var string
@@ -47,49 +54,16 @@ class Booking extends Document
     public $secretToken;
 
     /**
-     * @var int
-     * @ODM\Field(type="int")
+     * @var ?BookingChannel
+     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\BookingChannel::class)
      */
-    public $bookingID;
-
-    /**
-     * @var int
-     * @ODM\Field(type="int")
-     */
-    public $version;
+    public $channel;
 
     /**
      * @var string
      * @ODM\Field(type="string")
      */
-    public $supplierBookingID;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     */
-    public $supplierID;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     */
-    public $source;
-    public const SOURCE_B2C_PORTAL = 'B2C_PORTAL';
-    public const SOURCE_AGENT_PORTAL = 'AGENT_PORTAL';
-    public const SOURCE_CORPORATE_PORTAL = 'CORPORATE_PORTAL';
-
-    /**
-     * @var int
-     * @ODM\Field(type="int")
-     */
-    public $guestID;
-
-    /**
-     * @var bool
-     * @ODM\Field(type="bool")
-     */
-    public $isSelfBooking;
+    public $marketSegment;
 
     /**
      * @var ?UserReference
@@ -107,13 +81,13 @@ class Booking extends Document
      * @var ?BookingAgentDetails
      * @ODM\EmbedOne(targetDocument=BookingAgentDetails::class)
      */
-    public $agentDetails;
+    public $agent;
 
     /**
      * @var ?BookingCorporateUserDetails
      * @ODM\EmbedOne(targetDocument=BookingCorporateUserDetails::class)
      */
-    public $corporateUserDetails;
+    public $corporateUser;
 
     /**
      * @var PropertyReference
@@ -128,28 +102,22 @@ class Booking extends Document
     public $stayDates;
 
     /**
-     * @var int
-     * @ODM\Field(type="int")
+     * @var BookingSpaceDetails
+     * @ODM\EmbedOne(targetDocument=BookingSpaceDetails::class)
      */
-    public $noOfSpaces;
+    public $spaceDetails;
 
     /**
-     * @var GuestCount
-     * @ODM\EmbedOne(targetDocument=GuestCount::class)
+     * @var BookingGuestDetails
+     * @ODM\EmbedOne(targetDocument=BookingGuestDetails::class)
      */
-    public $totalGuestCount;
+    public $guestDetails;
 
     /**
      * @var BookingContactDetails
      * @ODM\EmbedOne(targetDocument=BookingContactDetails::class)
      */
     public $contactDetails;
-
-    /**
-     * @var ArrayCollection & GuestProfile[]
-     * @ODM\EmbedMany (targetDocument=GuestProfile::class)
-     */
-    public $guestList;
 
     /**
      * @var GSTDetails
@@ -164,16 +132,16 @@ class Booking extends Document
     public $specialInstructions;
 
     /**
-     * @var Bill
-     * @ODM\EmbedOne (targetDocument=Bill::class)
+     * @var ?GuestCalculations
+     * @ODM\EmbedOne (targetDocument=GuestCalculations::class)
      */
-    public $bill;
+    public $guestCalculations;
 
-//    /**
-//     * @var GuestPaymentDetails
-//     * @ODM\EmbedOne (targetDocument=GuestPaymentDetails::class)
-//     */
-//    public $guestPaymentDetails;
+    /**
+     * @var ?PropertyCalculations
+     * @ODM\EmbedOne (targetDocument=GuestCalculations::class)
+     */
+    public $propertyCalculations;
 
     /**
      * @var BookingPaymentDetails
@@ -212,20 +180,19 @@ class Booking extends Document
     public $cancellationDetails;
 
     /**
+     * @var BookingPolicy
+     * @ODM\EmbedOne (targetDocument=BookingPolicy::class)
+     */
+    public $policy;
+
+    /**
      * @var ArrayCollection & InventoryUpdateLog[]
      * @ODM\EmbedMany (targetDocument=InventoryUpdateLog::class)
      */
     public $inventoryUpdates;
 
-    /**
-     * @var bool
-     * @ODM\Field(type="bool")
-     */
-    public $isActive;
-
     protected $defaults = [
         'version' => 1,
-        'isActive' => true
     ];
 
     /**
@@ -234,7 +201,6 @@ class Booking extends Document
     public function __construct(array $attributes = [])
     {
         $this->refunds = new ArrayCollection;
-        $this->guestList = new ArrayCollection;
         $this->bookingVouchers = new ArrayCollection;
         $this->inventoryUpdates = new ArrayCollection;
 
@@ -246,7 +212,7 @@ class Booking extends Document
      */
     public function prePersist()
     {
-        if(!$this->secretToken) {
+        if (!$this->secretToken) {
             $this->secretToken = Str::random(6);
         }
     }
@@ -300,11 +266,11 @@ class Booking extends Document
      */
     public function addVoucher(string $filePath, string $for, string $type, $timestamp = null): self
     {
-        if(!in_array($for, [BookingVoucherItem::FOR_GUEST, BookingVoucherItem::FOR_PROPERTY, BookingVoucherItem::FOR_AGENT])) {
+        if (!in_array($for, [BookingVoucherItem::FOR_GUEST, BookingVoucherItem::FOR_PROPERTY, BookingVoucherItem::FOR_AGENT])) {
             abort(500, 'Invalid value. $for - ' . $for);
         }
 
-        if(!in_array($type, [BookingVoucherItem::TYPE_CONFIRMATION, BookingVoucherItem::TYPE_CANCELLATION])) {
+        if (!in_array($type, [BookingVoucherItem::TYPE_CONFIRMATION, BookingVoucherItem::TYPE_CANCELLATION])) {
             abort(500, 'Invalid value. $type - ' . $type);
         }
 
@@ -321,7 +287,7 @@ class Booking extends Document
      */
     public function getLatestBookingVoucher(string $for): ?BookingVoucherItem
     {
-        if(!in_array($for, [BookingVoucherItem::FOR_GUEST, BookingVoucherItem::FOR_PROPERTY, BookingVoucherItem::FOR_AGENT])) {
+        if (!in_array($for, [BookingVoucherItem::FOR_GUEST, BookingVoucherItem::FOR_PROPERTY, BookingVoucherItem::FOR_AGENT])) {
             abort(500, 'Invalid value. $for - ' . $for);
         }
 
@@ -356,8 +322,8 @@ class Booking extends Document
      */
     public function updateRefund(string $id, BookingRefund $targetRefund)
     {
-        foreach($this->refunds as $i => $refund) {
-            if($refund->id === $targetRefund->id) {
+        foreach ($this->refunds as $i => $refund) {
+            if ($refund->id === $targetRefund->id) {
                 $this->refunds[$i] = $targetRefund;
                 return $this;
             }
@@ -371,7 +337,7 @@ class Booking extends Document
      */
     public function createRefundID(): string
     {
-        if(!$this->bookingID) {
+        if (!$this->bookingID) {
             abort(500, 'bookingID not set');
         }
 
@@ -383,7 +349,7 @@ class Booking extends Document
      */
     public function isGuestBooking(): bool
     {
-        return $this->source === self::SOURCE_B2C_PORTAL;
+        return $this->marketSegment === Enums::MARKET_SEGMENT_B2C;
     }
 
     /**
@@ -391,7 +357,7 @@ class Booking extends Document
      */
     public function isAgentBooking(): bool
     {
-        return $this->source === self::SOURCE_AGENT_PORTAL;
+        return $this->marketSegment === Enums::MARKET_SEGMENT_B2B;
     }
 
     /**
@@ -400,23 +366,20 @@ class Booking extends Document
     public function toArray(): array
     {
         return array_filter([
-            'id'                   => $this->id,
-            'bookingID'            => $this->bookingID,
-            'supplierBookingID'    => $this->supplierBookingID,
-            'supplierID'           => $this->supplierID,
-            'property'             => toArrayOrNull($this->property),
-            'stayDates'            => toArrayOrNull($this->stayDates),
-            'totalGuestCount'      => toArrayOrNull($this->totalGuestCount),
-            'contactDetails'       => toArrayOrNull($this->contactDetails),
-            'guestList'            => collect($this->guestList)->toArray(),
-            'bookingProperty'      => toArrayOrNull($this->bookingProperty),
-            'bill'                 => toArrayOrNull($this->bill),
-            'guestPaymentDetails'  => toArrayOrNull($this->guestPaymentDetails),
-            'bookingStatus'        => toArrayOrNull($this->bookingStatus),
-            'bookingVoucher'       => toArrayOrNull($this->bookingVoucher),
-            'cancellationDetails'  => toArrayOrNull($this->cancellationDetails),
-            'isActive'             => $this->isActive,
-            'createdAt'            => $this->createdAt,
+            'id' => $this->id,
+            'property' => toArrayOrNull($this->property),
+            'channel' => toArrayOrNull($this->channel),
+            'stayDates' => toArrayOrNull($this->stayDates),
+            'spaceDetails' => toArrayOrNull($this->spaceDetails),
+            'guestDetails' => toArrayOrNull($this->guestDetails),
+            'contactDetails' => toArrayOrNull($this->contactDetails),
+            'guestCalculations' => toArrayOrNull($this->guestCalculations),
+            'propertyCalculations' => toArrayOrNull($this->propertyCalculations),
+            'bookingStatus' => toArrayOrNull($this->bookingStatus),
+            'bookingVoucher' => toArrayOrNull($this->bookingVoucher),
+            'cancellationDetails' => toArrayOrNull($this->cancellationDetails),
+            'policy' => toArrayOrNull($this->policy),
+            'createdAt' => $this->createdAt,
         ]);
     }
 

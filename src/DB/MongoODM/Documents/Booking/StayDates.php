@@ -21,7 +21,19 @@ class StayDates extends EmbeddedDocument
      * @var Carbon
      * @ODM\Field(type="carbon")
      */
+    public $checkInTime;
+
+    /**
+     * @var Carbon
+     * @ODM\Field(type="carbon")
+     */
     public $checkOutDate;
+
+    /**
+     * @var Carbon
+     * @ODM\Field(type="carbon")
+     */
+    public $checkOutTime;
 
     /**
      * @var int
@@ -36,7 +48,9 @@ class StayDates extends EmbeddedDocument
     {
         return [
             'checkInDate'  => $this->checkInDate,
+            'checkInTime'  => $this->checkInTime,
             'checkOutDate' => $this->checkOutDate,
+            'checkOutTime' => $this->checkOutTime,
             'lengthOfStay'  => $this->lengthOfStay,
         ];
     }

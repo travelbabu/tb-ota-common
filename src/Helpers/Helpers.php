@@ -347,3 +347,49 @@ if (!function_exists('constantToReadableString')) {
         return ucwords(strtolower(str_replace('_', ' ', $str)));
     }
 }
+
+if (!function_exists('isSignedNumber')) {
+    /**
+     * @param $value
+     * @param bool $includeZero
+     * @return bool
+     */
+    function isSignedNumber($value, bool $includeZero = true): bool
+    {
+        if($includeZero) {
+            return is_numeric($value) && $value >= 0;
+        }
+        return is_numeric($value) && $value > 0;
+    }
+}
+
+if (!function_exists('isValidPercentage')) {
+    /**
+     * @param $value
+     * @return bool
+     */
+    function isValidPercentage($value): bool
+    {
+        return is_numeric($value) && $value >= 0 && $value <= 100;
+    }
+}
+
+if (!function_exists('fixDateWindowOrder')) {
+    /**
+     * @param Carbon $startDate
+     * @param Carbon $endDate
+     * @return array
+     */
+    function fixDateWindowOrder(Carbon $startDate, Carbon $endDate): array
+    {
+        if($startDate->lte($endDate)) {
+            return [$startDate, $endDate];
+        }
+
+        $temp = $startDate->copy();
+        $newStartDate = $endDate->copy();
+        $newEndDate = $temp->copy();
+
+        return [$newStartDate, $newEndDate];
+    }
+}
