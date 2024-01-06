@@ -12,4 +12,7 @@ class Enums
     const MARKET_SEGMENT_CORPORATE = 'CORPORATE';
 
     const BASE_CURRENCY_INR = 'INR';
+
+    const AGE_CODE_ADULT = 'A';
+    const AGE_CODE_CHILD = 'C';
 }
