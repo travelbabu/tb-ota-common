@@ -90,6 +90,12 @@ class Promotion extends Document
     public const DATE_RESTRICTION_TYPE_STAY_DATE_BOOKING_DATE = 'EXPIRED';
 
     /**
+     * @var ?bool
+     * @ODM\Field(type="bool")
+     */
+    public $isExpired;
+
+    /**
      * @var ?Carbon
      * @ODM\Field(type="carbon")
      */
@@ -201,6 +207,22 @@ class Promotion extends Document
     public function setDisplayName(?string $displayName): void
     {
         $this->displayName = $displayName;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function isExpired(): ?bool
+    {
+        return $this->isExpired;
+    }
+
+    /**
+     * @param bool|null $isExpired
+     */
+    public function setIsExpired(?bool $isExpired): void
+    {
+        $this->isExpired = $isExpired;
     }
 
     /**
