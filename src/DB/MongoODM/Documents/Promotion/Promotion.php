@@ -44,13 +44,13 @@ class Promotion extends Document
      * @var ?int
      * @ODM\Field(type="int")
      */
-    public $promoId;
+    public $promoID;
 
     /**
      * @var ?int
      * @ODM\Field(type="int")
      */
-    public $propertyId;
+    public $propertyID;
 
     /**
      * @var ?string
