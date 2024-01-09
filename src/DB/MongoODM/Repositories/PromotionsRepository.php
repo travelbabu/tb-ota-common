@@ -3,6 +3,9 @@
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Repositories;
 
 use Delta4op\MongoODM\DocumentRepositories\DocumentRepository;
+use Illuminate\Support\Collection;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\Promotion;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Property\Property;
 
 class PromotionsRepository extends DocumentRepository
 {
@@ -10,7 +13,7 @@ class PromotionsRepository extends DocumentRepository
      * @param int|Property $property
      * @param array $criteria
      * @param array $sort
-     * @return Collection
+     * @return Collection<Promotion>
      */
     public function getActiveAndDisableForProperty(int|Property $property, array $criteria = [], array $sort = []): Collection
     {
@@ -19,8 +22,6 @@ class PromotionsRepository extends DocumentRepository
             ['propertyID' => Property::resolveID($property),
                 'isExpired' => false],
             $criteria);
-
-
 
         $sort = array_merge([
             'createdAt' => -1
