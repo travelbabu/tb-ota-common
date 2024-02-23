@@ -5,6 +5,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\GeoLocation;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Property\Property;
 
 /**
  * @ODM\EmbeddedDocument
@@ -94,6 +95,29 @@ class BookingPropertyReference extends EmbeddedDocument
      * @ODM\Field(type="string")
      */
     protected $countryName;
+
+    /**
+     * @param Property $property
+     * @return static
+     */
+    public static function createFromProperty(Property $property): static
+    {
+        return new static([
+            'id' => $property->id,
+            'baseCurrency' => $property->baseCurrency,
+            'starRating' => $property->starRating,
+            'fullAddress' => $property->address->addressParser()->fullAddress(),
+            'areaId' => $property->address->area->id,
+            'areaName' => $property->address->area->name,
+            'cityId' => $property->address->city->id,
+            'cityName' => $property->address->city->name,
+            'stateId' => $property->address->state->id,
+            'stateName' => $property->address->state->name,
+            'countryId' => $property->address->country->id,
+            'countryName' => $property->address->country->name,
+            'geoLocation' => $property->address->geoLocation,
+        ]);
+    }
 
     /**
      * @inheritDoc

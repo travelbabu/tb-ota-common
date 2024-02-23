@@ -2,11 +2,8 @@
 
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking;
 
-use Carbon\Carbon;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertySearchRecord\SpaceConfigItem;
 
 /**
  * @ODM\EmbeddedDocument
@@ -26,10 +23,40 @@ class GuestCount extends EmbeddedDocument
     public $childCount;
 
     /**
+     * @var ?int[]
+     * @ODM\Field(type="array")
+     */
+    public $childAges;
+
+    /**
      * @var int
      * @ODM\Field(type="int")
      */
     public $totalCount;
+
+    /**
+     * @var int
+     * @ODM\Field(type="int")
+     */
+    public $consideredAdultCount;
+
+    /**
+     * @var int
+     * @ODM\Field(type="int")
+     */
+    public $consideredChildCount;
+
+    /**
+     * @var int
+     * @ODM\Field(type="int")
+     */
+    public $chargeableTotalCount;
+
+    /**
+     * @var int
+     * @ODM\Field(type="int")
+     */
+    public $freeGuestCount;
 
     /**
      * @inheritDoc
@@ -39,7 +66,14 @@ class GuestCount extends EmbeddedDocument
         return [
             'adultCount' => $this->adultCount,
             'childCount' => $this->childCount,
+            'childAges' => $this->childAges,
             'totalCount' => $this->totalCount,
+
+            'consideredAdultCount' => $this->consideredAdultCount,
+            'consideredChildCount' => $this->consideredChildCount,
+            'chargeableTotalCount' => $this->chargeableTotalCount,
+
+            'freeGuestCount' => $this->freeGuestCount,
         ];
     }
 
