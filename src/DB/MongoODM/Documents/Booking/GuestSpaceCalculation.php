@@ -63,6 +63,17 @@ class GuestSpaceCalculation extends EmbeddedDocument
     }
 
     /**
+     * @param GuestTimelyCalculation $calculation
+     * @return $this
+     */
+    public function addTimelyBreakupItem(GuestTimelyCalculation $calculation): static
+    {
+        $this->timelyBreakup->add($calculation);
+
+        return $this->calculate();
+    }
+
+    /**
      * @return $this
      */
     public function calculate(): static

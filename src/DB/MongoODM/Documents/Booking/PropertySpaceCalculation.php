@@ -40,6 +40,16 @@ class PropertySpaceCalculation extends EmbeddedDocument
         parent::__construct($attributes);
     }
 
+    /**
+     * @param PropertyTimelyCalculation $calculation
+     * @return $this
+     */
+    public function addTimelyBreakupItem(PropertyTimelyCalculation $calculation): static
+    {
+        $this->timelyBreakup->add($calculation);
+
+        return $this->calculate();
+    }
 
     /**
      * @return $this
