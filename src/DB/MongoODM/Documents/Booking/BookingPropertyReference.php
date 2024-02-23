@@ -16,85 +16,85 @@ class BookingPropertyReference extends EmbeddedDocument
      * @var ?int
      * @ODM\Field(type="int")
      */
-    protected $id;
+    public $id;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $displayName;
+    public $displayName;
 
     /**
      * @var ?int
      * @ODM\Field(type="int")
      */
-    protected $starRating;
+    public $starRating;
 
     /**
      * @var string
      * @ODM\Field(type="string")
      */
-    protected $baseCurrency;
+    public $baseCurrency;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $fullAddress;
+    public $fullAddress;
 
     /**
      * @var GeoLocation|null
      * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\GeoLocation::class)
      */
-    protected $geoLocation;
+    public $geoLocation;
 
     /**
      * @var ?string
      * @ODM\Field(type="object_id")
      */
-    protected $areaId;
+    public $areaId;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $areaName;
+    public $areaName;
 
     /**
      * @var ?string
      * @ODM\Field(type="object_id")
      */
-    protected $cityId;
+    public $cityId;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $cityName;
+    public $cityName;
 
     /**
      * @var ?string
      * @ODM\Field(type="object_id")
      */
-    protected $stateId;
+    public $stateId;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $stateName;
+    public $stateName;
 
     /**
      * @var ?string
      * @ODM\Field(type="object_id")
      */
-    protected $countryId;
+    public $countryId;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $countryName;
+    public $countryName;
 
     /**
      * @param Property $property

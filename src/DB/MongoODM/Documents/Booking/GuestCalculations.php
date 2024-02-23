@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use MongoDB\BSON\ObjectId;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyProduct\PartialPayment;
 
 /**
  * @ODM\EmbeddedDocument
