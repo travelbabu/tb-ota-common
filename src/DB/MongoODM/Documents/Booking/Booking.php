@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\PaymentDetails\BookingPaymentDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\BrowserDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\GSTDetails;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyReference;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\UserReference;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Counter;
 use SYSOTEL\OTA\Common\DB\MongoODM\Repositories\BookingRepository;
@@ -91,8 +90,8 @@ class Booking extends Document
     public $corporateUser;
 
     /**
-     * @var PropertyReference
-     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyReference::class)
+     * @var BookingPropertyReference
+     * @ODM\EmbedOne(targetDocument=BookingPropertyReference::class)
      */
     public $property;
 
@@ -196,7 +195,7 @@ class Booking extends Document
      * @var ?BrowserDetails
      * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\BrowserDetails::class)
      */
-    protected $browserDetails;
+    public $browserDetails;
 
     protected $defaults = [
         'version' => 1,
@@ -365,6 +364,15 @@ class Booking extends Document
     public function isAgentBooking(): bool
     {
         return $this->marketSegment === Enums::MARKET_SEGMENT_B2B;
+    }
+
+    /**
+     * @return static
+     */
+    public function generateSecretToken(): static
+    {
+        $this->secretToken = Str::random();
+        return $this;
     }
 
     /**

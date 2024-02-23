@@ -452,8 +452,8 @@ class BrowserDetails extends EmbeddedDocument
         $this->platformVersionPatch = $platformVersionPatch;
     }
 
-    public function toArray()
+    public function toArray(): array
     {
-        // TODO: Implement toArray() method.
+        return [];
     }
 }
