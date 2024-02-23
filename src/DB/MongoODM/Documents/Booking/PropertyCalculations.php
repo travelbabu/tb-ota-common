@@ -59,7 +59,7 @@ class PropertyCalculations extends EmbeddedDocument
         $amount = 0;
         foreach($this->spaceWiseBreakup as $spaceWiseBreakup) {
             foreach ($spaceWiseBreakup->timelyBreakup as $timelyBreakupItem) {
-                $baseAmount += $timelyBreakupItem-$this->spaceCharges->baseAmount;
+                $baseAmount += $timelyBreakupItem->spaceCharges->baseAmount;
                 $extraGuestAmount += $timelyBreakupItem->spaceCharges->extraGuestAmount;
                 $amount += $timelyBreakupItem->spaceCharges->amount;
             }
