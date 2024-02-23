@@ -22,7 +22,8 @@
         "tymon/jwt-auth": "1.0.x-dev",
         "intervention/image": "^2.7",
         "ext-mongodb": "*",
-        "ext-bcmath": "*"
+        "ext-bcmath": "*",
+        "hisorange/browser-detect": "^5.0"
     },
     "require-dev": {
         "orchestra/testbench": "6.*"

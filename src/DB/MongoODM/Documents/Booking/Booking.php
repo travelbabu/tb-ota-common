@@ -11,6 +11,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use Illuminate\Support\Str;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\PaymentDetails\BookingPaymentDetails;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\BrowserDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\GSTDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyReference;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\UserReference;
@@ -190,6 +191,12 @@ class Booking extends Document
      * @ODM\EmbedMany (targetDocument=InventoryUpdateLog::class)
      */
     public $inventoryUpdates;
+
+    /**
+     * @var ?BrowserDetails
+     * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\BrowserDetails::class)
+     */
+    protected $browserDetails;
 
     protected $defaults = [
         'version' => 1,
@@ -378,6 +385,7 @@ class Booking extends Document
             'bookingStatus' => toArrayOrNull($this->bookingStatus),
             'bookingVoucher' => toArrayOrNull($this->bookingVoucher),
             'cancellationDetails' => toArrayOrNull($this->cancellationDetails),
+            'browserDetails' => toArrayOrNull($this->browserDetails),
             'policy' => toArrayOrNull($this->policy),
             'createdAt' => $this->createdAt,
         ]);
