@@ -58,8 +58,9 @@ class GuestCalculations extends EmbeddedDocument
      */
     public $guestPayLaterAmount; // AC
 
+
     /**
-     * @param array $attributes
+     * CONSTRUCTOR
      */
     public function __construct(array $attributes = [])
     {

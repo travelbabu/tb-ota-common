@@ -23,6 +23,17 @@ class PropertyCalculations extends EmbeddedDocument
      */
     public $spaceCharges;
 
+
+    /**
+     * CONSTRUCTOR
+     */
+    public function __construct(array $attributes = [])
+    {
+        $this->spaceWiseBreakup = new ArrayCollection;
+
+        parent::__construct($attributes);
+    }
+
     /**
      * @param PropertySpaceCalculation $calculation
      * @return $this
