@@ -142,7 +142,7 @@ class GuestCalculations extends EmbeddedDocument
                 $serviceCharges->calculateAmountAfterTax();
             }
         }
-
+        $this->spaceCharges->serviceCharges = $serviceCharges;
         $this->spaceCharges->calculateAmountAfterServiceCharges();
 
         return $this;

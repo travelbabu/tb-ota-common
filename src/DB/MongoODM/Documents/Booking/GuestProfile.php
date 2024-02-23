@@ -14,7 +14,7 @@ class GuestProfile extends EmbeddedDocument
      * @var ?int
      * @ODM\Field (type="int")
      */
-    public $_id;
+    public $guestNo;
 
     /**
      * @var ?int
@@ -83,7 +83,7 @@ class GuestProfile extends EmbeddedDocument
     public function toArray(): array
     {
         return [
-            '_id' => $this->_id,
+            'guestNo' => $this->guestNo,
         ];
     }
 }

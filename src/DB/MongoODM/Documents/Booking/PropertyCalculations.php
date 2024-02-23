@@ -120,7 +120,7 @@ class PropertyCalculations extends EmbeddedDocument
                 $otaCommission->calculateAmountAfterTax();
             }
         }
-
+        $this->spaceCharges->otaCommission = $otaCommission;
         $this->spaceCharges->calculateAmountAfterOtaCommission();
 
         return $this;
