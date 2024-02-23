@@ -30,13 +30,6 @@ class PropertyTimelyCalculation extends EmbeddedDocument
      */
     public $spaceCharges;
 
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->spaceCharges = new ServiceCharges;
-    }
-
     /**
      * @inheritDoc
      */
