@@ -4,10 +4,6 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\Email;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\Mobile;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PersonName;
-use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
 
 /**
  * @ODM\EmbeddedDocument
@@ -21,16 +17,72 @@ class GuestProfile extends EmbeddedDocument
     public $id;
 
     /**
-     * @var PersonName
-     * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PersonName::class)
+     * @var ?int
+     * @ODM\Field (type="int")
      */
-    public $name;
+    protected $no;
 
     /**
-     * @var bool
-     * @ODM\Field(type="bool")
+     * @var ?int
+     * @ODM\Field (type="int")
      */
-    public $isPrimaryGuest;
+    protected $spaceNo;
+
+    /**
+     * @var ?bool
+     * @ODM\Field (type="bool")
+     */
+    protected $isPrimary;
+
+    /**
+     * @var ?string
+     * @ODM\Field(type="string")
+     */
+    protected $ageCode;
+
+    /**
+     * @var ?int
+     * @ODM\Field(type="int")
+     */
+    protected $age;
+
+    /**
+     * @var ?string
+     * @ODM\Field(type="string")
+     */
+    protected $rateLevel;
+
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    protected $title;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    protected $firstName;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    protected $lastName;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    protected $fullName;
+
+    /**
+     * @var ?bool
+     * @ODM\Field (type="bool")
+     */
+    protected $isChargeable;
+
     /**
      * @inheritDoc
      */
@@ -38,8 +90,6 @@ class GuestProfile extends EmbeddedDocument
     {
         return [
             'id' => $this->id,
-            'name' => toArrayOrNull($this->name),
-            'isPrimaryGuest' => $this->isPrimaryGuest,
         ];
     }
 }
