@@ -128,7 +128,7 @@ class PropertySpaceCharges extends EmbeddedDocument
         $baseRates = collect($this->appliedRates)->where('type', SpaceRateItem::TYPE_BASE_CHARGES);
         foreach ($baseRates as $appliedRate) {
             if ($appliedRate->type = SpaceRateItem::TYPE_BASE_CHARGES) {
-                $this->baseAmount = round($this->baseAmount, $appliedRate->charges, 2);
+                $this->baseAmount = round($this->baseAmount + $appliedRate->charges, 2);
             }
 
             if (in_array($appliedRate->type, [SpaceRateItem::TYPE_EXTRA_ADULT_CHARGES, SpaceRateItem::TYPE_EXTRA_CHILD_CHARGES])) {
@@ -168,7 +168,7 @@ class PropertySpaceCharges extends EmbeddedDocument
             $this->tax = new Tax;
         }
 
-        $this->amountAfterTax = round($this->amountAfterDiscount + $this->tax, 2);
+        $this->amountAfterTax = round($this->amountAfterDiscount + $this->tax->amount, 2);
 
         return $this;
     }

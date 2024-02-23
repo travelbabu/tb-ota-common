@@ -30,7 +30,7 @@ class BookingSpaceDetails extends EmbeddedDocument
     public $hasMultipleSpaceTypes;
 
     /**
-     * @var ArrayCollection & BookingSpace[]
+     * @var ArrayCollection<BookingSpace>
      * @ODM\EmbedMany(targetDocument=BookingSpace::class)
      */
     public $spaces;
@@ -43,6 +43,57 @@ class BookingSpaceDetails extends EmbeddedDocument
         $this->spaces = new ArrayCollection;
 
         parent::__construct($attributes);
+    }
+
+    /**
+     * @param BookingSpace $space
+     * @return $this
+     */
+    public function addSpace(BookingSpace $space): static
+    {
+        $this->spaces->add($space);
+        $this->calculate();
+        return $this;
+    }
+
+    /**
+     * @return static
+     */
+    public function calculate(): static
+    {
+        $this->totalCount = $this->spaces->count();
+        $this->hasMultipleSpaces = $this->spaces->count() > 1;
+        $this->hasMultipleSpaceTypes = false;
+
+        $spaceId = null;
+        foreach($this->spaces as $space) {
+            if(!$spaceId) {
+                $spaceId = $space->spaceID;
+                continue;
+            }
+
+            if($spaceId !== $space->spaceID) {
+                $this->hasMultipleSpaceTypes = true;
+                break;
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param int $spaceNo
+     * @return BookingSpace|null
+     */
+    public function getSpaceForSpaceNo(int $spaceNo): ?BookingSpace
+    {
+        foreach ($this->spaces as $space) {
+            if ($space->getNo() === $spaceNo) {
+                return $space;
+            }
+        }
+
+        return null;
     }
 
     /**

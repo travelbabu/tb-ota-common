@@ -130,7 +130,7 @@ class GuestSpaceCharges extends EmbeddedDocument
         $baseRates = collect($this->appliedRates)->where('type', SpaceRateItem::TYPE_BASE_CHARGES);
         foreach ($baseRates as $appliedRate) {
             if ($appliedRate->type = SpaceRateItem::TYPE_BASE_CHARGES) {
-                $this->baseAmount = round($this->baseAmount, $appliedRate->charges, 2);
+                $this->baseAmount = round($this->baseAmount + $appliedRate->charges, 2);
             }
 
             if (in_array($appliedRate->type, [SpaceRateItem::TYPE_EXTRA_ADULT_CHARGES, SpaceRateItem::TYPE_EXTRA_CHILD_CHARGES])) {
@@ -169,7 +169,7 @@ class GuestSpaceCharges extends EmbeddedDocument
             $this->tax = new Tax;
         }
 
-        $this->amountAfterTax = round($this->amountAfterDiscount + $this->tax, 2);
+        $this->amountAfterTax = round($this->amountAfterDiscount + $this->tax->amount, 2);
 
         return $this;
     }
@@ -226,6 +226,8 @@ class GuestSpaceCharges extends EmbeddedDocument
         ]));
         $tax->calculateFromBreakup();
 
+        $this->tax = $tax;
+
         return $this;
     }
 
@@ -240,13 +242,12 @@ class GuestSpaceCharges extends EmbeddedDocument
         }
 
         $amountAfterDiscount = $this->amountAfterDiscount;
-        if (!isValidPercentage($amountAfterDiscount)) {
+        if (!isSignedNumber($amountAfterDiscount)) {
             return $this;
         }
 
         $serviceCharges = new ServiceCharges();
         $serviceCharges->amount = (float)bcdiv(bcmul($amountAfterDiscount, $percentage), 100, 2);
-
         $taxAmount = (float)bcdiv(bcmul($serviceCharges->amount, 18), 100, 2);
 
         $tax = new Tax;
@@ -260,6 +261,8 @@ class GuestSpaceCharges extends EmbeddedDocument
 
         $serviceCharges->tax = $tax;
         $serviceCharges->calculateAmountAfterTax();
+
+        $this->serviceCharges = $serviceCharges;
 
         $this->calculateAmountAfterServiceCharges();
 

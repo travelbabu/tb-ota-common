@@ -90,7 +90,7 @@ class Tax extends EmbeddedDocument
         $this->amount = 0;
 
         foreach ($this->breakup as $taxItem) {
-            $this->amount = round($this->amount, $taxItem->amount, 2);
+            $this->amount = round($this->amount + $taxItem->amount, 2);
         }
 
         return $this;

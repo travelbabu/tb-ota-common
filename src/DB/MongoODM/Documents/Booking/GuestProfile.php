@@ -11,16 +11,10 @@ use Delta4op\MongoODM\Documents\EmbeddedDocument;
 class GuestProfile extends EmbeddedDocument
 {
     /**
-     * @var int
-     * @ODM\Field(type="int")
-     */
-    public $id;
-
-    /**
      * @var ?int
      * @ODM\Field (type="int")
      */
-    public $no;
+    public $_id;
 
     /**
      * @var ?int
@@ -89,7 +83,7 @@ class GuestProfile extends EmbeddedDocument
     public function toArray(): array
     {
         return [
-            'id' => $this->id,
+            '_id' => $this->_id,
         ];
     }
 }
