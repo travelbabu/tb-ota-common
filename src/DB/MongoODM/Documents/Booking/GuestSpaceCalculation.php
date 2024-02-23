@@ -82,9 +82,9 @@ class GuestSpaceCalculation extends EmbeddedDocument
         $extraGuestAmount = 0;
         $amount = 0;
         foreach ($this->timelyBreakup as $timelyBreakupItem) {
-            $baseAmount += $timelyBreakupItem->getSpaceCharges()->getBaseAmount();
-            $extraGuestAmount += $timelyBreakupItem->getSpaceCharges()->getExtraGuestAmount();
-            $amount += $timelyBreakupItem->getSpaceCharges()->getAmount();
+            $baseAmount += $timelyBreakupItem-$this->spaceCharges->baseAmount;
+            $extraGuestAmount += $timelyBreakupItem->spaceCharges->extraGuestAmount;
+            $amount += $timelyBreakupItem->spaceCharges->amount;
         }
 
         // basic values

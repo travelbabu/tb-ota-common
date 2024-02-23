@@ -197,10 +197,6 @@ class Booking extends Document
      */
     public $browserDetails;
 
-    protected $defaults = [
-        'version' => 1,
-    ];
-
     /**
      * CONSTRUCTOR
      */
