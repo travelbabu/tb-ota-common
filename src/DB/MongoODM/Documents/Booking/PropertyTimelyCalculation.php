@@ -25,8 +25,8 @@ class PropertyTimelyCalculation extends EmbeddedDocument
     public $endTime;
 
     /**
-     * @var ?PropertySpaceCalculation
-     * @ODM\EmbedOne (targetDocument=PropertySpaceCalculation::class)
+     * @var ?PropertySpaceCharges
+     * @ODM\EmbedOne (targetDocument=PropertySpaceCharges::class)
      */
     public $spaceCharges;
 

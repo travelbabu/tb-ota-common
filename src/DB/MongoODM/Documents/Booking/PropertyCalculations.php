@@ -39,6 +39,72 @@ class PropertyCalculations extends EmbeddedDocument
     }
 
     /**
+     * @return $this
+     */
+    public function calculate(): static
+    {
+        $baseAmount = 0;
+        $extraGuestAmount = 0;
+        $amount = 0;
+        foreach($this->spaceWiseBreakup as $spaceWiseBreakup) {
+            foreach ($spaceWiseBreakup->timelyBreakup as $timelyBreakupItem) {
+                $baseAmount += $timelyBreakupItem->getSpaceCharges()->getBaseAmount();
+                $extraGuestAmount += $timelyBreakupItem->getSpaceCharges()->getExtraGuestAmount();
+                $amount += $timelyBreakupItem->getSpaceCharges()->getAmount();
+            }
+        }
+
+
+        // basic values
+        $this->spaceCharges = new PropertySpaceCharges([
+            'baseAmount' => $baseAmount,
+            'extraGuestAmount' => $extraGuestAmount,
+            'total' => $amount,
+        ]);
+
+        // discount
+        $bookingDiscount = new SpaceDiscount;
+
+        foreach($this->spaceWiseBreakup as $spaceWiseBreakup) {
+            foreach ($spaceWiseBreakup->timelyBreakup as $timelyBreakupItem) {
+                foreach (($timelyBreakupItem->spaceCharges->spaceDiscount->breakup ?? []) as $breakupItem) {
+                    $bookingDiscount->mergeBreakupItem($breakupItem);
+                }
+            }
+        }
+        $this->spaceCharges->spaceDiscount = $bookingDiscount;
+        $this->spaceCharges->calculateAmountAfterDiscount();
+
+        // tax
+        $propertyTax = new Tax;
+        foreach($this->spaceWiseBreakup as $spaceWiseBreakup) {
+            foreach ($spaceWiseBreakup->timelyBreakup as $timelyBreakupItem) {
+                foreach (($timelyBreakupItem->spaceCharges->tax->breakup ?? []) as $breakupItem) {
+                    $propertyTax->mergeBreakupItem($breakupItem);
+                }
+            }
+        }
+        $this->spaceCharges->tax = $propertyTax;
+        $this->spaceCharges->calculateAmountAfterTax();
+
+
+        $otaCommission = new OtaCommission;
+        foreach($this->spaceWiseBreakup as $spaceWiseBreakup) {
+            foreach ($spaceWiseBreakup->timelyBreakup as $timelyBreakupItem) {
+                if (!$timelyBreakupItem->spaceCharges->otaCommission) {
+                    continue;
+                }
+                $otaCommission->add($timelyBreakupItem->spaceCharges->otaCommission);
+                $otaCommission->calculateAmountAfterTax();
+            }
+        }
+
+        $this->spaceCharges->calculateAmountAfterOtaCommission();
+
+        return $this;
+    }
+
+    /**
      * @inheritDoc
      */
     public function toArray(): array

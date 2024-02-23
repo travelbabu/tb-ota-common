@@ -216,21 +216,21 @@ class PropertySpaceCharges extends EmbeddedDocument
      * @param float $percentage
      * @return $this
      */
-    public function applyServiceCharges(float $percentage): static
+    public function applyOtaCommission(float $percentage): static
     {
         if (!isValidPercentage($percentage)) {
             return $this;
         }
 
         $amountAfterDiscount = $this->amountAfterDiscount;
-        if (!isValidPercentage($amountAfterDiscount)) {
+        if (!isSignedNumber($amountAfterDiscount, false)) {
             return $this;
         }
 
-        $serviceCharges = new ServiceCharges();
-        $serviceCharges->amount = (float)bcdiv(bcmul($amountAfterDiscount, $percentage), 100, 2);
+        $otaCommission = new OtaCommission;
+        $otaCommission->amount = (float)bcdiv(bcmul($amountAfterDiscount, $percentage), 100, 2);
 
-        $taxAmount = (float)bcdiv(bcmul($serviceCharges->amount, 18), 100, 2);
+        $taxAmount = (float)bcdiv(bcmul($otaCommission->amount, 18), 100, 2);
 
         $tax = new Tax;
         $tax->breakup = new ArrayCollection;
@@ -241,8 +241,10 @@ class PropertySpaceCharges extends EmbeddedDocument
         ]));
         $tax->calculateFromBreakup();
 
-        $serviceCharges->tax = $tax;
-        $serviceCharges->calculateAmountAfterTax();
+        $otaCommission->tax = $tax;
+        $otaCommission->calculateAmountAfterTax();
+
+        $this->otaCommission = $otaCommission;
 
         $this->calculateAmountAfterOtaCommission();
 
