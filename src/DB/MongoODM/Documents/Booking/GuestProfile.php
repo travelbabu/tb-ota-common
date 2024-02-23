@@ -20,68 +20,68 @@ class GuestProfile extends EmbeddedDocument
      * @var ?int
      * @ODM\Field (type="int")
      */
-    protected $no;
+    public $no;
 
     /**
      * @var ?int
      * @ODM\Field (type="int")
      */
-    protected $spaceNo;
+    public $spaceNo;
 
     /**
      * @var ?bool
      * @ODM\Field (type="bool")
      */
-    protected $isPrimary;
+    public $isPrimary;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $ageCode;
+    public $ageCode;
 
     /**
      * @var ?int
      * @ODM\Field(type="int")
      */
-    protected $age;
+    public $age;
 
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
-    protected $rateLevel;
+    public $rateLevel;
 
 
     /**
      * @var ?string
      * @ODM\Field (type="string")
      */
-    protected $title;
+    public $title;
 
     /**
      * @var ?string
      * @ODM\Field (type="string")
      */
-    protected $firstName;
+    public $firstName;
 
     /**
      * @var ?string
      * @ODM\Field (type="string")
      */
-    protected $lastName;
+    public $lastName;
 
     /**
      * @var ?string
      * @ODM\Field (type="string")
      */
-    protected $fullName;
+    public $fullName;
 
     /**
      * @var ?bool
      * @ODM\Field (type="bool")
      */
-    protected $isChargeable;
+    public $isChargeable;
 
     /**
      * @inheritDoc
