@@ -24,6 +24,17 @@ class PropertyCalculations extends EmbeddedDocument
     public $spaceCharges;
 
     /**
+     * @param PropertySpaceCalculation $calculation
+     * @return $this
+     */
+    public function addSpaceCalculations(PropertySpaceCalculation $calculation): static
+    {
+        $this->spaceWiseBreakup->add($calculation);
+
+        return $this->calculate();
+    }
+
+    /**
      * @return $this
      */
     public function calculateSpaceChargesFromBreakup(): static

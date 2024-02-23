@@ -68,6 +68,16 @@ class GuestCalculations extends EmbeddedDocument
         parent::__construct($attributes);
     }
 
+    /**
+     * @param GuestSpaceCalculation $calculation
+     * @return $this
+     */
+    public function addSpaceCalculations(GuestSpaceCalculation $calculation): static
+    {
+        $this->spaceWiseBreakup->add($calculation);
+
+        return $this->calculate();
+    }
 
     /**
      * @return $this
