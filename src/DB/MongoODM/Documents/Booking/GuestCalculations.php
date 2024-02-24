@@ -91,7 +91,7 @@ class GuestCalculations extends EmbeddedDocument
             foreach ($spaceWiseBreakupItem->timelyBreakup as $timelyBreakupItem) {
                 $baseAmount += $timelyBreakupItem->spaceCharges->baseAmount;
                 $extraGuestAmount += $timelyBreakupItem->spaceCharges->extraGuestAmount;
-                $amount += $timelyBreakupItem->spaceCharges->amount;
+                $amount += $timelyBreakupItem->spaceCharges->total;
             }
         }
 

@@ -62,6 +62,10 @@ class OtaCommission extends EmbeddedDocument
      */
     public function add(OtaCommission $charges): static
     {
+        if(!$this->tax) {
+            $this->tax = new Tax;
+        }
+
         $this->amount = round($this->amount + $charges->amount, 2);
         $this->amountAfterTax = round($this->amountAfterTax + $charges->amountAfterTax, 2);
 

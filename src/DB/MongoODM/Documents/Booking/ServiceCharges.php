@@ -71,6 +71,10 @@ class ServiceCharges extends EmbeddedDocument
      */
     public function add(ServiceCharges $charges): static
     {
+        if(!$this->tax) {
+            $this->tax = new Tax;
+        }
+
         $this->amount = round($this->amount + $charges->amount, 2);
         $this->amountAfterTax = round($this->amountAfterTax + $charges->amountAfterTax, 2);
 
