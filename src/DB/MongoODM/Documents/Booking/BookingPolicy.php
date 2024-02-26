@@ -36,6 +36,18 @@ class BookingPolicy extends EmbeddedDocument
     public $generalPolicyText;
 
     /**
+     * @var bool
+     * @ODM\Field(type="bool")
+     */
+    public $freeCancellationAvailable;
+
+    /**
+     * @var bool
+     * @ODM\Field(type="bool")
+     */
+    public $nonRefundable;
+
+    /**
      * @inheritDoc
      */
     public function toArray(): array
@@ -45,6 +57,8 @@ class BookingPolicy extends EmbeddedDocument
             'generalPolicyID' => $this->generalPolicyID,
             'cancellationPolicyText' => $this->cancellationPolicyText,
             'generalPolicyText' => $this->generalPolicyText,
+            'freeCancellationAvailable' => $this->freeCancellationAvailable,
+            'nonRefundable' => $this->nonRefundable,
         ];
     }
 }
