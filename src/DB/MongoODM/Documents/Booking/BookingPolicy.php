@@ -45,7 +45,19 @@ class BookingPolicy extends EmbeddedDocument
      * @var bool
      * @ODM\Field(type="bool")
      */
+    public $freeCancellationDescription;
+
+    /**
+     * @var bool
+     * @ODM\Field(type="bool")
+     */
     public $nonRefundable;
+
+    /**
+     * @var bool
+     * @ODM\Field(type="bool")
+     */
+    public $nonRefundableDescription;
 
     /**
      * @inheritDoc
@@ -58,7 +70,9 @@ class BookingPolicy extends EmbeddedDocument
             'cancellationPolicyText' => $this->cancellationPolicyText,
             'generalPolicyText' => $this->generalPolicyText,
             'freeCancellationAvailable' => $this->freeCancellationAvailable,
+            'freeCancellationDescription' => $this->freeCancellationDescription,
             'nonRefundable' => $this->nonRefundable,
+            'nonRefundableDescription' => $this->nonRefundableDescription,
         ];
     }
 }
