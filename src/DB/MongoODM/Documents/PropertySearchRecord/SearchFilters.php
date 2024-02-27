@@ -31,14 +31,21 @@ class SearchFilters extends EmbeddedDocument
     public $highlights = [];
 
     /**
+     * @var array & string[]
+     * @ODM\Field(type="collection")
+     */
+    public $amenities = [];
+
+    /**
      * @inheritDoc
-    */
+     */
     public function toArray(): array
     {
         return arrayFilter([
             'starRating' => $this->starRating,
             'propertyTypes' => $this->propertyTypes,
             'highlights' => $this->highlights,
+            'amenities' => $this->amenities,
         ]);
     }
 }

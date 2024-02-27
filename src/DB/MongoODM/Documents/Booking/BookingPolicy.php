@@ -42,8 +42,8 @@ class BookingPolicy extends EmbeddedDocument
     public $freeCancellationAvailable;
 
     /**
-     * @var bool
-     * @ODM\Field(type="bool")
+     * @var string
+     * @ODM\Field(type="string")
      */
     public $freeCancellationDescription;
 
@@ -54,8 +54,8 @@ class BookingPolicy extends EmbeddedDocument
     public $nonRefundable;
 
     /**
-     * @var bool
-     * @ODM\Field(type="bool")
+     * @var string
+     * @ODM\Field(type="string")
      */
     public $nonRefundableDescription;
 
