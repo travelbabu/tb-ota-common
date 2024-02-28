@@ -15,6 +15,18 @@ class CashfreePaymentDetails extends EmbeddedDocument
      * @var string
      * @ODM\Field(type="string")
      */
+    public $appId;
+
+    /**
+     * @var string
+     * @ODM\Field(type="string")
+     */
+    public $secretKey;
+
+    /**
+     * @var string
+     * @ODM\Field(type="string")
+     */
     public $paymentSessionId;
 
     /**
@@ -69,6 +81,12 @@ class CashfreePaymentDetails extends EmbeddedDocument
      * @var string
      * @ODM\Field(type="string")
      */
+    public $orderStatus;
+
+    /**
+     * @var string
+     * @ODM\Field(type="string")
+     */
     public $refundsUrl;
 
     /**
@@ -89,7 +107,21 @@ class CashfreePaymentDetails extends EmbeddedDocument
     public function toArray(): array
     {
         return [
-
+            'appId' => $this->appId,
+            'secretKey' => $this->secretKey,
+            'paymentSessionId' => $this->paymentSessionId,
+            'internalOrderID' => $this->internalOrderID,
+            'cfOrderID' => $this->cfOrderID,
+            'orderAmount' => $this->orderAmount,
+            'orderCreatedAt' => $this->orderCreatedAt,
+            'orderExpiry' => $this->orderExpiry,
+            'orderToken' => $this->orderToken,
+            'paymentLink' => $this->paymentLink,
+            'paymentsUrl' => $this->paymentsUrl,
+            'orderStatus' => $this->orderStatus,
+            'refundsUrl' => $this->refundsUrl,
+            'settlementsUrl' => $this->settlementsUrl,
+            'customerID' => $this->customerID,
         ];
     }
 }

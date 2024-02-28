@@ -35,6 +35,9 @@ class BookingPaymentDetails extends EmbeddedDocument
     public $status;
     public const STATUS_FULLY_PAID = 'PAID';
     public const STATUS_PENDING = 'PENDING';
+    public const STATUS_CANCELLED = 'CANCELLED';
+    public const STATUS_FAILED = 'FAILED';
+    public const STATUS_INTERNAL_ERROR = 'INTERNAL_ERROR';
     public const STATUS_NOT_REQUIRED = 'NOT_REQUIRED';
 
     /**

@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 
+
 /**
  * @ODM\MappedSuperclass
  */
@@ -30,6 +31,12 @@ abstract class BookingPayment extends EmbeddedDocument
     public $type;
     public const TYPE_PG_CASHFREE = 'PG_CASHFREE';
     public const TYPE_INTERNAL_WALLET = 'INTERNAL_WALLET';
+
+    /**
+     * @var string
+     * @ODM\Field(type="string")
+     */
+    public $paymentGroup;
 
     /**
      * @var string
