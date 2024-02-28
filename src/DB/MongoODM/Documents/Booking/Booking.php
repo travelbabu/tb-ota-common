@@ -150,10 +150,10 @@ class Booking extends Document
     public $paymentDetails;
 
     /**
-     * @var BookingStatus
-     * @ODM\EmbedOne(targetDocument=BookingStatus::class)
+     * @var string
+     * @ODM\Field(type="string")
      */
-    public $bookingStatus;
+    public $status;
 
     /**
      * @var BookingVoucher
@@ -225,7 +225,7 @@ class Booking extends Document
      */
     public function initiateCancellation(BookingCancellationDetails $cancellationDetails): static
     {
-        $this->bookingStatus->status = BookingStatus::STATUS_CANCELLED;
+        $this->status = Enums::BOOKING_STATUS_CANCELLED;
         $this->cancellationDetails = $cancellationDetails;
         return $this;
     }
@@ -386,7 +386,7 @@ class Booking extends Document
             'contactDetails' => toArrayOrNull($this->contactDetails),
             'guestCalculations' => toArrayOrNull($this->guestCalculations),
             'propertyCalculations' => toArrayOrNull($this->propertyCalculations),
-            'bookingStatus' => toArrayOrNull($this->bookingStatus),
+            'bookingStatus' => $this->status,
             'bookingVoucher' => toArrayOrNull($this->bookingVoucher),
             'cancellationDetails' => toArrayOrNull($this->cancellationDetails),
             'browserDetails' => toArrayOrNull($this->browserDetails),

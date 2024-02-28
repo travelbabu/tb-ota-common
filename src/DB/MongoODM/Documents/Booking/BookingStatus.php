@@ -17,12 +17,6 @@ class BookingStatus extends EmbeddedDocument
      * @ODM\Field(type="string")
      */
     public $value;
-    public const STATUS_ATTEMPT = 'ATTEMPT';
-    public const STATUS_EXPIRED = 'EXPIRED';
-    public const STATUS_FAILED = 'FAILED';
-    public const STATUS_CONFIRMED = 'CONFIRMED';
-    public const STATUS_CANCELLED = 'CANCELLED';
-    public const STATUS_MODIFIED = 'MODIFIED';
 
     /**
      * @var string
