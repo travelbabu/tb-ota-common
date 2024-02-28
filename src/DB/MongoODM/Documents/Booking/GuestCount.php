@@ -74,6 +74,11 @@ class GuestCount extends EmbeddedDocument
             'chargeableTotalCount' => $this->chargeableTotalCount,
 
             'freeGuestCount' => $this->freeGuestCount,
+
+            'adultChildCountString' => $this->adultChildCountString(),
+            'adultCountString' => $this->adultCountString(),
+            'childCountString' => $this->childCountString(),
+            'guestCountString' => $this->guestCountString(),
         ];
     }
 

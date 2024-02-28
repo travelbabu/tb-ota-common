@@ -45,6 +45,12 @@ class Mobile extends EmbeddedDocument
     public $forceVerified;
 
     /**
+     * @var string
+     * @ODM\Field(type="string")
+     */
+    public $value;
+
+    /**
      * @return $this
      */
     public function forceVerify(): static
@@ -87,8 +93,8 @@ class Mobile extends EmbeddedDocument
     public function stringValue(): string
     {
         $str = '';
-        if($this->countryCode) {
-            $str .= '+'. $this->countryCode . ' ';
+        if ($this->countryCode) {
+            $str .= '+' . $this->countryCode . ' ';
         }
 
         $str .= $this->number;
@@ -97,14 +103,15 @@ class Mobile extends EmbeddedDocument
 
     /**
      * @inheritDoc
-    */
+     */
     public function toArray(): array
     {
         return arrayFilter([
-            'countryCode'       => $this->countryCode,
-            'number'            => $this->number,
+            'countryCode' => $this->countryCode,
+            'number' => $this->number,
             'verificationToken' => $this->verificationToken,
-            'verifiedAt'        => $this->verifiedAt,
+            'verifiedAt' => $this->verifiedAt,
+            'value' => $this->value,
         ]);
     }
 }

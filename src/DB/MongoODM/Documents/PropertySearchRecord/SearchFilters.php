@@ -42,7 +42,7 @@ class SearchFilters extends EmbeddedDocument
     public function toArray(): array
     {
         return arrayFilter([
-            'starRating' => $this->starRating,
+            'starRating' => $this->starRatings,
             'propertyTypes' => $this->propertyTypes,
             'highlights' => $this->highlights,
             'amenities' => $this->amenities,
