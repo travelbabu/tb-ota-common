@@ -372,6 +372,15 @@ class Booking extends Document
     }
 
     /**
+     * @param int $paymentNo
+     * @return string
+     */
+    public function generateNewBookingPaymentId(int $paymentNo): string
+    {
+        return 'tb' . $this->id . "no{$paymentNo}" . 'pid'  .$this->property->id;
+    }
+
+    /**
      * @inheritDoc
      */
     public function toArray(): array

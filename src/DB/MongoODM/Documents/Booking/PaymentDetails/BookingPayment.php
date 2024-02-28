@@ -13,16 +13,16 @@ use Delta4op\MongoODM\Documents\EmbeddedDocument;
 abstract class BookingPayment extends EmbeddedDocument
 {
     /**
-     * @var int
-     * @ODM\Field(type="int")
-     */
-    public $id;
-
-    /**
      * @var string
      * @ODM\Field(type="string")
      */
-    public $globalID;
+    public $_id;
+
+    /**
+     * @var int
+     * @ODM\Field(type="int")
+     */
+    public $no;
 
     /**
      * @var string
@@ -43,13 +43,7 @@ abstract class BookingPayment extends EmbeddedDocument
      * @ODM\Field(type="string")
      */
     public $paymentMethod;
-    public const PAYMENT_METHOD_PAY_AT_PROPERTY = 'INTERNAL_WALLET';
-    public const PAYMENT_METHOD_UPI = 'UPI';
-    public const PAYMENT_METHOD_CARD = 'CARD';
-    public const PAYMENT_METHOD_DEBIT_CARD = 'DEBIT_CARD';
-    public const PAYMENT_METHOD_CREDIT_CARD = 'CREDIT_CARD';
-    public const PAYMENT_METHOD_NET_BANKING = 'NET_BANKING';
-    public const PAYMENT_METHOD_UNKNOWN = 'UNKNOWN';
+    // todo paymentGroupDetails
 
     /**
      * @var float
@@ -103,18 +97,14 @@ abstract class BookingPayment extends EmbeddedDocument
         return $this;
     }
 
-    public function setGlobalID(int $bookingID, int $version): self
-    {
-        $this->globalID = "bp_{$bookingID}_{$version}_{$this->id}";
-        return $this;
-    }
-
     /**
      * @inheritDoc
      */
     public function toArray(): array
     {
         return [
+            'id' => $this->_id,
+            'no' => $this->no,
             'type' => $this->type,
             'amountToBePaid' => $this->amountToBePaid,
             'amountPaid' => $this->amountPaid,
