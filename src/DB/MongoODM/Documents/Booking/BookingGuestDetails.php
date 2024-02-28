@@ -35,6 +35,20 @@ class BookingGuestDetails extends EmbeddedDocument
     }
 
     /**
+     * @return ?GuestProfile
+     */
+    public function getPrimaryGuestProfile(): ?GuestProfile
+    {
+        foreach($this->profiles as $profile) {
+            if($profile->isPrimary) {
+                return $profile;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * @inheritDoc
      */
     public function toArray(): array
