@@ -104,7 +104,7 @@ class CashfreePaymentDetails extends EmbeddedDocument
 
     /**
      * @var ArrayCollection & CashfreePaymentTransaction[]
-     * @ODM\Field(embeddedDocument=CashfreePaymentTransaction::class)
+     * @ODM\EmbedMany(embeddedDocument=CashfreePaymentTransaction::class)
      */
     public $transactions;
 
