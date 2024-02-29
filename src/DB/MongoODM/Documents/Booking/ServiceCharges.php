@@ -26,7 +26,7 @@ class ServiceCharges extends EmbeddedDocument
 
     /**
      * @var ?Tax
-     * @ODM\EmbedMany(targetDocument=Tax::class)
+     * @ODM\EmbedOne(targetDocument=Tax::class)
      */
     public $tax;
 
