@@ -206,11 +206,7 @@ class GuestSpaceCharges extends EmbeddedDocument
      */
     public function applyGst(): static
     {
-        $totalAmount = 0;
-
-        foreach ($this->appliedRates as $rate) {
-            $totalAmount += $rate->charges;
-        }
+        $totalAmount = $this->amountAfterDiscount;
 
         if ($totalAmount <= 7999) $percentage = 12;
         else $percentage = 18;

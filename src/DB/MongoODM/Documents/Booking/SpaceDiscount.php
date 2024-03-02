@@ -94,8 +94,8 @@ class SpaceDiscount extends EmbeddedDocument
     {
         $this->amount = 0;
 
-        foreach ($this->breakup as $taxItem) {
-            $this->amount = round($this->amount, $taxItem->amount, 2);
+        foreach ($this->breakup as $discountItem) {
+            $this->amount = round($this->amount + $discountItem->amount, 2);
         }
 
         return $this;
