@@ -76,7 +76,7 @@ class GuestSpaceCharges extends EmbeddedDocument
 
     /**
      * @var ?ServiceCharges
-     * @ODM\EmbedOne (targetDocument=OtaServiceCharges::class)
+     * @ODM\EmbedOne (targetDocument=ServiceCharges::class)
      */
     public $serviceCharges;
 
