@@ -14,12 +14,6 @@ use MongoDB\BSON\ObjectId;
 class PropertyInventoryBookingReference extends EmbeddedDocument
 {
     /**
-     * @var ObjectId
-     * @ODM\Field(type="object_id")
-     */
-    public $globalID;
-
-    /**
      * @var int
      * @ODM\Field(type="int")
      */
@@ -46,7 +40,6 @@ class PropertyInventoryBookingReference extends EmbeddedDocument
     public function toArray(): array
     {
         return [
-            'globalID' => $this->globalID,
             'bookingID' => $this->bookingID,
             'type' => $this->type,
             'count' => $this->count,
