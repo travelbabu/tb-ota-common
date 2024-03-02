@@ -20,7 +20,7 @@ class PaymentDetails extends EmbeddedDocument
 //    public const PAYMENT_TYPE_CASH = 'CASH';
 
     /**
-     * @var ArrayCollection & PropertyDiscountItem[]
+     * @var ArrayCollection & SpaceDiscountItem[]
      * @ODM\EmbedMany(targetDocument=BookingDiscountItem::class)
      */
     public $details;

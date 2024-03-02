@@ -68,7 +68,7 @@ class DailyCalculation extends EmbeddedDocument
     public $propertyDiscountAppliedOn;
 
     /**
-     * @var ArrayCollection & PropertyDiscountItem[]
+     * @var ArrayCollection & SpaceDiscountItem[]
      * @ODM\EmbedMany(targetDocument=BookingDiscountItem::class)
      */
     public $propertyDiscountItems;

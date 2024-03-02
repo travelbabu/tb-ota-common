@@ -9,7 +9,7 @@ use function SYSOTEL\OTA\Common\Helpers\isSignedNumber;
 /**
  * @ODM\EmbeddedDocument
  */
-class PropertyDiscountItem extends EmbeddedDocument
+class SpaceDiscountItem extends EmbeddedDocument
 {
     /**
      * @var string
@@ -28,6 +28,12 @@ class PropertyDiscountItem extends EmbeddedDocument
      * @ODM\Field(type="int")
      */
     public $promotionID;
+
+    /**
+     * @var ?string
+     * @ODM\Field(type="string")
+     */
+    public $type;
 
     /**
      * @var string
@@ -84,7 +90,9 @@ class PropertyDiscountItem extends EmbeddedDocument
     public function toArray(): array
     {
         return [
+            'promotionDocumentID' => $this->promotionDocumentID,
             'promotionID' => $this->promotionID,
+            'type' => $this->type,
             'code' => $this->code,
             'name' => $this->name,
             'amount' => $this->amount,

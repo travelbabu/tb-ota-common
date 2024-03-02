@@ -18,8 +18,8 @@ class SpaceDiscount extends EmbeddedDocument
     public $amount = 0;
 
     /**
-     * @var ArrayCollection & PropertyDiscountItem[]
-     * @ODM\EmbedMany (targetDocument=PropertyDiscountItem::class)
+     * @var ArrayCollection & SpaceDiscountItem[]
+     * @ODM\EmbedMany (targetDocument=SpaceDiscountItem::class)
      */
     public $breakup;
 
@@ -49,14 +49,14 @@ class SpaceDiscount extends EmbeddedDocument
     }
 
     /**
-     * @param PropertyDiscountItem $discountItem
+     * @param SpaceDiscountItem $discountItem
      * @return $this
      */
-    public function mergeBreakupItem(PropertyDiscountItem $discountItem): static
+    public function mergeBreakupItem(SpaceDiscountItem $discountItem): static
     {
         $matchFound = false;
 
-        $itemCopy = new PropertyDiscountItem;
+        $itemCopy = new SpaceDiscountItem;
         $itemCopy->appliedOn = $discountItem->appliedOn;
         $itemCopy->promotionDocumentID = $discountItem->promotionDocumentID;
         $itemCopy->promotionID = $discountItem->promotionID;

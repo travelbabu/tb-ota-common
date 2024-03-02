@@ -19,7 +19,7 @@ class BookingDiscount extends EmbeddedDocument
     public $value;
 
     /**
-     * @var ArrayCollection & PropertyDiscountItem[]
+     * @var ArrayCollection & SpaceDiscountItem[]
      * @ODM\EmbedMany(targetDocument=BookingDiscountItem::class)
      */
     public $items;

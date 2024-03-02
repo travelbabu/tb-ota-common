@@ -92,8 +92,8 @@ class Bill extends EmbeddedDocument
     public $propertyDiscount = 0; // AC
 
     /**
-     * @var ArrayCollection & PropertyDiscountItem[]
-     * @ODM\EmbedMany(targetDocument=PropertyDiscountItem::class)
+     * @var ArrayCollection & SpaceDiscountItem[]
+     * @ODM\EmbedMany(targetDocument=SpaceDiscountItem::class)
      */
     public $propertyDiscountItems = 0; // AC
 
