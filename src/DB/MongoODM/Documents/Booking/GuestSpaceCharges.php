@@ -179,8 +179,8 @@ class GuestSpaceCharges extends EmbeddedDocument
      */
     public function calculateAmountAfterOtaDiscount(): static
     {
-        if (!$this->spaceDiscount) {
-            $this->spaceDiscount = new SpaceDiscount;
+        if (!$this->otaDiscount) {
+            $this->otaDiscount = new OtaDiscount;
         }
 
         $amountAfterDiscount = round($this->amountAfterTax - $this->otaDiscount->amount, 2);

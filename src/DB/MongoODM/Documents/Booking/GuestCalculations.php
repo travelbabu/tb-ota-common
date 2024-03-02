@@ -114,7 +114,6 @@ class GuestCalculations extends EmbeddedDocument
         }
         $this->spaceCharges->spaceDiscount = $bookingDiscount;
         $this->spaceCharges->calculateAmountAfterDiscount();
-        $this->spaceCharges->calculateAmountAfterOtaDiscount();
 
         // tax
         $propertyTax = new Tax;
@@ -129,6 +128,7 @@ class GuestCalculations extends EmbeddedDocument
         $this->spaceCharges->tax = $propertyTax;
         $this->spaceCharges->calculateAmountAfterTax();
 
+        $this->spaceCharges->calculateAmountAfterOtaDiscount();
 
         $serviceCharges = new ServiceCharges;
         foreach($this->spaceWiseBreakup as $spaceWiseBreakupItem) {
@@ -144,6 +144,8 @@ class GuestCalculations extends EmbeddedDocument
         }
         $this->spaceCharges->serviceCharges = $serviceCharges;
         $this->spaceCharges->calculateAmountAfterServiceCharges();
+
+        $this->taxAndCharges = ($this->spaceCharges?->tax?->amount ?? 0) + ($this->spaceCharges?->serviceCharges?->amount ?? 0);
 
         return $this;
     }

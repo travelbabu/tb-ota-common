@@ -18,7 +18,7 @@ class EarlyBirdPromotion extends Promotion
      * @var ?int
      * @ODM\Field(type="int")
      */
-    protected $windowThresholdInDays;
+    public $windowThresholdInDays;
 
     /**
      * @var ?PromotionDiscountConfig

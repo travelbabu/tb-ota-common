@@ -18,7 +18,7 @@ class LastMinutePromotion extends Promotion
      * @var ?int
      * @ODM\Field(type="int")
      */
-    protected  $windowThresholdInDays;
+    public $windowThresholdInDays;
 
     /**
      * @var ?PromotionDiscountConfig
@@ -78,7 +78,7 @@ class LastMinutePromotion extends Promotion
     public function toArray(): array
     {
         return arrayFilter(
-            array_merge(parent::toArray(),[
+            array_merge(parent::toArray(), [
 
             ])
         );

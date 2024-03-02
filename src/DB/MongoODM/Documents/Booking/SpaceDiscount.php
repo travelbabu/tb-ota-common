@@ -61,6 +61,7 @@ class SpaceDiscount extends EmbeddedDocument
         $itemCopy->promotionDocumentID = $discountItem->promotionDocumentID;
         $itemCopy->promotionID = $discountItem->promotionID;
         $itemCopy->name = $discountItem->name;
+        $itemCopy->type = $discountItem->type;
         $itemCopy->code = $discountItem->code;
         $itemCopy->amount = $discountItem->amount;
         $itemCopy->percentage = $discountItem->percentage;
