@@ -86,8 +86,8 @@ class Promotion extends Document
      * @ODM\Field(type="string")
      */
     public $dateRestrictionType;
-    public const DATE_RESTRICTION_TYPE_STAY_DATE = 'EXPIRED';
-    public const DATE_RESTRICTION_TYPE_STAY_DATE_BOOKING_DATE = 'EXPIRED';
+    public const DATE_RESTRICTION_TYPE_STAY_DATE = 'STAY_DATE';
+    public const DATE_RESTRICTION_TYPE_STAY_DATE_BOOKING_DATE = 'STAY_DATE_BOOKING_DATE';
 
     /**
      * @var ?bool
