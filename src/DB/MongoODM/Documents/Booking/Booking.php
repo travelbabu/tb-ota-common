@@ -63,6 +63,12 @@ class Booking extends Document
      * @var string
      * @ODM\Field(type="string")
      */
+    public $source;
+
+    /**
+     * @var string
+     * @ODM\Field(type="string")
+     */
     public $marketSegment;
 
     /**
@@ -387,6 +393,8 @@ class Booking extends Document
     {
         return array_filter([
             'id' => $this->id,
+            'source' => $this->source,
+            'marketSegment' => $this->marketSegment,
             'property' => toArrayOrNull($this->property),
             'channel' => toArrayOrNull($this->channel),
             'stayDates' => toArrayOrNull($this->stayDates),
