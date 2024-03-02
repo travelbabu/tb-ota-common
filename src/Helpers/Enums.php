@@ -4,6 +4,10 @@ namespace SYSOTEL\OTA\Common\Helpers;
 
 class Enums
 {
+    const PROMOTION_TYPE_BASIC = 'BASIC';
+    const PROMOTION_TYPE_LAST_MINUTE = 'LAST_MINUTE';
+    const PROMOTION_TYPE_EARLY_BIRD = 'EARLY_BIRD';
+
     const BOOKING_SOURCE_TRAVELBABU = 'TRAVELBABU';
 
     const MARKET_SEGMENT_B2C = 'B2C';
