@@ -44,13 +44,13 @@ class Promotion extends Document
      * @var ?int
      * @ODM\Field(type="int")
      */
-    public $promoId;
+    public $promoID;
 
     /**
      * @var ?int
      * @ODM\Field(type="int")
      */
-    public $propertyId;
+    public $propertyID;
 
     /**
      * @var ?string
@@ -148,33 +148,33 @@ class Promotion extends Document
     /**
      * @return int|null
      */
-    public function getPromoId(): ?int
+    public function getPromoID(): ?int
     {
-        return $this->promoId;
+        return $this->promoID;
     }
 
     /**
-     * @param int|null $promoId
+     * @param int|null $promoID
      */
-    public function setPromoId(?int $promoId): void
+    public function setPromoID(?int $promoID): void
     {
-        $this->promoId = $promoId;
+        $this->promoID = $promoID;
     }
 
     /**
      * @return int|null
      */
-    public function getPropertyId(): ?int
+    public function getPropertyID(): ?int
     {
-        return $this->propertyId;
+        return $this->propertyID;
     }
 
     /**
-     * @param int|null $propertyId
+     * @param int|null $propertyID
      */
-    public function setPropertyId(?int $propertyId): void
+    public function setPropertyID(?int $propertyID): void
     {
-        $this->propertyId = $propertyId;
+        $this->propertyID = $propertyID;
     }
 
     /**
