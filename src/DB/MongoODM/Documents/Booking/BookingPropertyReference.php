@@ -116,7 +116,7 @@ class BookingPropertyReference extends EmbeddedDocument
             'stateName' => $property->address?->state?->name ?? $property->rawAddress?->state,
             'countryId' => $property->address?->country?->id,
             'countryName' => $property->address?->country?->name ?? $property->rawAddress?->country,
-            'geoLocation' => $property->address?->geoLocation ?? $property->rawAddress?->geoLocation,
+            'location' => $property->address?->geoLocation?->location,
         ]);
     }
 
