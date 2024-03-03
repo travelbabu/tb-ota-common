@@ -132,6 +132,7 @@ class CashfreePaymentDetails extends EmbeddedDocument
      */
     public function updateFromOrderData(array $data): static
     {
+        $this->paymentSessionID = $data['payment_session_id'] ?? null;
         $this->orderAmount = $data['order_amount'] ?? null;
         $this->cfOrderID = $data['cf_order_id'] ?? null;
         $this->customerID = $data['customer_details']['customer_id'] ?? null;

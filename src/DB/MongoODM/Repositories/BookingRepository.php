@@ -30,6 +30,19 @@ class BookingRepository extends DocumentRepository
 
     /**
      * @param int $bookingID
+     * @param string $secretToken
+     * @return Booking|null
+     */
+    public function findByBookingIdAndSecret(int $bookingID, string $secretToken): ?Booking
+    {
+        return $this->findOneBy([
+            'bookingID' => $bookingID,
+            'secretToken' => $secretToken,
+        ]);
+    }
+
+    /**
+     * @param int $bookingID
      * @return Booking|null
      */
     public function findLatestVersion(int $bookingID): ?Booking
