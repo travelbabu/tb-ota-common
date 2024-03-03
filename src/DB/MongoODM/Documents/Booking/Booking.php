@@ -54,12 +54,6 @@ class Booking extends Document
     public $secretToken;
 
     /**
-     * @var ?BookingChannel
-     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\BookingChannel::class)
-     */
-    public $channel;
-
-    /**
      * @var string
      * @ODM\Field(type="string")
      */
@@ -396,7 +390,6 @@ class Booking extends Document
             'source' => $this->source,
             'marketSegment' => $this->marketSegment,
             'property' => toArrayOrNull($this->property),
-            'channel' => toArrayOrNull($this->channel),
             'stayDates' => toArrayOrNull($this->stayDates),
             'spaceDetails' => toArrayOrNull($this->spaceDetails),
             'guestDetails' => toArrayOrNull($this->guestDetails),

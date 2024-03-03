@@ -36,18 +36,6 @@ class PropertySpaceCharges extends EmbeddedDocument
      * @var float
      * @ODM\Field(type="float")
      */
-    public $amountBeforeMarkup = 0;
-
-    /**
-     * @var float
-     * @ODM\Field(type="float")
-     */
-    public $markup = 0;
-
-    /**
-     * @var float
-     * @ODM\Field(type="float")
-     */
     public $total = 0;
 
     /**

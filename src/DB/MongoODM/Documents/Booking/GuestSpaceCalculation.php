@@ -25,18 +25,6 @@ class GuestSpaceCalculation extends EmbeddedDocument
     public $spaceCharges;
 
     /**
-     * @var float
-     * @ODM\Field(type="float")
-     */
-    public $chargesAfterAllDiscounts = 0;
-
-    /**
-     * @var float
-     * @ODM\Field(type="float")
-     */
-    public $taxAndCharges = 0;
-
-    /**
      * @var ArrayCollection<GuestTimelyCalculation>
      * @ODM\EmbedMany(targetDocument=PropertyTimelyCalculation::class)
      */
@@ -129,8 +117,6 @@ class GuestSpaceCalculation extends EmbeddedDocument
         }
 
         $this->spaceCharges->calculateAmountAfterServiceCharges();
-
-        $this->taxAndCharges = ($this->spaceCharges?->tax?->amount ?? 0) + ($this->spaceCharges?->serviceCharges?->amount ?? 0);
 
         return $this;
     }

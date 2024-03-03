@@ -5,6 +5,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\GeoLocation;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\Location;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Property\Property;
 
 /**
@@ -43,8 +44,8 @@ class BookingPropertyReference extends EmbeddedDocument
     public $fullAddress;
 
     /**
-     * @var GeoLocation|null
-     * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\GeoLocation::class)
+     * @var Location|null
+     * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\Location::class)
      */
     public $geoLocation;
 

@@ -13,6 +13,12 @@ use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
 class OtaCommission extends EmbeddedDocument
 {
     /**
+     * @var string
+     * @ODM\Field(type="object_id")
+     */
+    public $contractId;
+
+    /**
      * @var float
      * @ODM\Field(type="float")
      */
@@ -94,6 +100,7 @@ class OtaCommission extends EmbeddedDocument
     public function toArray(): array
     {
         return [
+            'contractId' => $this->contractId,
             'amount' => $this->amount,
             'percentage' => $this->percentage,
             'tax' => toArrayOrNull($this->tax),

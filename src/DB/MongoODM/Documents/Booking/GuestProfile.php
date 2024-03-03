@@ -46,7 +46,6 @@ class GuestProfile extends EmbeddedDocument
      */
     public $rateLevel;
 
-
     /**
      * @var ?string
      * @ODM\Field (type="string")
