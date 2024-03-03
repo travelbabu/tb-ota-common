@@ -28,7 +28,7 @@ class CashfreePaymentDetails extends EmbeddedDocument
      * @var string
      * @ODM\Field(type="string")
      */
-    public $paymentSessionId;
+    public $paymentSessionID;
 
     /**
      * @var string
@@ -153,7 +153,7 @@ class CashfreePaymentDetails extends EmbeddedDocument
         return [
             'appId' => $this->appID,
             'secretKey' => $this->secretKey,
-            'paymentSessionId' => $this->paymentSessionId,
+            'paymentSessionID' => $this->paymentSessionID,
             'internalOrderID' => $this->internalOrderID,
             'cfOrderID' => $this->cfOrderID,
             'orderAmount' => $this->orderAmount,
