@@ -26,7 +26,7 @@ class GuestCount extends EmbeddedDocument
      * @var ?int[]
      * @ODM\Field(type="collection")
      */
-    public $childAges;
+    public $childAges = [];
 
     /**
      * @var int

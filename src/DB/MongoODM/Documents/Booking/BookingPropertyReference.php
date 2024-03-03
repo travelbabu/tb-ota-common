@@ -4,7 +4,6 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\GeoLocation;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\Location;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Property\Property;
 
