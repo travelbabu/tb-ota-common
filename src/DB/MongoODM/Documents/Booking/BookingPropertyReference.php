@@ -105,6 +105,7 @@ class BookingPropertyReference extends EmbeddedDocument
     {
         return new static([
             'id' => $property->id,
+            'displayName' => $property->displayName,
             'baseCurrency' => $property->baseCurrency,
             'starRating' => $property->starRating,
             'fullAddress' => $property->address?->addressParser()?->fullAddress() ?? $property->rawAddress?->addressParser()?->fullAddress(),

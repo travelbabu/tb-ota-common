@@ -56,7 +56,7 @@ class GuestCount extends EmbeddedDocument
      * @var int
      * @ODM\Field(type="int")
      */
-    public $freeGuestCount;
+    public $freeGuestCount = 0;
 
     /**
      * @inheritDoc
