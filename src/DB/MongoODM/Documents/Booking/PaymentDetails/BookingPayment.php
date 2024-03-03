@@ -62,9 +62,6 @@ abstract class BookingPayment extends EmbeddedDocument
      * @ODM\Field(type="string")
      */
     public $status;
-    public const STATUS_SUCCESS = 'SUCCESS';
-    public const STATUS_PENDING = 'PENDING';
-    public const STATUS_FAILURE = 'FAILURE';
 
     /**
      * @var Carbon

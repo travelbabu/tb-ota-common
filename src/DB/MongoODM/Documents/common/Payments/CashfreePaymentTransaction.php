@@ -90,7 +90,7 @@ class CashfreePaymentTransaction extends EmbeddedDocument
      */
     public $paymentCompletionTime;
 
-    public function createFromPayment(array $payment): static
+    public static function createFromPayment(array $payment): static
     {
         return new self([
             'cfPaymentId' => $payment['cf_payment_id'] ?? null,

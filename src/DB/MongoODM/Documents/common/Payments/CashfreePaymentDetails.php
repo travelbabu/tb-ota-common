@@ -133,6 +133,7 @@ class CashfreePaymentDetails extends EmbeddedDocument
     public function updateFromOrderData(array $data): static
     {
         $this->paymentSessionID = $data['payment_session_id'] ?? null;
+        $this->orderStatus = $data['order_status'] ?? null;
         $this->orderAmount = $data['order_amount'] ?? null;
         $this->cfOrderID = $data['cf_order_id'] ?? null;
         $this->customerID = $data['customer_details']['customer_id'] ?? null;
@@ -142,6 +143,22 @@ class CashfreePaymentDetails extends EmbeddedDocument
         $this->refundsUrl = $data['refunds']['url'] ?? null;
         $this->orderStatus = $data['order_status'] ?? null;
         $this->orderCreatedAt = isset($data['created_at']) ? Carbon::parse($data['created_at']) : null;
+
+        return $this;
+    }
+
+    /**
+     * @param array $transactions
+     * @return $this
+     */
+    public function updateTransactionsFromData(array $transactions): static
+    {
+        $this->transactions = new ArrayCollection;
+        foreach($transactions as $transaction) {
+            $this->transactions->add(
+                CashfreePaymentTransaction::createFromPayment($transaction)
+            );
+        }
 
         return $this;
     }

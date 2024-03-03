@@ -33,12 +33,6 @@ class BookingPaymentDetails extends EmbeddedDocument
      * @ODM\Field(type="string")
      */
     public $status;
-    public const STATUS_FULLY_PAID = 'PAID';
-    public const STATUS_PENDING = 'PENDING';
-    public const STATUS_CANCELLED = 'CANCELLED';
-    public const STATUS_FAILED = 'FAILED';
-    public const STATUS_INTERNAL_ERROR = 'INTERNAL_ERROR';
-    public const STATUS_NOT_REQUIRED = 'NOT_REQUIRED';
 
     /**
      * @var ArrayCollection & BookingPayment[]
@@ -82,20 +76,6 @@ class BookingPaymentDetails extends EmbeddedDocument
         }
 
         return $id + 1;
-    }
-
-    public function calculate()
-    {
-        $this->amountPaid = 0;
-        foreach($this->payments as $payment) {
-            if($payment->status === BookingPayment::STATUS_SUCCESS) {
-                $this->amountPaid += $payment->amountPaid;
-            }
-        }
-
-        $this->status = ($this->amountPaid >= $this->amountToBePaid)
-            ? self::STATUS_FULLY_PAID
-            : self::STATUS_PENDING;
     }
 
     /**
