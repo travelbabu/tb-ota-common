@@ -139,7 +139,7 @@ class Booking extends Document
 
     /**
      * @var ?PropertyCalculations
-     * @ODM\EmbedOne (targetDocument=GuestCalculations::class)
+     * @ODM\EmbedOne (targetDocument=PropertyCalculations::class)
      */
     public $propertyCalculations;
 
