@@ -255,6 +255,7 @@ class GuestSpaceCharges extends EmbeddedDocument
         ]));
         $tax->calculateFromBreakup();
 
+        $serviceCharges->percentage = $percentage;
         $serviceCharges->tax = $tax;
         $serviceCharges->calculateAmountAfterTax();
 
