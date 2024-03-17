@@ -16,7 +16,7 @@ class PropertySpaceCharges extends EmbeddedDocument
 {
     /**
      * @var ArrayCollection & SpaceRateItem[]
-     * @ODM\EmbedMany (targetDocument=BookingRateItem::class)
+     * @ODM\EmbedMany (targetDocument=SpaceRateItem::class)
      */
     public $appliedRates;
 
@@ -225,8 +225,8 @@ class PropertySpaceCharges extends EmbeddedDocument
         ]));
         $tax->calculateFromBreakup();
 
-        $otaCommission->percentage = $percentage;
         $otaCommission->tax = $tax;
+
         $otaCommission->calculateAmountAfterTax();
 
         $this->otaCommission = $otaCommission;

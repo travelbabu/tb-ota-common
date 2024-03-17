@@ -26,7 +26,7 @@ class GuestSpaceCalculation extends EmbeddedDocument
 
     /**
      * @var ArrayCollection<GuestTimelyCalculation>
-     * @ODM\EmbedMany(targetDocument=PropertyTimelyCalculation::class)
+     * @ODM\EmbedMany(targetDocument=GuestTimelyCalculation::class)
      */
     public $timelyBreakup;
 

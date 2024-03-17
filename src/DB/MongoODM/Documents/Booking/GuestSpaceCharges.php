@@ -16,7 +16,7 @@ class GuestSpaceCharges extends EmbeddedDocument
 {
     /**
      * @var ArrayCollection & SpaceRateItem[]
-     * @ODM\EmbedMany (targetDocument=BookingRateItem::class)
+     * @ODM\EmbedMany (targetDocument=SpaceRateItem::class)
      */
     public $appliedRates;
 
@@ -64,7 +64,7 @@ class GuestSpaceCharges extends EmbeddedDocument
 
     /**
      * @var ?OtaDiscount
-     * @ODM\EmbedOne (targetDocument=SpaceDiscount::class)
+     * @ODM\EmbedOne (targetDocument=OtaDiscount::class)
      */
     public $otaDiscount;
 
@@ -256,7 +256,9 @@ class GuestSpaceCharges extends EmbeddedDocument
         $tax->calculateFromBreakup();
 
         $serviceCharges->percentage = $percentage;
+
         $serviceCharges->tax = $tax;
+
         $serviceCharges->calculateAmountAfterTax();
 
         $this->serviceCharges = $serviceCharges;

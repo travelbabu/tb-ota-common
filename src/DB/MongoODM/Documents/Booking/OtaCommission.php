@@ -89,7 +89,7 @@ class OtaCommission extends EmbeddedDocument
      */
     public function calculateAmountAfterTax(): static
     {
-        $this->amountAfterTax = $this->amount = $this->tax->amount;
+        $this->amountAfterTax = round($this->amount + $this->tax->amount, 2);
 
         return $this;
     }
