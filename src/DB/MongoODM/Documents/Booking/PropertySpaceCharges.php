@@ -225,6 +225,7 @@ class PropertySpaceCharges extends EmbeddedDocument
         ]));
         $tax->calculateFromBreakup();
 
+        $otaCommission->percentage = $percentage;
         $otaCommission->tax = $tax;
         $otaCommission->calculateAmountAfterTax();
 
