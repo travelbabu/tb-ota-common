@@ -23,6 +23,23 @@ class PropertyCalculations extends EmbeddedDocument
      */
     public $spaceCharges;
 
+    /**
+     * @var float
+     * @ODM\Field(type="float")
+     */
+    public $tds = 0;
+
+    /**
+     * @var float
+     * @ODM\Field(type="float")
+     */
+    public $tcs = 0;
+
+    /**
+     * @var float
+     * @ODM\Field(type="float")
+     */
+    public $otaToPayPropertyAmount = 0;
 
     /**
      * CONSTRUCTOR
@@ -122,6 +139,10 @@ class PropertyCalculations extends EmbeddedDocument
         }
         $this->spaceCharges->otaCommission = $otaCommission;
         $this->spaceCharges->calculateAmountAfterOtaCommission();
+
+        $this->tds = (float) bcdiv(bcmul($this->spaceCharges->amountAfterDiscount, 1), 100, 2);
+        $this->tcs = (float) bcdiv(bcmul($this->spaceCharges->amountAfterDiscount, 1), 100, 2);
+        $this->otaToPayPropertyAmount = round($this->spaceCharges->amountAfterDiscount - $this->spaceCharges->otaCommission->amount - $this->tds - $this->tcs);
 
         return $this;
     }

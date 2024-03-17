@@ -31,7 +31,19 @@ class GuestCalculations extends EmbeddedDocument
      * @var float
      * @ODM\Field(type="float")
      */
-    public $guestPayableAmount = 0;
+    public $payableAmount = 0;
+
+    /**
+     * @var float
+     * @ODM\Field(type="float")
+     */
+    public $payNowAmount = 0;
+
+    /**
+     * @var float
+     * @ODM\Field(type="float")
+     */
+    public $payLaterAmount = 0;
 
     /**
      * CONSTRUCTOR
@@ -120,7 +132,9 @@ class GuestCalculations extends EmbeddedDocument
         $this->spaceCharges->serviceCharges = $serviceCharges;
         $this->spaceCharges->calculateAmountAfterServiceCharges();
 
-        $this->guestPayableAmount = $this->spaceCharges->amountAfterServiceCharges;
+        $this->payableAmount = $this->spaceCharges->amountAfterServiceCharges;
+        $this->payNowAmount = $this->spaceCharges->amountAfterServiceCharges;
+        $this->payLaterAmount = $this->spaceCharges->amountAfterServiceCharges;
 
         return $this;
     }
