@@ -20,7 +20,7 @@ class BookingGuestDetails extends EmbeddedDocument
 
     /**
      * @var ArrayCollection & GuestProfile[]
-     * @ODM\EmbedMany(targetDocument=BookingSpace::class)
+     * @ODM\EmbedMany(targetDocument=GuestProfile::class)
      */
     public $profiles;
 

@@ -246,7 +246,7 @@ class Booking extends Document
 
     public function spaceCountString(): string
     {
-        $spaceCount = $this->noOfSpaces ?? 0;
+        $spaceCount = $this->spaceDetails->totalCount;
         $spaceText = ($spaceCount <= 1) ? 'Room' : 'Rooms';
         return $spaceCount . ' ' . $spaceText;
     }
@@ -256,7 +256,13 @@ class Booking extends Document
      */
     public function getPrimaryGuestProfile(): ?GuestProfile
     {
-        return collect($this->guestList)->firstWhere('isPrimaryGuest', true);
+        foreach($this->guestDetails->profiles as $profile) {
+            if($profile->isPrimary) {
+                return $profile;
+            }
+        }
+
+        return null;
     }
 
     /**
