@@ -9,10 +9,18 @@ class Enums
     const PROMOTION_TYPE_EARLY_BIRD = 'EARLY_BIRD';
 
     const BOOKING_SOURCE_TRAVELBABU = 'TRAVELBABU';
+    const BOOKING_SOURCE_MAKEMYTRIP = 'MAKEMYTRIP';
+    const BOOKING_SOURCE_GOIBIBO = 'GOIBIBO';
+    const BOOKING_SOURCE_AGODA = 'AGODA';
+    const BOOKING_SOURCE_BOOKING_DOT_COM = 'BOOKING_DOT_COM';
+    const BOOKING_SOURCE_EXPEDIA = 'EXPEDIA';
+    const BOOKING_SOURCE_YATRA = 'YATRA';
+    const BOOKING_SOURCE_CLEARTRIP = 'CLEARTRIP';
 
     const MARKET_SEGMENT_B2C = 'B2C';
     const MARKET_SEGMENT_B2B = 'B2B';
     const MARKET_SEGMENT_CORPORATE = 'CORPORATE';
+    const MARKET_SEGMENT_OTHER = 'OTHER';
 
     const BASE_CURRENCY_INR = 'INR';
 
@@ -57,4 +65,33 @@ class Enums
     public const BOOKING_PAYMENT_TRANSACTION_STATUS_FAILED = 'FAILED';
     public const BOOKING_PAYMENT_TRANSACTION_STATUS_INTERNAL_ERROR = 'INTERNAL_ERROR';
     public const BOOKING_PAYMENT_TRANSACTION_STATUS_NOT_REQUIRED = 'NOT_REQUIRED';
+
+    /**
+     * @return string[]
+     */
+    public static function bookingSources(): array
+    {
+        return [
+            static::BOOKING_SOURCE_TRAVELBABU,
+            static::BOOKING_SOURCE_MAKEMYTRIP,
+            static::BOOKING_SOURCE_GOIBIBO,
+            static::BOOKING_SOURCE_AGODA,
+            static::BOOKING_SOURCE_BOOKING_DOT_COM,
+            static::BOOKING_SOURCE_EXPEDIA,
+            static::BOOKING_SOURCE_YATRA,
+            static::BOOKING_SOURCE_CLEARTRIP,
+        ];
+    }
+    /**
+     * @return string[]
+     */
+    public static function marketSegments(): array
+    {
+        return [
+            static::MARKET_SEGMENT_B2C,
+            static::MARKET_SEGMENT_B2B,
+            static::MARKET_SEGMENT_CORPORATE,
+            static::MARKET_SEGMENT_OTHER,
+        ];
+    }
 }

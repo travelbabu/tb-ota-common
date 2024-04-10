@@ -2,10 +2,8 @@
 
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking;
 
-use Carbon\Carbon;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * @ODM\EmbeddedDocument
