@@ -212,6 +212,7 @@ class PropertySpaceCharges extends EmbeddedDocument
         }
 
         $otaCommission = new OtaCommission;
+        $otaCommission->percentage = $percentage;
         $otaCommission->amount = (float)bcdiv(bcmul($amountAfterDiscount, $percentage), 100, 2);
 
         $taxAmount = (float)bcdiv(bcmul($otaCommission->amount, 18), 100, 2);

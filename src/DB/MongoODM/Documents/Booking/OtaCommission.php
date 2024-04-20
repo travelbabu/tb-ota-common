@@ -28,7 +28,7 @@ class OtaCommission extends EmbeddedDocument
      * @var float
      * @ODM\Field(type="float")
      */
-    public $percentage = 0;
+    public $percentage;
 
     /**
      * @var ?Tax
@@ -68,13 +68,16 @@ class OtaCommission extends EmbeddedDocument
      */
     public function add(OtaCommission $charges): static
     {
-        if(!$this->tax) {
+        if (!$this->tax) {
             $this->tax = new Tax;
         }
 
         $this->amount = round($this->amount + $charges->amount, 2);
         $this->amountAfterTax = round($this->amountAfterTax + $charges->amountAfterTax, 2);
 
+        if($this->percentage == null) {
+            $this->percentage = $charges->percentage;
+        }
         if ($this->percentage !== $charges->percentage) {
             $this->percentage = null;
         }
