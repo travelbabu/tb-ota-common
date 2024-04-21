@@ -38,7 +38,7 @@ class BookingPaymentDetails extends EmbeddedDocument
      * @var ArrayCollection & array{BookingCashfreePayment|BookingCustomPayment}
      * @ODM\EmbedMany(
      *   discriminatorMap={
-     *     "PG_CASHFREE"=BookingCashfreePayment::class
+     *     "PG_CASHFREE"=BookingCashfreePayment::class,
      *     "CUSTOM"=BookingCustomPayment::class
      *   }
      * )
