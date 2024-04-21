@@ -87,11 +87,20 @@ class ContentProvider
 
     public static function bookingSources(): array
     {
-        return self::idTextArray([
-            Booking::SOURCE_B2C_PORTAL => 'B2C Portal',
-            Booking::SOURCE_AGENT_PORTAL => 'Agent Portal',
-            Booking::SOURCE_CORPORATE_PORTAL => 'Corporate Portal',
-        ]);
+        return self::idTextArray(
+            collect(Enums::bookingSources())->map(function ($source) {
+                return [$source => $source];
+            })->toArray()
+        );
+    }
+
+    public static function marketSegments(): array
+    {
+        return self::idTextArray(
+            collect(Enums::marketSegments())->map(function ($ms) {
+                return [$ms => $ms];
+            })->toArray()
+        );
     }
 
     public static function inquiryStatuses(): array
@@ -109,7 +118,7 @@ class ContentProvider
             Verification::STATUS_REJECTED => 'Rejected',
         ];
 
-        if($includePending) {
+        if ($includePending) {
             $data[Verification::STATUS_PENDING] = 'Verification Pending';
         }
 

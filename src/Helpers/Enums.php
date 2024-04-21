@@ -82,6 +82,7 @@ class Enums
             static::BOOKING_SOURCE_CLEARTRIP,
         ];
     }
+
     /**
      * @return string[]
      */
@@ -92,6 +93,31 @@ class Enums
             static::MARKET_SEGMENT_B2B,
             static::MARKET_SEGMENT_CORPORATE,
             static::MARKET_SEGMENT_OTHER,
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public static function paymentGroups(): array
+    {
+        return [
+            static::PG_GROUP_CASH,
+            static::PG_GROUP_PREPAID_CARD,
+            static::PG_GROUP_CREDIT_CARD,
+            static::PG_GROUP_CREDIT_CARD_EMI,
+            static::PG_GROUP_DEBIT_CARD_EMI,
+            static::PG_GROUP_DEBIT_CARD,
+            static::PG_GROUP_UPI_CREDIT_CARD,
+            static::PG_GROUP_PAYPAL,
+            static::PG_GROUP_NET_BANKING,
+            static::PG_GROUP_CARDLESS_EMI,
+            static::PG_GROUP_BANK_TRANSFER,
+            static::PG_GROUP_PAY_LATER,
+            static::PG_GROUP_WALLET,
+            static::PG_GROUP_UPI,
+            static::PG_GROUP_UPI_PPI,
+            static::PG_GROUP_UPI_PPI_OFFLINE,
         ];
     }
 }
