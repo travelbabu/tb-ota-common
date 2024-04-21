@@ -5,7 +5,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\PaymentDetails;
 use Carbon\Carbon;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
-
+use SYSOTEL\OTA\Common\Helpers\Enums;
 
 /**
  * @ODM\MappedSuperclass
@@ -31,6 +31,7 @@ abstract class BookingPayment extends EmbeddedDocument
     public $type;
     public const TYPE_PG_CASHFREE = 'PG_CASHFREE';
     public const TYPE_INTERNAL_WALLET = 'INTERNAL_WALLET';
+    public const TYPE_CUSTOM = 'CUSTOM';
 
     /**
      * @var string
@@ -87,7 +88,7 @@ abstract class BookingPayment extends EmbeddedDocument
      */
     public $remark;
 
-    public function markAsAcknowledge(string $status = self::STATUS_SUCCESS): static
+    public function markAsAcknowledge(string $status = Enums::BOOKING_PAYMENT_STATUS_PAID): static
     {
         $this->acknowledgeAt = now();
         $this->status = $status;
@@ -108,8 +109,6 @@ abstract class BookingPayment extends EmbeddedDocument
             'status' => $this->status,
             'createdAt' => $this->createdAt,
             'acknowledgeAt' => $this->acknowledgeAt,
-            'vendorReferenceID' => $this->vendorReferenceID,
-            'vendorOrderID' => $this->vendorOrderID,
             'remark' => $this->remark,
         ];
     }

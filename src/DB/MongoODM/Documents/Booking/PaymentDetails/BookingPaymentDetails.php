@@ -35,10 +35,11 @@ class BookingPaymentDetails extends EmbeddedDocument
     public $status;
 
     /**
-     * @var ArrayCollection & BookingPayment[]
+     * @var ArrayCollection & array{BookingCashfreePayment|BookingCustomPayment}
      * @ODM\EmbedMany(
      *   discriminatorMap={
      *     "PG_CASHFREE"=BookingCashfreePayment::class
+     *     "CUSTOM"=BookingCustomPayment::class
      *   }
      * )
      */
