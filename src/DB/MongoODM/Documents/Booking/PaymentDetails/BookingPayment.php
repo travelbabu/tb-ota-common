@@ -95,6 +95,8 @@ abstract class BookingPayment extends EmbeddedDocument
         return $this;
     }
 
+    public abstract function getType(): string;
+
     /**
      * @inheritDoc
      */
