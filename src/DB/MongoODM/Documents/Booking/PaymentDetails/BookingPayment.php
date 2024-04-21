@@ -88,7 +88,7 @@ abstract class BookingPayment extends EmbeddedDocument
      */
     public $remark;
 
-    public function markAsAcknowledge(string $status = Enums::BOOKING_PAYMENT_STATUS_PAID): static
+    public function markAsAcknowledge(string $status = Enums::BOOKING_PAYMENT_TRANSACTION_STATUS_PAID): static
     {
         $this->acknowledgeAt = now();
         $this->status = $status;
