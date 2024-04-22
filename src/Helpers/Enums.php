@@ -136,4 +136,18 @@ class Enums
             static::UNKNOWN,
         ];
     }
+
+    /**
+     * @return string[]
+     */
+    public static function propertyDocumentTypes(): array
+    {
+        return [
+            static::PROPERTY_DOCUMENT_AADHAAR,
+            static::PROPERTY_DOCUMENT_BANK_DETAILS,
+            static::PROPERTY_DOCUMENT_PAN,
+            static::PROPERTY_DOCUMENT_GST,
+            static::PROPERTY_DOCUMENT_NO_GST_DECLARATION,
+        ];
+    }
 }
