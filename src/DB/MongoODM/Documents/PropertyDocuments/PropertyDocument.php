@@ -6,7 +6,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\Document;
 use Delta4op\MongoODM\Traits\HasTimestamps;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ODM\MongoDB\DocumentManager;
+use Delta4op\MongoODM\Facades\DocumentManager;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\UserReference;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\Verification;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\embedded\DocumentFile;

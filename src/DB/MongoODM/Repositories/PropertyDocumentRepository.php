@@ -5,21 +5,22 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Repositories;
 use Delta4op\MongoODM\DocumentRepositories\DocumentRepository;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyDocument;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Property\Property;
+use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
 
 class PropertyDocumentRepository extends DocumentRepository
 {
     /**
      * @param int|Property $property
-     * @param string $type
+     * @param PropertyDocumentType $type
      * @param array $criteria
      * @param array $sort
      * @return PropertyDocument|null
      */
-    public function findLatestForProperty(int|Property $property, string $type, array $criteria = [], array $sort = []): null|PropertyDocument
+    public function findLatestForProperty(int|Property $property, PropertyDocumentType $type, array $criteria = [], array $sort = []): null|PropertyDocument
     {
         $criteria = array_merge([
             'propertyID' => Property::resolveID($property),
-            'type' => $type
+            'type' => $type->value
         ], $criteria);
 
         $sort = array_merge([

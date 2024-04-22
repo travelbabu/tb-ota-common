@@ -4,17 +4,16 @@ namespace SYSOTEL\OTA\Common\Services\DocumentServices;
 
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyDocument;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Property\Property;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\embedded\DocumentFile;
+use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
 
 class DocumentStorageManager
 {
-    public const TYPE_BANK = 'BANK';
-    public const TYPE_PAN = 'PAN';
-    public const TYPE_GST = 'GST';
-
     /**
      * @var string
      */
@@ -27,21 +26,34 @@ class DocumentStorageManager
 
     /**
      * @param int|Property $property
-     * @param UploadedFile $file
-     * @param string $documentType
-     * @return PropertyDocument
+     * @param UploadedFile|UploadedFile[] $files
+     * @param PropertyDocumentType $documentType
+     * @return DocumentFile[]
      */
-    public function store(int|Property $property, UploadedFile $file, string $documentType): PropertyDocument
+    public function store(int|Property $property, UploadedFile|array $files, PropertyDocumentType $documentType): array
     {
-        $path = $this->fullPath($property, $file, $documentType);
+        /** @var UploadedFile[] $files */
+        $files = Arr::wrap($files);
 
-        $this->upload($path, $file);
+        $documentFiles = [];
 
-        return new PropertyDocument([
-            'filePath' => $path,
-            'sizeInKb' => round($file->getSize()/1024, 2),
-            'extension' => $file->extension()
-        ]);
+        foreach ($files as $i => $file) {
+
+            $documentFile = new DocumentFile;
+            $documentFile->filePath = $this->fullPath($property, $file, $documentType);
+            $documentFile->byteSize = $file->getSize() ?? null;
+            $documentFile->extension = $file->extension();
+
+            $documentFile->name = $documentType->label();
+            if(count($files) > 1) {
+                $documentFile->name = "$documentFile->name " . $i + 1;
+            }
+
+            $documentFiles[] = $documentFile;
+        }
+
+
+        return $documentFiles;
     }
 
     /**
@@ -71,23 +83,16 @@ class DocumentStorageManager
     /**
      * @param int|Property $property
      * @param UploadedFile $file
-     * @param string $documentType
+     * @param PropertyDocumentType $documentType
      * @return string
      */
-    protected function fullPath(int|Property $property, UploadedFile $file, string $documentType): string
+    protected function fullPath(int|Property $property, UploadedFile $file, PropertyDocumentType $documentType): string
     {
         $propertyID = Property::resolveID($property);
 
-        $documentType = match($documentType){
-            self::TYPE_BANK => 'bank',
-            self::TYPE_PAN => 'pan',
-            self::TYPE_GST => 'gst',
-            default => 'other'
-        };
-
         $fileName = $this->fileName($property, $file);
 
-        return "{$propertyID}/documents/{$documentType}/{$fileName}";
+        return "{$propertyID}/documents/{$documentType->value}/{$fileName}";
     }
 
     /**
