@@ -11,6 +11,12 @@ class DocumentFile extends EmbeddedDocument
 {
     /**
      * @var string
+     * @ODM\Field(type="object_id")
+     */
+    public $id;
+
+    /**
+     * @var string
      * @ODM\Field(type="string")
      */
     public $name;
@@ -39,6 +45,7 @@ class DocumentFile extends EmbeddedDocument
     public function toArray(): array
     {
         return array_merge([
+            'id' => $this->id,
             'name' => $this->name,
             'filePath' => $this->filePath,
             'byteSize' => $this->byteSize,

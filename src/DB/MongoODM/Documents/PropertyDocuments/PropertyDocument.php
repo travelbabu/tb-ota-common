@@ -63,6 +63,21 @@ abstract class PropertyDocument extends Document
     public $verification;
 
     /**
+     * @param string $id
+     * @return DocumentFile|null
+     */
+    public function getFileById(string $id): ?DocumentFile
+    {
+        foreach($this->documents as $document) {
+            if($document->id === $id) {
+                return $document;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * @inheritDoc
      */
     public function toArray(): array
