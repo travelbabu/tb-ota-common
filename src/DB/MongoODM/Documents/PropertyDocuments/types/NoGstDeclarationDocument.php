@@ -9,7 +9,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 /**
  * @ODM\EmbeddedDocument
  */
-class Document extends PropertyDocument
+class NoGstDeclarationDocument extends PropertyDocument
 {
     /**
      * @inheritDoc
