@@ -4,6 +4,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types;
 
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\PropertyDocument;
 use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
  * @ODM\EmbeddedDocument

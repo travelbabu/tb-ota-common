@@ -5,7 +5,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\embedded\AadhaarDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\PropertyDocument;
 use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
-use SYSOTEL\OTA\Common\Helpers\Enums;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
 
 /**

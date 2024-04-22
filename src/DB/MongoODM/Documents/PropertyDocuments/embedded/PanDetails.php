@@ -2,6 +2,7 @@
 
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\embedded;
 
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Carbon\Carbon;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 

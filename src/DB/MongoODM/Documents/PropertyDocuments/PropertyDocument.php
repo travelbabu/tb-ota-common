@@ -62,6 +62,13 @@ abstract class PropertyDocument extends Document
      */
     public $verification;
 
+    public function __construct(array $attributes = [])
+    {
+        $this->documents = new ArrayCollection;
+
+        parent::__construct($attributes);
+    }
+
     /**
      * @param string $id
      * @return DocumentFile|null
