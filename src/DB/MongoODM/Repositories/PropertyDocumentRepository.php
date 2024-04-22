@@ -3,8 +3,8 @@
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Repositories;
 
 use Delta4op\MongoODM\DocumentRepositories\DocumentRepository;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyDocument;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Property\Property;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\PropertyDocument;
 use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
 
 class PropertyDocumentRepository extends DocumentRepository
