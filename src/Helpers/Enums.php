@@ -127,6 +127,7 @@ class Enums
             static::PG_GROUP_UPI,
             static::PG_GROUP_UPI_PPI,
             static::PG_GROUP_UPI_PPI_OFFLINE,
+            static::UNKNOWN,
         ];
     }
 }
