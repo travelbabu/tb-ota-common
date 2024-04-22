@@ -11,7 +11,7 @@ use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
 /**
  * @ODM\EmbeddedDocument
  */
-class Document extends PropertyDocument
+class PanDocument extends PropertyDocument
 {
     /**
      * @var ?PanDetails
