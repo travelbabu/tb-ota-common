@@ -7,7 +7,6 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyDocument;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Property\Property;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\embedded\DocumentFile;
 use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
@@ -99,40 +98,40 @@ class DocumentStorageManager
      * @param $fullPath
      * @param UploadedFile $file
      */
-    protected function upload($fullPath, UploadedFile $file)
+    protected function upload($fullPath, UploadedFile $file): void
     {
         $this->storage()->put($fullPath, $file->getContent());
     }
 
     /**
-     * @param string|PropertyDocument $path
+     * @param string|DocumentFile $path
      * @return string
      */
-    public function fileURL(string|PropertyDocument $path): string
+    public function fileURL(string|DocumentFile $path): string
     {
-        $path = $path instanceof PropertyDocument ? $path->filePath : $path;
+        $path = $path instanceof DocumentFile ? $path->filePath : $path;
 
         return Storage::disk($this->driver)->url($path);
     }
 
     /**
-     * @param string|PropertyDocument $document
+     * @param string|DocumentFile $document
      * @return StreamedResponse
      */
-    public function fileResponse(string|PropertyDocument $document): StreamedResponse
+    public function fileResponse(string|DocumentFile $document): StreamedResponse
     {
-        $path = $document instanceof PropertyDocument ? $document->filePath : $document;
+        $path = $document instanceof DocumentFile ? $document->filePath : $document;
 
         return $this->storage()->response($path);
     }
 
     /**
-     * @param string|PropertyDocument $document
+     * @param string|DocumentFile $document
      * @return StreamedResponse
      */
-    public function fileDownloadResponse(string|PropertyDocument $document): StreamedResponse
+    public function fileDownloadResponse(string|DocumentFile $document): StreamedResponse
     {
-        $path = $document instanceof PropertyDocument ? $document->filePath : $document;
+        $path = $document instanceof DocumentFile ? $document->filePath : $document;
 
         return $this->storage()->response($path);
     }

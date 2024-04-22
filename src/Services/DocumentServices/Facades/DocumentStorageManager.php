@@ -6,16 +6,16 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyDocument;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Property\Property;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\embedded\DocumentFile;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyImages\PropertyImage;
 use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
 
 /**
  * @method static PropertyImage store(int|Property $property, UploadedFile|UploadedFile[] $files, PropertyDocumentType $documentType)
- * @method static string fileURL(string|PropertyDocument $path)
- * @method static StreamedResponse fileDownloadResponse(string|PropertyDocument $document)
- * @method static StreamedResponse fileResponse(string|PropertyDocument $document)
+ * @method static string fileURL(string|DocumentFile $path)
+ * @method static StreamedResponse fileDownloadResponse(string|DocumentFile $document)
+ * @method static StreamedResponse fileResponse(string|DocumentFile $document)
  * @method static Storage storage()
  *
  * @see \SYSOTEL\OTA\Common\Services\DocumentServices\AgentAccountStorageManager
