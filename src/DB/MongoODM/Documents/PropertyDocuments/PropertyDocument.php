@@ -28,7 +28,7 @@ use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
  *     "GST":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\GstDocument::class,
  *     "NO_GST_DECLARATION":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\NoGstDeclarationDocument::class,
  *     "NO_OBJECTION_CERTIFICATE":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\NoObjectionCertificateDocument::class,
- *     "TRADE_LICENCE":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\TradeCertificate::class,
+ *     "TRADE_LICENCE":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\TradeLicence::class,
  *     "LEASE_CONTRACT":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\LeaseContract::class,
  *     "PROPERTY_OWNERSHIP_CERTIFICATE":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\PropertyOwnershipDocument::class,
  *     "MSME_CERTIFICATE":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\MsmeCertificate::class,

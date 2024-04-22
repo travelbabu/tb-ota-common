@@ -48,6 +48,8 @@ class DocumentStorageManager
                 $documentFile->name = "$documentFile->name " . $i + 1;
             }
 
+            $this->upload($documentFile->filePath, $file);
+
             $documentFiles[] = $documentFile;
         }
 
