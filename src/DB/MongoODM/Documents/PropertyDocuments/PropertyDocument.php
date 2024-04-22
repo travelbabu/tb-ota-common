@@ -24,6 +24,14 @@ use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
  * @ODM\DiscriminatorMap({
  *     "AADHAAR":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\AadhaarDocument::class,
  *     "PAN":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\PanDocument::class,
+ *     "BANK_DETAILS":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\BankDocument::class,
+ *     "GST":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\GstDocument::class,
+ *     "NO_GST_DECLARATION":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\NoGstDeclarationDocument::class,
+ *     "NO_OBJECTION_CERTIFICATE":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\NoObjectionCertificateDocument::class,
+ *     "TRADE_LICENCE":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\TradeCertificate::class,
+ *     "LEASE_CONTRACT":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\LeaseContract::class,
+ *     "PROPERTY_OWNERSHIP_CERTIFICATE":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\PropertyOwnershipDocument::class,
+ *     "MSME_CERTIFICATE":SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types\MsmeCertificate::class,
  * })
  */
 abstract class PropertyDocument extends Document

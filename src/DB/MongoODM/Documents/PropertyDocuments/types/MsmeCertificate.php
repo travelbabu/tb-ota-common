@@ -2,20 +2,19 @@
 
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types;
 
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\embedded\PanDetails;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\embedded\MsmeDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\PropertyDocument;
 use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
 
 /**
- * @ODM\Document
+ * @ODM\EmbeddedDocument
  */
-class GstDocument extends PropertyDocument
+class MsmeCertificate extends PropertyDocument
 {
     /**
-     * @var ?PanDetails
-     * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\embedded\PanDetails::class)
+     * @var ?MsmeDetails
+     * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\embedded\MsmeDetails::class)
      */
     public $details;
 
@@ -25,7 +24,7 @@ class GstDocument extends PropertyDocument
     public function toArray(): array
     {
         return array_merge([
-            'details' => toArrayOrNull($this->details),
+
         ]);
     }
 
@@ -34,6 +33,6 @@ class GstDocument extends PropertyDocument
      */
     public function getType(): PropertyDocumentType
     {
-        return PropertyDocumentType::GST;
+        return PropertyDocumentType::MSME_CERTIFICATE;
     }
 }
