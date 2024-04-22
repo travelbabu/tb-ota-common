@@ -11,6 +11,7 @@ use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\UserReference;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\Verification;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\embedded\DocumentFile;
 use SYSOTEL\OTA\Common\DB\MongoODM\Repositories\PropertyDocumentRepository;
+use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
 
 /**
  * @ODM\Document(
@@ -29,7 +30,7 @@ abstract class PropertyDocument extends Document
 {
     use HasTimestamps;
 
-    public abstract function getType(): string;
+    public abstract function getType(): PropertyDocumentType;
 
     /**
      * @var string

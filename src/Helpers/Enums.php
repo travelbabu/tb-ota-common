@@ -100,6 +100,12 @@ class Enums
             static::BOOKING_SOURCE_EXPEDIA,
             static::BOOKING_SOURCE_YATRA,
             static::BOOKING_SOURCE_CLEARTRIP,
+            static::BOOKING_SOURCE_EASE_MY_TRIP,
+            static::BOOKING_SOURCE_TRIP_DOT_COM,
+            static::BOOKING_SOURCE_AIRBNB,
+            static::BOOKING_SOURCE_HOTEL_BEDS,
+            static::BOOKING_SOURCE_GOROOMGO,
+            static::BOOKING_SOURCE_EASYGOROOMS,
         ];
     }
 
@@ -153,6 +159,23 @@ class Enums
             static::PROPERTY_DOCUMENT_PAN,
             static::PROPERTY_DOCUMENT_GST,
             static::PROPERTY_DOCUMENT_NO_GST_DECLARATION,
+            static::PROPERTY_DOCUMENT_NO_OBJECTION_CERTIFICATE,
+            static::PROPERTY_DOCUMENT_TRADE_LICENCE,
+            static::PROPERTY_DOCUMENT_LEASE_CONTRACT,
+            static::PROPERTY_DOCUMENT_PROPERTY_OWNERSHIP_CERTIFICATE,
+            static::PROPERTY_DOCUMENT_MSME_CERTIFICATE,
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public function promotionTypes(): array
+    {
+        return [
+            static::PROMOTION_TYPE_BASIC,
+            static::PROMOTION_TYPE_LAST_MINUTE,
+            static::PROMOTION_TYPE_EARLY_BIRD,
         ];
     }
 }

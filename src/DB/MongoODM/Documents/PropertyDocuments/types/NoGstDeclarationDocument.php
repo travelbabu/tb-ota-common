@@ -2,17 +2,14 @@
 
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types;
 
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\embedded\PanDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\PropertyDocument;
-use SYSOTEL\OTA\Common\Helpers\Enums;
-use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
+use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
 
 /**
  * @ODM\EmbeddedDocument
  */
 class NoGstDeclarationDocument extends PropertyDocument
 {
-
     /**
      * @inheritDoc
      */
@@ -24,10 +21,10 @@ class NoGstDeclarationDocument extends PropertyDocument
     }
 
     /**
-     * @return string
+     * @return PropertyDocumentType
      */
-    public function getType(): string
+    public function getType(): PropertyDocumentType
     {
-        return Enums::PROPERTY_DOCUMENT_NO_GST_DECLARATION;
+        return PropertyDocumentType::NO_GST_DECLARATION;
     }
 }

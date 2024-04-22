@@ -393,3 +393,15 @@ if (!function_exists('fixDateWindowOrder')) {
         return [$newStartDate, $newEndDate];
     }
 }
+
+if (!function_exists('readableConstant')) {
+
+    /**
+     * @param string $value
+     * @return string
+     */
+    function readableConstant(string $value): string
+    {
+        return ucwords(strtolower(Str::replace('_', ' ', $value)));
+    }
+}

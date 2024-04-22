@@ -4,6 +4,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\types;
 
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\embedded\PanDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyDocuments\PropertyDocument;
+use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
 use SYSOTEL\OTA\Common\Helpers\Enums;
 use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
 
@@ -29,10 +30,10 @@ class GstDocument extends PropertyDocument
     }
 
     /**
-     * @return string
+     * @return PropertyDocumentType
      */
-    public function getType(): string
+    public function getType(): PropertyDocumentType
     {
-        return Enums::PROPERTY_DOCUMENT_GST;
+        return PropertyDocumentType::GST;
     }
 }
