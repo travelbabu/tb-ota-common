@@ -9,7 +9,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
 
 /**
- * @ODM\EmbeddedDocument
+ * @ODM\Document
  */
 class PanDocument extends PropertyDocument
 {

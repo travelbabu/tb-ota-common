@@ -8,7 +8,7 @@ use SYSOTEL\OTA\Common\Enums\PropertyDocumentType;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
- * @ODM\EmbeddedDocument
+ * @ODM\Document
  */
 class MsmeCertificate extends PropertyDocument
 {
