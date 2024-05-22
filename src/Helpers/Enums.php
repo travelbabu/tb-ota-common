@@ -44,6 +44,17 @@ class Enums
     const AGE_CODE_ADULT = 'A';
     const AGE_CODE_CHILD = 'C';
 
+    const CHANNEL_ID_INTERNAL_B2C = 'INTERNAL_B2C';
+    const CHANNEL_ID_INTERNAL_B2B = 'INTERNAL_B2B';
+    const CHANNEL_ID_INTERNAL_CORP = 'INTERNAL_CORP';
+    const CHANNEL_ID_GOOGLE_HOTEL_CENTER = 'GOOGLE_HOTEL_CENTER';
+    const CHANNEL_ID_RESAVENUE = 'RESAVENUE';
+
+
+    const CHANNEL_CONNECTIVITY_STATUS_ACTIVE = 'ACTIVE';
+    const CHANNEL_CONNECTIVITY_STATUS_DISABLED = 'DISABLED';
+    const CHANNEL_CONNECTIVITY_STATUS_EXPIRED = 'EXPIRED';
+
     const BOOKING_STATUS_ATTEMPT = 'ATTEMPT';
     const BOOKING_STATUS_EXPIRED = 'EXPIRED';
     const BOOKING_STATUS_FAILED = 'FAILED';
@@ -176,6 +187,20 @@ class Enums
             static::PROMOTION_TYPE_BASIC,
             static::PROMOTION_TYPE_LAST_MINUTE,
             static::PROMOTION_TYPE_EARLY_BIRD,
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public function channelIds(): array
+    {
+        return [
+            static::CHANNEL_ID_INTERNAL_B2C,
+            static::CHANNEL_ID_INTERNAL_B2B,
+            static::CHANNEL_ID_INTERNAL_CORP,
+            static::CHANNEL_ID_GOOGLE_HOTEL_CENTER,
+            static::CHANNEL_ID_RESAVENUE,
         ];
     }
 }
