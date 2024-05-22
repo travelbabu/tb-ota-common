@@ -2,15 +2,14 @@
 
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelConnectivity\types\ResAvenue;
 
-
+use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Amenity\ChannelConnectivity;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 
 /**
  * @ODM\Document
  */
-class ResAvenueConnectivityDetails extends ChannelConnectivity
+class ResAvenueConnectivityDetails extends EmbeddedDocument
 {
     /**
      * @var string

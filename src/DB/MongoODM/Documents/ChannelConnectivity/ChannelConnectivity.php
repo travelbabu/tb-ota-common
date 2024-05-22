@@ -64,6 +64,7 @@ abstract class ChannelConnectivity extends Document
         ]);
     }
 
+
     public abstract function getChannelID(): string;
 
     /**
