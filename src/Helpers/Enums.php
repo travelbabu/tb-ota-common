@@ -181,7 +181,7 @@ class Enums
     /**
      * @return string[]
      */
-    public function promotionTypes(): array
+    public static function promotionTypes(): array
     {
         return [
             static::PROMOTION_TYPE_BASIC,
@@ -193,7 +193,7 @@ class Enums
     /**
      * @return string[]
      */
-    public function channelIds(): array
+    public static function channelIds(): array
     {
         return [
             static::CHANNEL_ID_INTERNAL_B2C,
