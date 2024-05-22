@@ -7,7 +7,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 
 /**
- * @ODM\Document
+ * @ODM\EmbeddedDocument
  */
 class ResAvenueConnectivityDetails extends EmbeddedDocument
 {
