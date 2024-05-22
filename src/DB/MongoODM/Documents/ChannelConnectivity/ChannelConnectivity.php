@@ -32,7 +32,7 @@ abstract class ChannelConnectivity extends Document
 
     /**
      * @var string
-     * @ODM\Id(strategy="none",type="string")
+     * @ODM\Id
      */
     public $id;
 
