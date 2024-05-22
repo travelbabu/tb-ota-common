@@ -43,6 +43,12 @@ abstract class ChannelConnectivity extends Document
     public $status;
 
     /**
+     * @var int
+     * @ODM\Field(type="int")
+     */
+    public $propertyID;
+
+    /**
      * @var string
      * @ODM\Field(type="boolean")
      */
