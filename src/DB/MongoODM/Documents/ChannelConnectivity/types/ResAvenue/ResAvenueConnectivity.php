@@ -4,7 +4,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelConnectivity\types\Res
 
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Amenity\ChannelConnectivity;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelConnectivity\ChannelConnectivity;
 use SYSOTEL\OTA\Common\Helpers\Enums;
 
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;

@@ -1,6 +1,6 @@
 <?php
 
-namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Amenity;
+namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelConnectivity;
 
 use Delta4op\MongoODM\Documents\Document;
 use Delta4op\MongoODM\Facades\DocumentManager;
