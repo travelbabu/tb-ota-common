@@ -16,7 +16,7 @@ class ResAvenueConnectivity extends ChannelConnectivity
 {
     /**
      * @var ResAvenueConnectivityDetails
-     * @ODM\Field(targetDocument=ResAvenueConnectivityDetails::class)
+     * @ODM\EmbedOne(targetDocument=ResAvenueConnectivityDetails::class)
      *
      */
     public $details;
