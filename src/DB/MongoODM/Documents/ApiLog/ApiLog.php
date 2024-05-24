@@ -30,49 +30,55 @@ abstract class ApiLog extends Document
     protected string $collection = 'apiLogs';
 
     /**
-     * @var string
+     * @var ?string
      * @ODM\Id
      */
     public $id;
 
     /**
-     * @var string
+     * @var ?string
      * @ODM\Field(type="string")
      */
     public $type;
 
     /**
-     * @var boolean
+     * @var ?int
+     * @ODM\Field(type="int")
+     */
+    public $propertyID;
+
+    /**
+     * @var ?boolean
      * @ODM\Field(type="bool")
      */
     public $isIncoming;
 
     /**
-     * @var ApiRequest
+     * @var ?ApiRequest
      * @ODM\EmbedOne(targetDocument=ApiRequest::class)
      */
     public $request;
 
     /**
-     * @var ApiResponse
+     * @var ?ApiResponse
      * @ODM\EmbedOne(targetDocument=ApiRequest::class)
      */
     public $response;
 
     /**
-     * @var ErrorDetails
+     * @var ?ErrorDetails
      * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\ErrorDetails::class)
      */
     public $error;
 
     /**
-     * @var string
+     * @var ?string
      * @ODM\Field(type="string")
      */
     public $status;
 
     /**
-     * @var ExecutionDetails
+     * @var ?ExecutionDetails
      * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\ExecutionDetails::class)
      */
     public $executionDetails;

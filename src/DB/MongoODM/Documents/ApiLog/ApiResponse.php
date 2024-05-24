@@ -2,10 +2,11 @@
 
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ApiLog;
 
-use Carbon\Carbon;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
+use GuzzleHttp\Psr7\Request;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * @ODM\EmbeddedDocument
@@ -33,9 +34,38 @@ class ApiResponse extends EmbeddedDocument
 
     /**
      * @var ?array
-     * @ODM\Field(type="obejct")
+     * @ODM\Field(type="raw")
      */
     public $headers;
+
+    public static function createFromResponse(ResponseInterface $response)
+    {
+        $response->getBody()->rewind();
+        
+        $instance = new self;
+        $instance->httpStatusCode = $response->getStatusCode();
+        $instance->payload = $response->getBody()->getContents();
+        $instance->setHeadersFromResponse($response);
+        
+        $response->getBody()->rewind();
+        
+        return $instance;
+    }
+
+     /**
+     * @param ResponseInterface $request
+     * @return $this
+     */
+    public function setHeadersFromResponse(ResponseInterface $response): static
+    {
+        $this->headers = [];
+
+        foreach ($response->getHeaders() as $key => $value) {
+            $this->headers[$key] = is_array($value) ? implode(',', $value) : $value;
+        }
+        
+        return $this;
+    }
 
     /**
      * @inheritDoc
