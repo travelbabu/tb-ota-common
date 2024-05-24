@@ -50,7 +50,7 @@ abstract class ChannelConnectivity extends Document
 
     /**
      * @var string
-     * @ODM\Field(type="boolean")
+     * @ODM\Field(type="bool")
      */
     public $isExpired;
 
