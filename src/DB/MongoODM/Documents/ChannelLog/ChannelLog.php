@@ -40,6 +40,12 @@ abstract class ChannelLog extends Document
     public $id;
 
     /**
+     * @var ?string
+     * @ODM\Field(type="string")
+     */
+    public $channelID;
+
+    /**
      * @var ?ChannelLogProperty
      * @ODM\EmbedOne(targetDocument=ChannelLogProperty::class)
      */
