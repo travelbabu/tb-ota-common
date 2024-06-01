@@ -3,8 +3,8 @@
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ApiLog;
 
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
-use GuzzleHttp\Psr7\Request;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Symfony\Component\HttpFoundation\Response;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 use Psr\Http\Message\ResponseInterface;
 
@@ -38,7 +38,11 @@ class ApiResponse extends EmbeddedDocument
      */
     public $headers;
 
-    public static function createFromResponse(ResponseInterface $response)
+    /**
+     * @param ResponseInterface $response
+     * @return ApiResponse
+     */
+    public static function createFromResponse(ResponseInterface $response): ApiResponse
     {
         $response->getBody()->rewind();
         
@@ -52,8 +56,22 @@ class ApiResponse extends EmbeddedDocument
         return $instance;
     }
 
-     /**
-     * @param ResponseInterface $request
+    /**
+     * @param Response $response
+     * @return ApiResponse
+     */
+    public static function createFromLaravelResponse(Response $response): ApiResponse
+    {
+        $instance = new self;
+        $instance->httpStatusCode = $response->getStatusCode();
+        $instance->payload = $response->getContent();
+        $instance->setHeadersFromLaravelResponse($response);
+
+        return $instance;
+    }
+
+    /**
+     * @param ResponseInterface $response
      * @return $this
      */
     public function setHeadersFromResponse(ResponseInterface $response): static
@@ -64,6 +82,21 @@ class ApiResponse extends EmbeddedDocument
             $this->headers[$key] = is_array($value) ? implode(',', $value) : $value;
         }
         
+        return $this;
+    }
+
+    /**
+     * @param Response $response
+     * @return $this
+     */
+    public function setHeadersFromLaravelResponse(Response $response): static
+    {
+        $this->headers = [];
+
+        foreach ($response->headers as $key => $value) {
+            $this->headers[$key] = is_array($value) ? implode(',', $value) : $value;
+        }
+
         return $this;
     }
 
