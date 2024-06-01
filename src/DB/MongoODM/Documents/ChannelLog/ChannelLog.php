@@ -8,6 +8,7 @@ use Delta4op\MongoODM\Traits\HasTimestamps;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Illuminate\Support\Traits\Macroable;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\ChannelConnectivityReference;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\ErrorDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Repositories\ChannelLogRepository;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 
@@ -57,6 +58,12 @@ abstract class ChannelLog extends Document
      * @ODM\EmbedOne(targetDocument=ChannelLogAttemptDetails::class)
      */
     public $attemptDetails;
+
+    /**
+     * @var ?ErrorDetails
+     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\ErrorDetails::class)
+     */
+    public $errorDetails;
 
     /**
      * @var ?ChannelConnectivityReference
