@@ -28,7 +28,7 @@ class PropertyProductRepository extends DocumentRepository
     /**
      * @param PropertySpace|int $space
      * @param array $criteria
-     * @return Collection
+     * @return Collection & PropertyProduct[]
      */
     public function getAllForSpace(PropertySpace|int $space, array $criteria = []): Collection
     {
@@ -46,7 +46,7 @@ class PropertyProductRepository extends DocumentRepository
     /**
      * @param PropertySpace|int $space
      * @param array $criteria
-     * @return Collection
+     * @return Collection & PropertyProduct[]
      */
     public function getActiveProductsForSpace(PropertySpace|int $space, array $criteria = []): Collection
     {
@@ -59,7 +59,7 @@ class PropertyProductRepository extends DocumentRepository
     /**
      * @param PropertySpace|int $space
      * @param array $criteria
-     * @return Collection
+     * @return Collection & PropertyProduct[]
      */
     public function getActiveAndDisabledProductsForSpace(PropertySpace|int $space, array $criteria = []): Collection
     {
@@ -72,7 +72,7 @@ class PropertyProductRepository extends DocumentRepository
     /**
      * @param Property|int $property
      * @param array $criteria
-     * @return Collection
+     * @return Collection & PropertyProduct[]
      */
     public function getActiveForProperty(Property|int $property, array $criteria = []): Collection
     {
@@ -89,7 +89,7 @@ class PropertyProductRepository extends DocumentRepository
     /**
      * @param Property|int $property
      * @param array $criteria
-     * @return Collection
+     * @return Collection & PropertyProduct[]
      */
     public function getActiveAndDisabledForProperty(Property|int $property, array $criteria = []): Collection
     {

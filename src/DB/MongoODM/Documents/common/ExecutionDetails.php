@@ -31,18 +31,24 @@ class ExecutionDetails extends EmbeddedDocument
      */
     public $executionInMillis;
 
-    public function markAsStarted()
+    /**
+     * @return $this
+     */
+    public function markAsStarted(): static
     {
         $this->startedAt = now();
 
         return $this;
     }
 
-    public function markAsCompleted()
+    /**
+     * @return $this
+     */
+    public function markAsCompleted(): static
     {
         $this->completedAt = now();
         if($this->startedAt) {
-            $this->completedAt = $this->startedAt->diffInMilliseconds($this->completedAt);
+            $this->executionInMillis = $this->startedAt->diffInMilliseconds($this->completedAt);
         }
 
         return $this;
@@ -54,7 +60,7 @@ class ExecutionDetails extends EmbeddedDocument
     public function toArray(): array
     {
         return arrayFilter([
-            
+
         ]);
     }
 }

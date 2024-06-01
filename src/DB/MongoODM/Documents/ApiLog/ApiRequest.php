@@ -17,8 +17,8 @@ use Illuminate\Support\Str;
 class ApiRequest extends EmbeddedDocument
 {
     /**
-     * @var ?Carbon
-     * @ODM\Field(type="carbon")
+     * @var ?string
+     * @ODM\Field(type="string")
      */
     public $httpMethod;
 
@@ -78,7 +78,7 @@ class ApiRequest extends EmbeddedDocument
 
     /**
      * @var ?array
-     * @ODM\Field(type="obejct")
+     * @ODM\Field(type="raw")
      */
     public $headers;
 
@@ -93,7 +93,7 @@ class ApiRequest extends EmbeddedDocument
         $instance->port = $request->getUri()->getPort();
         $instance->url = $request->getUri()->__toString();
         $instance->setHeadersFromGuzzleRequest($request);
-    
+
         $instance->isSecure = true;
 
         return $instance;
@@ -106,8 +106,8 @@ class ApiRequest extends EmbeddedDocument
     public static function createFromLaravelRequest(HttpRequest $request): ApiRequest
     {
         $apiRequest = new self;
-        $apiRequest->httpMethod = Str::toUpperCase($request->getMethod());
-        $apiRequest->payloadFormat = $request->getBody()->getContents() ?? '';
+        $apiRequest->httpMethod = Str::upper($request->getMethod());
+        $apiRequest->payloadFormat = $request->getContent();
         $apiRequest->host = $request->getHost();
         $apiRequest->path = $request->path();
         $apiRequest->url = $request->url();
@@ -131,7 +131,7 @@ class ApiRequest extends EmbeddedDocument
         foreach ($request->getHeaders() as $key => $value) {
             $this->headers[$key] = is_array($value) ? implode(',', $value) : $value;
         }
-        
+
         return $this;
     }
 

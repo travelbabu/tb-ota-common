@@ -28,7 +28,7 @@ class PropertySpaceRepository extends DocumentRepository
      * @param Property|int $property
      * @param array $criteria
      * @param array $orderBy
-     * @return Collection
+     * @return Collection<PropertySpace> & PropertySpace[]
      */
     public function getAllForProperty(Property|int $property, array $criteria = [], array $orderBy = []): Collection
     {
@@ -46,7 +46,7 @@ class PropertySpaceRepository extends DocumentRepository
     /**
      * @param Property|int $property
      * @param array $criteria
-     * @return Collection
+     * @return Collection<PropertySpace> & PropertySpace[]
      */
     public function getActiveSpacesForProperty(Property|int $property, array $criteria = []): Collection
     {
@@ -59,7 +59,7 @@ class PropertySpaceRepository extends DocumentRepository
     /**
      * @param Property|int $property
      * @param array $criteria
-     * @return Collection
+     * @return Collection<PropertySpace> & PropertySpace[]
      */
     public function getActiveAndDisabledSpacesForProperty(Property|int $property, array $criteria = []): Collection
     {

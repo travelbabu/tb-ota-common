@@ -1,6 +1,6 @@
 <?php
 
-namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\Dedicated\ProvidePropertyContent;
+namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\Dedicated\ProvideInventory;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\ChannelLog;
@@ -10,11 +10,11 @@ use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 /**
  * @ODM\Document
  */
-class ProvidePropertyContentLog extends ChannelLog
+class ProvideInventoryLog extends ChannelLog
 {
     /**
-     * @var ProvideInventoryDetails
-     * @ODM\EmbedOne(targetDocument=ProvidePropertyContentLogDetails::class)
+     * @var ?ProvideInventoryDetails
+     * @ODM\EmbedOne(targetDocument=ProvideInventoryDetails::class)
      */
     public $details;
 
@@ -42,6 +42,6 @@ class ProvidePropertyContentLog extends ChannelLog
      */
     public function getType(): string
     {
-        return Enums::CHANNEL_LOG_PROVIDE_PROPERTY_CONTENT;
+        return Enums::CHANNEL_LOG_PROVIDE_PROPERTY_INVENTORY;
     }
 }

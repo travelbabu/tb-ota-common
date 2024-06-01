@@ -33,11 +33,23 @@ class ChannelLogAttemptDetails extends EmbeddedDocument
     }
 
     /**
+     * @param ChannelLogAttempt $attempt
+     * @return $this
+     */
+    public function addAttempt(ChannelLogAttempt $attempt): static
+    {
+        $this->attempts->add($attempt);
+        $this->calculateAttemptCount();
+
+        return $this;
+    }
+
+    /**
      * @return $this
      */
     public function calculateAttemptCount(): static
     {
-        $this->attemptCount = $this->attempts?->count ?? 0;
+        $this->attemptCount = $this->attempts?->count() ?? 0;
 
         return $this;
     }
