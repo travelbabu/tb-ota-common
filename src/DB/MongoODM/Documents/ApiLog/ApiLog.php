@@ -20,7 +20,7 @@ use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
  * )
  * @ODM\HasLifecycleCallbacks
  */
-abstract class ApiLog extends Document
+class ApiLog extends Document
 {
     use HasRepository, HasTimestamps;
 
