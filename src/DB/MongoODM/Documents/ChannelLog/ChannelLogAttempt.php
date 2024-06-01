@@ -35,6 +35,7 @@ class ChannelLogAttempt extends EmbeddedDocument
     public function __construct(array $attributes = [])
     {
         $this->apiLogs = new ArrayCollection();
+        $this->execution = new ExecutionDetails;
 
         parent::__construct($attributes);
     }
