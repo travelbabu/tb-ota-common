@@ -1,6 +1,6 @@
 <?php
 
-namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Activity;
+namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ApiLog;
 
 use Delta4op\MongoODM\Documents\Document;
 use Delta4op\MongoODM\Traits\HasRepository;
