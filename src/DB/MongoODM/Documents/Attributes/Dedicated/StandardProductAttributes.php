@@ -4,9 +4,14 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\Dedicated;
 
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnArrival;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnDeparture;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\Cutoff;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\DoubleRate;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\ExtraAdultRate;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\ExtraChildRate;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MaxLos;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MinLos;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\StopSell;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\QuadRate;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\SingleRate;
@@ -74,6 +79,36 @@ class StandardProductAttributes extends EmbeddedDocument
      */
     public $stopSell;
 
+    /**
+     * @var CloseOnArrival
+     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnArrival::class)
+     */
+    public $closeOnArrival;
+
+    /**
+     * @var CloseOnDeparture
+     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnDeparture::class)
+     */
+    public $closeOnDeparture;
+
+    /**
+     * @var Cutoff
+     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\Cutoff::class)
+     */
+    public $cutoff;
+
+    /**
+     * @var MinLos
+     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MinLos::class)
+     */
+    public $minLos;
+
+    /**
+     * @var MaxLos
+     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MaxLos::class)
+     */
+    public $maxLos;
+
     public function toArray(): array
     {
         return arrayFilter([
@@ -84,6 +119,11 @@ class StandardProductAttributes extends EmbeddedDocument
             'extraAdultRate' => toArrayOrNull($this->extraAdultRate),
             'extraChildRate' => toArrayOrNull($this->extraChildRate),
             'stopSell'       => toArrayOrNull($this->stopSell),
+            'closeOnArrival'       => toArrayOrNull($this->closeOnArrival),
+            'closeOnDeparture'       => toArrayOrNull($this->closeOnDeparture),
+            'cutoff'       => toArrayOrNull($this->cutoff),
+            'minLos'       => toArrayOrNull($this->minLos),
+            'maxLos'       => toArrayOrNull($this->maxLos),
         ]);
     }
 }

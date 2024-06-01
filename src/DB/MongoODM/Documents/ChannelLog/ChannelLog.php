@@ -21,6 +21,8 @@ use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
  * @ODM\DiscriminatorField("type")
  * @ODM\DiscriminatorMap({
  *     "PROVIDE_PROPERTY_CONTENT":Dedicated\ProvidePropertyContent\ProvidePropertyContentLog::class,
+ *     "PROVIDE_PROPERTY_INVENTORY":Dedicated\ProvideInventory\ProvideInventoryLog::class,
+ *     "PROVIDE_PROPERTY_RATES":Dedicated\ProvideRates\ProvideRateLog::class,
  * })
  * @ODM\HasLifecycleCallbacks
  */
@@ -46,6 +48,12 @@ abstract class ChannelLog extends Document
      * @ODM\Field(type="string")
      */
     public $channelID;
+
+    /**
+     * @var ?string
+     * @ODM\Field(type="string")
+     */
+    public $channelRef;
 
     /**
      * @var ?ChannelLogProperty
