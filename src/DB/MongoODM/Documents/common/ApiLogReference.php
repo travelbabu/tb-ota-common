@@ -1,27 +1,23 @@
 <?php
 
-namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog;
+namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\common;
 
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 
 /**
  * @ODM\EmbeddedDocument
+ * @ODM\HasLifecycleCallbacks
  */
-class ChannelLogProperty extends EmbeddedDocument
+class ApiLogReference extends EmbeddedDocument
 {
     /**
-     * @var int
-     * @ODM\Field(type="int")
+     * @var ?string
+     * @ODM\Id
      */
     public $_id;
-
-    /**
-     * @var string
-     * @ODM\Field(type="string")
-     */
-    public $name;
 
     /**
      * @inheritDoc
@@ -29,8 +25,7 @@ class ChannelLogProperty extends EmbeddedDocument
     public function toArray(): array
     {
         return arrayFilter([
-            'id'   => $this->id,
-            'name' => $this->name,
+            'id' => $this->_id
         ]);
     }
 }

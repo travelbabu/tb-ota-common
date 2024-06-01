@@ -96,7 +96,9 @@ class ApiResponseContext
     }
 
     /**
-     * @return ApiLogError|null
+     * Get api log error
+     *
+     * @return ErrorDetails|null
      */
     public function getApiLogError(): ?ErrorDetails
     {
