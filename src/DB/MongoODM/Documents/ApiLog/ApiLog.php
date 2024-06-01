@@ -7,8 +7,6 @@ use Delta4op\MongoODM\Traits\HasRepository;
 use Delta4op\MongoODM\Traits\HasTimestamps;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\ApiLog\ApiRequest;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\ApiLog\ApiResponse;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\ErrorDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\ExecutionDetails;
 
@@ -83,13 +81,19 @@ class ApiLog extends Document
      */
     public $executionDetails;
 
+    public function __construct(array $attributes = [])
+    {
+        $this->executionDetails = new ExecutionDetails;
+        parent::__construct($attributes);
+    }
+
     /**
      * @inheritDoc
      */
     public function toArray(): array
     {
         return arrayFilter([
-            
+
         ]);
     }
 }
