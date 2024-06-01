@@ -63,7 +63,7 @@ abstract class ChannelLog extends Document
      * @var ?ErrorDetails
      * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\ErrorDetails::class)
      */
-    public $errorDetails;
+    public $error;
 
     /**
      * @var ?ChannelConnectivityReference
