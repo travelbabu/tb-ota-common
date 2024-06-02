@@ -4,6 +4,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\Dedicated;
 
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\AvailableUnits;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnArrival;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnDeparture;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MaxLos;
@@ -19,51 +20,58 @@ class StandardSpaceAttributes extends EmbeddedDocument
 {
     public $attributeType = 'STANDARD';
     public const KEY_AVAILABLE_UNITS = 'availableUnits';
-    public const KEY_STOP_SELL = 'stopSell';
-    public const KEY_CLOSE_ON_ARRIVAL = 'closeOnArrival';
-    public const KEY_CLOSE_ON_DEPARTURE = 'closeOnDeparture';
-    public const KEY_CUTOFF = 'cutoff';
-    public const KEY_MIN_LOS = 'minLos';
-    public const KEY_MAX_LOS = 'maxLos';
+//    public const KEY_STOP_SELL = 'stopSell';
+//    public const KEY_CLOSE_ON_ARRIVAL = 'closeOnArrival';
+//    public const KEY_CLOSE_ON_DEPARTURE = 'closeOnDeparture';
+//    public const KEY_CUTOFF = 'cutoff';
+//    public const KEY_MIN_LOS = 'minLos';
+//    public const KEY_MAX_LOS = 'maxLos';
 
     /**
-     * @var StopSell
-     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\StopSell::class)
+     * @var AvailableUnits
+     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\AvailableUnits::class)
      */
-    public $stopSell;
+    public $availableUnits;
 
-    /**
-     * @var CloseOnArrival
-     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnArrival::class)
-     */
-    public $closeOnArrival;
-
-    /**
-     * @var CloseOnDeparture
-     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnDeparture::class)
-     */
-    public $closeOnDeparture;
-
-    /**
-     * @var MinLos
-     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MinLos::class)
-     */
-    public $minLos;
-
-    /**
-     * @var MaxLos
-     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MaxLos::class)
-     */
-    public $maxLos;
+//    /**
+//     * @var StopSell
+//     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\StopSell::class)
+//     */
+//    public $stopSell;
+//
+//    /**
+//     * @var CloseOnArrival
+//     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnArrival::class)
+//     */
+//    public $closeOnArrival;
+//
+//    /**
+//     * @var CloseOnDeparture
+//     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnDeparture::class)
+//     */
+//    public $closeOnDeparture;
+//
+//    /**
+//     * @var MinLos
+//     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MinLos::class)
+//     */
+//    public $minLos;
+//
+//    /**
+//     * @var MaxLos
+//     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MaxLos::class)
+//     */
+//    public $maxLos;
 
     public function toArray(): array
     {
         return arrayFilter([
-            'stopSell'         => toArrayOrNull($this->stopSell),
-            'closeOnArrival'   => toArrayOrNull($this->closeOnArrival),
-            'closeOnDeparture' => toArrayOrNull($this->closeOnDeparture),
-            'minLos'           => toArrayOrNull($this->minLos),
-            'maxLos'           => toArrayOrNull($this->maxLos),
+            'availableUnits'         => toArrayOrNull($this->availableUnits),
+//            'stopSell'         => toArrayOrNull($this->stopSell),
+//            'closeOnArrival'   => toArrayOrNull($this->closeOnArrival),
+//            'closeOnDeparture' => toArrayOrNull($this->closeOnDeparture),
+//            'minLos'           => toArrayOrNull($this->minLos),
+//            'maxLos'           => toArrayOrNull($this->maxLos),
         ]);
     }
 }

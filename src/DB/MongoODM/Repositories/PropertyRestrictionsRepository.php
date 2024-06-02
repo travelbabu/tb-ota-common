@@ -5,15 +5,12 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Repositories;
 use Carbon\Carbon;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Channel;
 use Delta4op\MongoODM\DocumentRepositories\DocumentRepository;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyInventory\PropertyInventory;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyProduct\PropertyProduct;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyRate\PropertyRate;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyRestrictions\PropertyRestrictions;
-use function SYSOTEL\OTA\Common\Helpers\carbonToUTCDateTime;
 
 class PropertyRestrictionsRepository extends DocumentRepository
 {
-    public function findLatest(PropertyProduct|int $product, Carbon $date, Channel|string $connectedChannel, Channel|string $baseChannel = null): ?PropertyRate
+    public function findLatest(PropertyProduct|int $product, Carbon $date, Channel|string $connectedChannel, Channel|string $baseChannel = null): ?PropertyRestrictions
     {
         $productID = PropertyProduct::resolveID($product);
         $connectedChannelID = Channel::resolveID($connectedChannel);

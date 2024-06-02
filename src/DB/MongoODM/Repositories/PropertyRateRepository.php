@@ -8,7 +8,6 @@ use Delta4op\MongoODM\DocumentRepositories\DocumentRepository;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyInventory\PropertyInventory;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyProduct\PropertyProduct;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyRate\PropertyRate;
-use function SYSOTEL\OTA\Common\Helpers\carbonToUTCDateTime;
 
 class PropertyRateRepository extends DocumentRepository
 {

@@ -35,12 +35,6 @@ class StandardProductAttributes extends EmbeddedDocument
     public const KEY_QUAD_RATE = 'quadRate';
     public const KEY_EXTRA_ADULT_RATE = 'extraAdultRate';
     public const KEY_EXTRA_CHILD_RATE = 'extraChildRate';
-    public const KEY_STOP_SELL = 'stopSell';
-    public const KEY_CLOSE_ON_ARRIVAL = 'closeOnArrival';
-    public const KEY_CLOSE_ON_DEPARTURE = 'closeOnDeparture';
-    public const KEY_CUTOFF = 'cutoff';
-    public const KEY_MIN_LOS = 'minLos';
-    public const KEY_MAX_LOS = 'maxLos';
 
     /**
      * @var SingleRate
@@ -78,42 +72,6 @@ class StandardProductAttributes extends EmbeddedDocument
      */
     public $extraChildRate;
 
-    /**
-     * @var StopSell
-     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\StopSell::class)
-     */
-    public $stopSell;
-
-    /**
-     * @var CloseOnArrival
-     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnArrival::class)
-     */
-    public $closeOnArrival;
-
-    /**
-     * @var CloseOnDeparture
-     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnDeparture::class)
-     */
-    public $closeOnDeparture;
-
-    /**
-     * @var Cutoff
-     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\Cutoff::class)
-     */
-    public $cutoff;
-
-    /**
-     * @var MinLos
-     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MinLos::class)
-     */
-    public $minLos;
-
-    /**
-     * @var MaxLos
-     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MaxLos::class)
-     */
-    public $maxLos;
-
     public function toArray(): array
     {
         return arrayFilter([
@@ -123,12 +81,6 @@ class StandardProductAttributes extends EmbeddedDocument
             'quadRate' => toArrayOrNull($this->quadRate),
             'extraAdultRate' => toArrayOrNull($this->extraAdultRate),
             'extraChildRate' => toArrayOrNull($this->extraChildRate),
-            'stopSell' => toArrayOrNull($this->stopSell),
-            'closeOnArrival' => toArrayOrNull($this->closeOnArrival),
-            'closeOnDeparture' => toArrayOrNull($this->closeOnDeparture),
-            'cutoff' => toArrayOrNull($this->cutoff),
-            'minLos' => toArrayOrNull($this->minLos),
-            'maxLos' => toArrayOrNull($this->maxLos),
         ]);
     }
 }
