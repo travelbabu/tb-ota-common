@@ -39,6 +39,12 @@ class PropertyRate extends Document
      * @var int
      * @ODM\Field(type="int")
      */
+    public $spaceID;
+
+    /**
+     * @var int
+     * @ODM\Field(type="int")
+     */
     public $productID;
 
     /**
