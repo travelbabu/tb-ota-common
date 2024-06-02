@@ -36,6 +36,11 @@ class StandardProductAttributes extends EmbeddedDocument
     public const KEY_EXTRA_ADULT_RATE = 'extraAdultRate';
     public const KEY_EXTRA_CHILD_RATE = 'extraChildRate';
     public const KEY_STOP_SELL = 'stopSell';
+    public const KEY_CLOSE_ON_ARRIVAL = 'closeOnArrival';
+    public const KEY_CLOSE_ON_DEPARTURE = 'closeOnDeparture';
+    public const KEY_CUTOFF = 'cutoff';
+    public const KEY_MIN_LOS = 'minLos';
+    public const KEY_MAX_LOS = 'maxLos';
 
     /**
      * @var SingleRate
@@ -112,18 +117,18 @@ class StandardProductAttributes extends EmbeddedDocument
     public function toArray(): array
     {
         return arrayFilter([
-            'singleRate'     => toArrayOrNull($this->singleRate),
-            'doubleRate'     => toArrayOrNull($this->doubleRate),
-            'tripleRate'     => toArrayOrNull($this->tripleRate),
-            'quadRate'       => toArrayOrNull($this->quadRate),
+            'singleRate' => toArrayOrNull($this->singleRate),
+            'doubleRate' => toArrayOrNull($this->doubleRate),
+            'tripleRate' => toArrayOrNull($this->tripleRate),
+            'quadRate' => toArrayOrNull($this->quadRate),
             'extraAdultRate' => toArrayOrNull($this->extraAdultRate),
             'extraChildRate' => toArrayOrNull($this->extraChildRate),
-            'stopSell'       => toArrayOrNull($this->stopSell),
-            'closeOnArrival'       => toArrayOrNull($this->closeOnArrival),
-            'closeOnDeparture'       => toArrayOrNull($this->closeOnDeparture),
-            'cutoff'       => toArrayOrNull($this->cutoff),
-            'minLos'       => toArrayOrNull($this->minLos),
-            'maxLos'       => toArrayOrNull($this->maxLos),
+            'stopSell' => toArrayOrNull($this->stopSell),
+            'closeOnArrival' => toArrayOrNull($this->closeOnArrival),
+            'closeOnDeparture' => toArrayOrNull($this->closeOnDeparture),
+            'cutoff' => toArrayOrNull($this->cutoff),
+            'minLos' => toArrayOrNull($this->minLos),
+            'maxLos' => toArrayOrNull($this->maxLos),
         ]);
     }
 }
