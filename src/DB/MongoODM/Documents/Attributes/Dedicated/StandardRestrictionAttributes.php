@@ -6,6 +6,7 @@ use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnArrival;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\CloseOnDeparture;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\Cutoff;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MaxLos;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MinLos;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\StopSell;
@@ -15,10 +16,12 @@ use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
 /**
  * @ODM\EmbeddedDocument
  */
-class StandardSpaceAttributes extends EmbeddedDocument
+class StandardRestrictionAttributes extends EmbeddedDocument
 {
+    /**
+     * @var string
+     */
     public $attributeType = 'STANDARD';
-    public const KEY_AVAILABLE_UNITS = 'availableUnits';
     public const KEY_STOP_SELL = 'stopSell';
     public const KEY_CLOSE_ON_ARRIVAL = 'closeOnArrival';
     public const KEY_CLOSE_ON_DEPARTURE = 'closeOnDeparture';
@@ -45,6 +48,12 @@ class StandardSpaceAttributes extends EmbeddedDocument
     public $closeOnDeparture;
 
     /**
+     * @var Cutoff
+     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\Cutoff::class)
+     */
+    public $cutoff;
+
+    /**
      * @var MinLos
      * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\MinLos::class)
      */
@@ -59,11 +68,12 @@ class StandardSpaceAttributes extends EmbeddedDocument
     public function toArray(): array
     {
         return arrayFilter([
-            'stopSell'         => toArrayOrNull($this->stopSell),
-            'closeOnArrival'   => toArrayOrNull($this->closeOnArrival),
+            'stopSell' => toArrayOrNull($this->stopSell),
+            'closeOnArrival' => toArrayOrNull($this->closeOnArrival),
             'closeOnDeparture' => toArrayOrNull($this->closeOnDeparture),
-            'minLos'           => toArrayOrNull($this->minLos),
-            'maxLos'           => toArrayOrNull($this->maxLos),
+            'cutoff' => toArrayOrNull($this->cutoff),
+            'minLos' => toArrayOrNull($this->minLos),
+            'maxLos' => toArrayOrNull($this->maxLos),
         ]);
     }
 }
