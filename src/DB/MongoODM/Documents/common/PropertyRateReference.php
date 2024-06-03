@@ -26,7 +26,7 @@ class PropertyRateReference extends EmbeddedDocument
      * @param PropertyRate $rate
      * @return static
      */
-    public static function createFromPropertyInventory(PropertyRate $rate): static
+    public static function createFromPropertyRates(PropertyRate $rate): static
     {
         $ref = new self();
         $ref->_id = $rate->id;

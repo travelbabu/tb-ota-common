@@ -23,7 +23,7 @@ class PropertyRestrictionsReference extends EmbeddedDocument
      * @param PropertyRestrictions $restrictions
      * @return static
      */
-    public static function createFromPropertyInventory(PropertyRestrictions $restrictions): static
+    public static function createFromPropertyRestrictions(PropertyRestrictions $restrictions): static
     {
         $ref = new self();
         $ref->_id = $restrictions->id;
