@@ -72,6 +72,34 @@ class StandardProductAttributes extends EmbeddedDocument
      */
     public $extraChildRate;
 
+    /**
+     * @return bool
+     */
+    public function hasAllAttributes(): bool
+    {
+        return
+            $this->singleRate?->sellRate !== null &&
+            $this->doubleRate?->sellRate !== null &&
+            $this->tripleRate?->sellRate !== null &&
+            $this->quadRate?->sellRate !== null &&
+            $this->extraAdultRate?->sellRate !== null &&
+            $this->extraChildRate?->sellRate !== null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAnyAttributes(): bool
+    {
+        return
+            $this->singleRate?->sellRate !== null ||
+            $this->doubleRate?->sellRate !== null ||
+            $this->tripleRate?->sellRate !== null ||
+            $this->quadRate?->sellRate !== null ||
+            $this->extraAdultRate?->sellRate !== null ||
+            $this->extraChildRate?->sellRate !== null;
+    }
+
     public function toArray(): array
     {
         return arrayFilter([
