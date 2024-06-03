@@ -98,28 +98,48 @@ class StandardRestrictionAttributes extends EmbeddedDocument
     public function mergeAttributes(StandardRestrictionAttributes $attributes): static
     {
         if ($this->stopSell?->value === null) {
+
             $this->stopSell = $attributes->stopSell;
-            $this->stopSell->isUpdated = false;
+
+            if (isset($this->stopSell)) {
+                $this->stopSell->isUpdated = false;
+            }
         }
 
         if ($this->closeOnArrival?->value === null) {
+
             $this->closeOnArrival = $attributes->closeOnArrival;
-            $this->closeOnArrival->isUpdated = false;
+
+            if (isset($this->closeOnArrival)) {
+                $this->closeOnArrival->isUpdated = false;
+            }
         }
 
         if ($this->closeOnDeparture?->value === null) {
+
             $this->closeOnDeparture = $attributes->closeOnDeparture;
-            $this->closeOnDeparture->isUpdated = false;
+
+            if (isset($this->closeOnDeparture)) {
+                $this->closeOnDeparture->isUpdated = false;
+            }
         }
 
         if ($this->minLos?->value === null) {
+
             $this->minLos = $attributes->minLos;
-            $this->minLos->isUpdated = false;
+
+            if (isset($this->minLos)) {
+                $this->minLos->isUpdated = false;
+            }
         }
 
         if ($this->maxLos?->value === null) {
+
             $this->maxLos = $attributes->maxLos;
-            $this->maxLos->isUpdated = false;
+
+            if (isset($this->maxLos)) {
+                $this->maxLos->isUpdated = false;
+            }
         }
 
         return $this;
