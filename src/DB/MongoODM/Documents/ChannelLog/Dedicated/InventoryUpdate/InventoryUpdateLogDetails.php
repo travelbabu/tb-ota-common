@@ -6,6 +6,7 @@ use Delta4op\MongoODM\Traits\HasRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyRestrictionsReference;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyInventoryReference;
 
@@ -29,12 +30,19 @@ class InventoryUpdateLogDetails extends EmbeddedDocument
     public $inventoryRefs;
 
     /**
+     * @var ArrayCollection & PropertyRestrictionsReference[]
+     * @ODM\EmbedMany(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyRestrictionsReference::class)
+     */
+    public $restrictionsRefs;
+
+    /**
      * @param array $attributes
      */
     public function __construct(array $attributes = [])
     {
         $this->inventoryUpdates = new ArrayCollection;
         $this->inventoryRefs = new ArrayCollection;
+        $this->restrictionsRefs = new ArrayCollection;
 
         parent::__construct($attributes);
     }

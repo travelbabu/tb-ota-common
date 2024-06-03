@@ -6,6 +6,7 @@ use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyRateReference;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyRestrictionsReference;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 
 /**
@@ -26,12 +27,19 @@ class RateUpdateLogDetails extends EmbeddedDocument
     public $rateRefs;
 
     /**
+     * @var ArrayCollection & PropertyRestrictionsReference[]
+     * @ODM\EmbedMany(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyRestrictionsReference::class)
+     */
+    public $restrictionsRefs;
+
+    /**
      * @param array $attributes
      */
     public function __construct(array $attributes = [])
     {
         $this->rateUpdates = new ArrayCollection;
         $this->rateRefs = new ArrayCollection;
+        $this->restrictionsRefs = new ArrayCollection;
 
         parent::__construct($attributes);
     }
