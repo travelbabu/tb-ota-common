@@ -42,6 +42,6 @@ class ProvideInventoryLog extends ChannelLog
      */
     public function getType(): string
     {
-        return Enums::CHANNEL_LOG_PROVIDE_PROPERTY_INVENTORY;
+        return Enums::CHANNEL_LOG_TYPE_PROVIDE_PROPERTY_INVENTORY;
     }
 }

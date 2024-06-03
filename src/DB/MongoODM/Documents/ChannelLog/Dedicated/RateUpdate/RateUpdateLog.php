@@ -4,6 +4,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\Dedicated\RateUpda
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\ChannelLog;
+use SYSOTEL\OTA\Common\Helpers\Enums;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 
 /**
@@ -37,5 +38,13 @@ class RateUpdateLog extends ChannelLog
                 'details' => isset($this->details) ? $this->details->toArray() : null
             ])
         );
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return Enums::CHANNEL_LOG_TYPE_UPDATE_PROPERTY_RATES;
     }
 }

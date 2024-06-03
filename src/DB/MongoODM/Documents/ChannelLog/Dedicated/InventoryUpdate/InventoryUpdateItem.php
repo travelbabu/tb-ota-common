@@ -5,35 +5,31 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\Dedicated\Inventor
 use Carbon\Carbon;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\Dedicated\StandardSpaceAttributes;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 
 /**
  * @ODM\EmbeddedDocument
  */
-class UpdateDetails extends EmbeddedDocument
+class InventoryUpdateItem extends EmbeddedDocument
 {
     /**
      * @var Carbon
      * @ODM\Field(type="carbon")
      */
-    public $startDate;
+    public $start;
 
     /**
      * @var Carbon
      * @ODM\Field(type="carbon")
      */
-    public $endDate;
+    public $end;
 
     /**
-     * @ODM\DiscriminatorField("attributeType")
-     * @ODM\EmbedOne(
-     *   discriminatorMap={
-     *     "STANDARD"=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\Dedicated\StandardSpaceAttributes::class,
-     *   },
-     * )
+     * @var ?StandardSpaceAttributes
+     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Attributes\Dedicated\StandardSpaceAttributes::class)
      */
-    public $attributes;
-
+    public $inventoryAttributes;
 
     /**
      * @inheritDoc
@@ -41,9 +37,9 @@ class UpdateDetails extends EmbeddedDocument
     public function toArray(): array
     {
         return arrayFilter([
-            'startDate' => $this->startDate,
-            'endDate' => $this->endDate,
-            'attributes' => $this->attributes->toArray()
+            'startDate' => $this->start,
+            'endDate' => $this->end,
+            'attributes' => $this->inventoryAttributes->toArray()
         ]);
     }
 }

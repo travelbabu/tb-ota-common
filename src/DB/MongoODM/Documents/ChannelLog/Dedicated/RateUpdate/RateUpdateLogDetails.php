@@ -5,8 +5,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\Dedicated\RateUpda
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Illuminate\Support\Arr;
-use MongoDB\BSON\ObjectId;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyRateReference;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 
 /**
@@ -15,44 +14,26 @@ use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 class RateUpdateLogDetails extends EmbeddedDocument
 {
     /**
-     * @var ArrayCollection
-     * @ODM\EmbedMany(targetDocument=UpdateDetails::class)
+     * @var ArrayCollection & RateUpdateItem[]
+     * @ODM\EmbedMany(targetDocument=RateUpdateItem::class)
      */
-    public $updates;
+    public $rateUpdates;
 
     /**
-     * @var ObjectId[]
-     * @ODM\Field(type="collection")
+     * @var ArrayCollection & PropertyRateReference[]
+     * @ODM\EmbedMany(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyRateReference::class)
      */
-    public $rateIDs;
+    public $rateRefs;
 
     /**
-     * @var ArrayCollection
-     * @ODM\EmbedMany (targetDocument= SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\ChannelLogApiCall::class)
+     * @param array $attributes
      */
-    public $apiCalls;
-
     public function __construct(array $attributes = [])
     {
-        $this->updates = new ArrayCollection();
-        $this->rateIDs = [];
+        $this->rateUpdates = new ArrayCollection;
+        $this->rateRefs = new ArrayCollection;
 
         parent::__construct($attributes);
-    }
-
-    /**
-     * @param ObjectId|string|string[]|ObjectId[] $ids
-     */
-    public function addRateIDs(ObjectId|string|array $ids): static
-    {
-        foreach(Arr::wrap($ids) as $id) {
-
-            $id = is_string($id) ? new ObjectId($id) : $id;
-
-            $this->rateIDs[] = $id;
-        }
-
-        return $this;
     }
 
     /**
@@ -61,8 +42,8 @@ class RateUpdateLogDetails extends EmbeddedDocument
     public function toArray(): array
     {
         return arrayFilter([
-            'updates' => collect($this->updates)->toArray(),
-            'rateIDs' => $this->rateIDs,
+            'rateUpdates' => collect($this->rateUpdates)->toArray(),
+            'rateRefs' => collect($this->rateRefs)->toArray(),
         ]);
     }
 }

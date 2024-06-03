@@ -23,6 +23,8 @@ use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
  *     "PROVIDE_PROPERTY_CONTENT":Dedicated\ProvidePropertyContent\ProvidePropertyContentLog::class,
  *     "PROVIDE_PROPERTY_INVENTORY":Dedicated\ProvideInventory\ProvideInventoryLog::class,
  *     "PROVIDE_PROPERTY_RATES":Dedicated\ProvideRates\ProvideRateLog::class,
+ *     "UPDATE_PROPERTY_RATES":Dedicated\RateUpdate\RateUpdateLog::class,
+ *     "UPDATE_PROPERTY_INVENTORY":Dedicated\InventoryUpdate\InventoryUpdateLog::class,
  * })
  * @ODM\HasLifecycleCallbacks
  */

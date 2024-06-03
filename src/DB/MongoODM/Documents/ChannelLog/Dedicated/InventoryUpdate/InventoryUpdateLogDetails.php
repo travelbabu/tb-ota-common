@@ -2,13 +2,12 @@
 
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\Dedicated\InventoryUpdate;
 
-use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Delta4op\MongoODM\Traits\HasRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use Illuminate\Support\Arr;
-use MongoDB\BSON\ObjectId;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyInventoryReference;
 
 /**
  * @ODM\EmbeddedDocument
@@ -18,45 +17,26 @@ class InventoryUpdateLogDetails extends EmbeddedDocument
     use HasRepository;
 
     /**
-     * @var ArrayCollection
-     * @ODM\EmbedMany(targetDocument=UpdateDetails::class)
+     * @var ArrayCollection & InventoryUpdateItem[]
+     * @ODM\EmbedMany(targetDocument=InventoryUpdateItem::class)
      */
-    public $updates;
+    public $inventoryUpdates;
 
     /**
-     * @var ObjectId[]
-     * @ODM\Field(type="collection")
+     * @var ArrayCollection & PropertyInventoryReference[]
+     * @ODM\EmbedMany(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyInventoryReference::class)
      */
-    public $inventoryIDs;
+    public $inventoryRefs;
 
     /**
-     * @var string
-     * @ODM\Field(type="string")
+     * @param array $attributes
      */
-    public $source;
-    public const SOURCE_APP_INLINE_UPDATE = 'SYSOTEL_APP_INLINE_UPDATE';
-
     public function __construct(array $attributes = [])
     {
-        $this->updates = new ArrayCollection();
-        $this->inventoryIDs = [];
+        $this->inventoryUpdates = new ArrayCollection;
+        $this->inventoryRefs = new ArrayCollection;
 
         parent::__construct($attributes);
-    }
-
-    /**
-     * @param ObjectId|string|string[]|ObjectId[] $ids
-     */
-    public function addInventoryLogIDs(ObjectId|string|array $ids): static
-    {
-        foreach(Arr::wrap($ids) as $id) {
-
-            $id = is_string($id) ? new ObjectId($id) : $id;
-
-            $this->inventoryIDs[] = $id;
-        }
-
-        return $this;
     }
 
     /**
@@ -65,9 +45,8 @@ class InventoryUpdateLogDetails extends EmbeddedDocument
     public function toArray(): array
     {
         return arrayFilter([
-            'updates' => collect($this->updates)->toArray(),
-            'source' => $this->source,
-            'inventoryIDs' => $this->inventoryIDs,
+            'inventoryUpdates' => collect($this->inventoryUpdates)->toArray(),
+            'inventoryRefs' => collect($this->inventoryRefs)->toArray(),
         ]);
     }
 }
