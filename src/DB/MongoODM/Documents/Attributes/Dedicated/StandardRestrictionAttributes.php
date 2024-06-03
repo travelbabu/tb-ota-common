@@ -92,6 +92,35 @@ class StandardRestrictionAttributes extends EmbeddedDocument
     }
 
     /**
+     * @param StandardRestrictionAttributes $attributes
+     * @return $this
+     */
+    public function mergeAttributes(StandardRestrictionAttributes $attributes): static
+    {
+        if ($this->stopSell?->value === null) {
+            $this->stopSell = $attributes->stopSell;
+        }
+
+        if ($this->closeOnArrival?->value === null) {
+            $this->closeOnArrival = $attributes->closeOnArrival;
+        }
+
+        if ($this->closeOnDeparture?->value === null) {
+            $this->closeOnDeparture = $attributes->closeOnDeparture;
+        }
+
+        if ($this->minLos?->value === null) {
+            $this->minLos = $attributes->minLos;
+        }
+
+        if ($this->maxLos?->value === null) {
+            $this->maxLos = $attributes->maxLos;
+        }
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray(): array
