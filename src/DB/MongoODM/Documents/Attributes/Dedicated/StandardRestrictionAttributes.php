@@ -71,11 +71,11 @@ class StandardRestrictionAttributes extends EmbeddedDocument
     public function hasAllAttributes(): bool
     {
         return
-            $this->stopSell !== null &&
-            $this->closeOnArrival !== null &&
-            $this->closeOnDeparture !== null &&
-            $this->minLos !== null &&
-            $this->maxLos !== null;
+            $this->stopSell?->value !== null &&
+            $this->closeOnArrival?->value !== null &&
+            $this->closeOnDeparture?->value !== null &&
+            $this->minLos?->value !== null &&
+            $this->maxLos?->value !== null;
     }
 
     /**
@@ -84,11 +84,11 @@ class StandardRestrictionAttributes extends EmbeddedDocument
     public function hasAnyAttributes(): bool
     {
         return
-            $this->stopSell !== null ||
-            $this->closeOnArrival !== null ||
-            $this->closeOnDeparture !== null ||
-            $this->minLos !== null ||
-            $this->maxLos !== null;
+            $this->stopSell?->value !== null ||
+            $this->closeOnArrival?->value !== null ||
+            $this->closeOnDeparture?->value !== null ||
+            $this->minLos?->value !== null ||
+            $this->maxLos?->value !== null;
     }
 
     /**
