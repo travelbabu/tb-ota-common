@@ -11,6 +11,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\ODM\MongoDB\MongoDBException;
 use Illuminate\Support\Str;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\PaymentDetails\BookingPaymentDetails;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\ApiLogReference;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\BrowserDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\GSTDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\UserReference;
@@ -198,6 +199,12 @@ class Booking extends Document
     public $browserDetails;
 
     /**
+     * @var ArrayCollection & ApiLogReference[]
+     * @ODM\EmbedMany(targetDocument=ApiLogReference::class)
+     */
+    public $apiRefs;
+
+    /**
      * CONSTRUCTOR
      */
     public function __construct(array $attributes = [])
@@ -205,6 +212,7 @@ class Booking extends Document
         $this->refunds = new ArrayCollection;
         $this->bookingVouchers = new ArrayCollection;
         $this->inventoryUpdates = new ArrayCollection;
+        $this->apiRefs = new ArrayCollection();
 
         parent::__construct($attributes);
     }
