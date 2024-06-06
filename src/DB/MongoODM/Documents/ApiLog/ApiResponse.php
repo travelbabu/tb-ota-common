@@ -4,6 +4,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ApiLog;
 
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use Illuminate\Http\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 use Psr\Http\Message\ResponseInterface;
@@ -67,6 +68,19 @@ class ApiResponse extends EmbeddedDocument
         $instance->payload = $response->getContent();
         $instance->setHeadersFromLaravelResponse($response);
 
+        return $instance;
+    }
+
+    /**
+     * @param RedirectResponse $response
+     * @return static
+     */
+    public static function createFromRedirectResponse(RedirectResponse $response): static
+    {
+        $instance = new self;
+        $instance->httpStatusCode = $response->getStatusCode();
+        $instance->setHeadersFromLaravelResponse($response);
+        $instance->payload = $response->getContent() ?? '';
         return $instance;
     }
 
