@@ -29,9 +29,6 @@ abstract class BookingPayment extends EmbeddedDocument
      * @ODM\Field(type="string")
      */
     public $type;
-    public const TYPE_PG_CASHFREE = 'PG_CASHFREE';
-    public const TYPE_INTERNAL_WALLET = 'INTERNAL_WALLET';
-    public const TYPE_CUSTOM = 'CUSTOM';
 
     /**
      * @var string
