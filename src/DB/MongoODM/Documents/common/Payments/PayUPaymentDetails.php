@@ -14,195 +14,195 @@ class PayUPaymentDetails extends EmbeddedDocument
      * @var ?string
      * @ODM\Field (type="string")
      */
-    private $merchantID;
+    public $merchantID;
 
     /**
      * @var ?string
      * @ODM\Field (type="string")
      */
-    private $orderID;
+    public $orderID;
 
     /**
      * @var ?string
      * @ODM\Field (type="string")
      */
-    private $payUKey;
+    public $payUKey;
 
     /**
      * @var ?string
      * @ODM\Field (type="string")
      */
-    private $mihpayID;
+    public $mihpayID;
 
     /**
      * @var ?string
      * @ODM\Field (type="string")
      */
-    private $payuSalt;
+    public $payuSalt;
 
     /**
      * @var ?string
      * @ODM\Field (type="string")
      */
-    private $mode;
+    public $mode;
 
     /**
      * @var ?string
      * @ODM\Field (type="string")
      */
-    private $bankcode;
+    public $bankcode;
 
     /**
      * @var ?string
      * @ODM\Field (type="string")
      */
-    private $status;
-
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $unmappedStatus;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $error;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $errorMessage;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $bankRefNum;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $txnid;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $transactionID;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $payUTransactionID;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $amount;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $netAmountDebit;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $addedOn;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $productInfo;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $firstName;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $email;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $phone;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $pgType;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $merchantUtr;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $meCode;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $appName;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $cardNo;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $cardType;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $disc;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $hash;
-
-    /**
-     * @var ?string
-     * @ODM\Field (type="string")
-     */
-    private $sUrl;
+    public $status;
 
 
     /**
      * @var ?string
      * @ODM\Field (type="string")
      */
-    private $fUrl;
+    public $unmappedStatus;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $error;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $errorMessage;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $bankRefNum;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $txnid;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $transactionID;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $payUTransactionID;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $amount;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $netAmountDebit;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $addedOn;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $productInfo;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $firstName;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $email;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $phone;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $pgType;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $merchantUtr;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $meCode;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $appName;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $cardNo;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $cardType;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $disc;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $hash;
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $sUrl;
+
+
+    /**
+     * @var ?string
+     * @ODM\Field (type="string")
+     */
+    public $fUrl;
 
     /**
      * @inheritDoc
