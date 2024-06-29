@@ -46,6 +46,8 @@ class SearchConfig extends EmbeddedDocument
      * @ODM\Field(type="string")
      */
     public $destinationType;
+    const DESTINATION_TYPE_COUNTRY = 'COUNTRY';
+    const DESTINATION_TYPE_STATE = 'STATE';
     const DESTINATION_TYPE_CITY = 'CITY';
     const DESTINATION_TYPE_AREA = 'AREA';
     const DESTINATION_TYPE_PROPERTY = 'PROPERTY';

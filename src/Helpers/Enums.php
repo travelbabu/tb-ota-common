@@ -114,6 +114,8 @@ class Enums
     const PG_GROUP_UPI_PPI = 'UPI_PPI';
     const PG_GROUP_UPI_PPI_OFFLINE = 'UPI_PPI_OFFLINE';
     const UNKNOWN = 'UNKNOWN';
+    const PG_GROUP_UNKNOWN = 'UNKNOWN';
+    const PG_GROUP_OTHER = 'OTHER';
 
     public const BOOKING_PAYMENT_STATUS_PAID = 'PAID';
     public const BOOKING_PAYMENT_STATUS_PENDING = 'PENDING';
