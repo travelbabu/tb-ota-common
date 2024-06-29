@@ -8,6 +8,7 @@ use Delta4op\MongoODM\Traits\HasTimestamps;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Illuminate\Support\Traits\Macroable;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyReference;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\UserReference;
 use SYSOTEL\OTA\Common\DB\MongoODM\Repositories\InquiryRepository;
 use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
@@ -32,6 +33,12 @@ class Inquiry extends Document
      * @ODM\Id
      */
     public $id;
+
+    /**
+     * @var PropertyReference
+     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\PropertyReference::class)
+     */
+    public $property;
 
     /**
      * @var UserReference
