@@ -140,6 +140,7 @@ class Property extends Document
     public const STATUS_ACTIVE = 'ACTIVE';
     public const STATUS_DISABLED = 'DISABLED';
     public const STATUS_BLOCKED = 'BLOCKED';
+    public const STATUS_DELETED = 'DELETED';
 
     /**
      * @var RawAddress
@@ -227,6 +228,18 @@ class Property extends Document
      * @ODM\Field(type="carbon")
      */
     public $cachedAt;
+
+    /**
+     * @var Carbon
+     * @ODM\Field(type="carbon")
+     */
+    public $deletedAt;
+
+    /**
+     * @var ?UserReference
+     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\UserReference::class)
+     */
+    public $deletedBy;
 
     public $defaults = [
         'starRating' => 0,
