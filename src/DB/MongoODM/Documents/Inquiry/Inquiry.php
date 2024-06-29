@@ -53,6 +53,7 @@ class Inquiry extends Document
      */
     public $source;
     public const SOURCE_CONTACT_US = 'CONTACT_US';
+    public const SOURCE_PROPERTY_SEARCH = 'PROPERTY_SEARCH';
 
     /**
      * @var string
@@ -99,7 +100,6 @@ class Inquiry extends Document
     public function toArray(): array
     {
         return array_filter([
-            'userID'      => $this->userID,
             'causer'      => toArrayOrNull($this->causer),
             'title'       => $this->title,
             'description' => $this->description,
