@@ -39,8 +39,19 @@ class BookingGuestDetails extends EmbeddedDocument
      */
     public function getPrimaryGuestProfile(): ?GuestProfile
     {
-        foreach($this->profiles as $profile) {
-            if($profile->isPrimary) {
+        foreach ($this->profiles as $profile) {
+            if ($profile->isPrimary) {
+                return $profile;
+            }
+        }
+
+        return null;
+    }
+
+    public function getGuestByNo(int $guestNo): ?GuestProfile
+    {
+        foreach ($this->profiles as $profile) {
+            if ($profile->guestNo === $guestNo) {
                 return $profile;
             }
         }

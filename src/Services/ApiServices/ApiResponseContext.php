@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\ApiServices;
+namespace SYSOTEL\OTA\Common\Services\ApiServices;
 
 use Exception;
 use GuzzleHttp\Client;
