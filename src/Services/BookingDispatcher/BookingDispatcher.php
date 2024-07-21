@@ -7,7 +7,7 @@ use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\Booking;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelConnectivity\ChannelConnectivity;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\ChannelLogAttemptDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\ChannelLogProperty;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\Dedicated\PushBooking\PushBookingLog;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\Dedicated\ProvideBookings\ProvideBookingsLog;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\ChannelConnectivityReference;
 use SYSOTEL\OTA\Common\Helpers\Enums;
 use function SYSOTEL\OTA\Common\Helpers\documentManager;
@@ -26,10 +26,10 @@ class BookingDispatcher
     }
 
     /**
-     * @return PushBookingLog|null
+     * @return ProvideBookingsLog|null
      * @throws MongoDBException
      */
-    public function dispatch(): PushBookingLog|null
+    public function dispatch(): ProvideBookingsLog|null
     {
         $channelConnectivity = ChannelConnectivity::repository()->findOneBy([
             'propertyID' => $this->booking->property->id,
@@ -42,7 +42,7 @@ class BookingDispatcher
             return null;
         }
 
-        $pushBookingLog = new PushBookingLog([
+        $pushBookingLog = new ProvideBookingsLog([
             'channelID' => Enums::CHANNEL_ID_RESAVENUE,
             'property' => new ChannelLogProperty([
                 'id' => $this->booking->property->id,

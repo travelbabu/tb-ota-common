@@ -1,6 +1,6 @@
 <?php
 
-namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\Dedicated\PushBooking;
+namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\Dedicated\ProvideBookings;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\ChannelLog;
@@ -10,18 +10,16 @@ use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 /**
  * @ODM\Document
  */
-class PushBookingLog extends ChannelLog
+class ProvideBookingsLog extends ChannelLog
 {
     /**
-     * @var PushBookingLogDetails
-     * @ODM\EmbedOne(targetDocument=PushBookingLogDetails::class)
+     * @var ProvideBookingsLogDetails
+     * @ODM\EmbedOne(targetDocument=ProvideBookingsLogDetails::class)
      */
     public $details;
 
     public function __construct(array $attributes = [])
     {
-        $this->details = new PushBookingLogDetails;
-
         parent::__construct($attributes);
     }
 
@@ -31,7 +29,7 @@ class PushBookingLog extends ChannelLog
     public function toArray(): array
     {
         return arrayFilter(
-            array_merge(parent::toArray(),[
+            array_merge(parent::toArray(), [
 
             ])
         );
@@ -42,6 +40,6 @@ class PushBookingLog extends ChannelLog
      */
     public function getType(): string
     {
-        return Enums::CHANNEL_LOG_TYPE_PROVIDE_PROPERTY_CONTENT;
+        return Enums::API_LOG_RESAVENUE_PROVIDE_BOOKINGS;
     }
 }

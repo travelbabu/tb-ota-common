@@ -25,7 +25,7 @@ use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
  *     "PROVIDE_PROPERTY_RATES":Dedicated\ProvideRates\ProvideRateLog::class,
  *     "UPDATE_PROPERTY_RATES":Dedicated\RateUpdate\RateUpdateLog::class,
  *     "UPDATE_PROPERTY_INVENTORY":Dedicated\InventoryUpdate\InventoryUpdateLog::class,
- *     "PUSH_BOOKING":Dedicated\InventoryUpdate\InventoryUpdateLog::class,
+ *     "PROVIDE_BOOKING":Dedicated\ProvideBookings\ProvideBookingsLog::class,
  * })
  * @ODM\HasLifecycleCallbacks
  */
