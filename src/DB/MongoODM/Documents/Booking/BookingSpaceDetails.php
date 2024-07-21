@@ -88,7 +88,7 @@ class BookingSpaceDetails extends EmbeddedDocument
     public function getSpaceForSpaceNo(int $spaceNo): ?BookingSpace
     {
         foreach ($this->spaces as $space) {
-            if ($space->getNo() === $spaceNo) {
+            if ($space->spaceNo === $spaceNo) {
                 return $space;
             }
         }
