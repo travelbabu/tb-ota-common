@@ -4,7 +4,6 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelConnectivity\types\Res
 
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 
 /**
  * @ODM\EmbeddedDocument
@@ -30,10 +29,9 @@ class ResAvenueConnectivityDetails extends EmbeddedDocument
      */
     public function toArray(): array
     {
-        return arrayFilter(
-            array_merge(parent::toArray(),[
-
-            ])
-        );
+        return [
+            'username' => $this->username,
+            'password' => $this->password,
+        ];
     }
 }

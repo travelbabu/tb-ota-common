@@ -1,6 +1,6 @@
 <?php
 
-namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\Dedicated\ProvidePropertyContent;
+namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\Dedicated\PushBooking;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\ChannelLog\ChannelLog;
@@ -10,11 +10,11 @@ use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 /**
  * @ODM\Document
  */
-class ProvidePropertyContentLog extends ChannelLog
+class PushBookingLog extends ChannelLog
 {
     /**
      * @var PushBookingLogDetails
-     * @ODM\EmbedOne(targetDocument=ProvidePropertyContentLogDetails::class)
+     * @ODM\EmbedOne(targetDocument=PushBookingLogDetails::class)
      */
     public $details;
 
