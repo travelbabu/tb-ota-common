@@ -13,12 +13,6 @@ use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 class PromotionApplicableSpaceDetails extends EmbeddedDocument
 {
     /**
-     * @var ?int
-     * @ODM\Field(type="int")
-     */
-    public $productID;
-
-    /**
      * @var ?boolean
      * @ODM\Field(type="boolean")
      */

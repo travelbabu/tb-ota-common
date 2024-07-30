@@ -144,6 +144,52 @@ class Promotion extends Document
     ];
 
     /**
+     * @param int $productID
+     * @return bool
+     */
+    public function isProductApplicable(int $productID): bool
+    {
+        foreach (($this->applicableSpaceDetails?->applicableSpaces ?? []) as $applicableSpace) {
+            foreach (($applicableSpace->applicableProducts ?? []) as $applicableProduct) {
+                if ($applicableProduct->productID === $productID) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param int $spaceID
+     * @return bool
+     */
+    public function isSpaceApplicableWithAllProducts(int $spaceID): bool
+    {
+        foreach (($this->applicableSpaceDetails?->applicableSpaces ?? []) as $applicableSpace) {
+            if ($applicableSpace->spaceID === $spaceID && $applicableSpace->applicableOnAllProducts) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param int $spaceID
+     * @return bool
+     */
+    public function isSpaceApplicable(int $spaceID): bool
+    {
+        foreach (($this->applicableSpaceDetails?->applicableSpaces ?? []) as $applicableSpace) {
+            if ($applicableSpace->spaceID === $spaceID) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * @return string|null
      */
     public function getId(): ?string
