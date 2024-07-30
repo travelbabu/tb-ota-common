@@ -7,6 +7,9 @@ use Delta4op\MongoODM\Documents\Document;
 use Delta4op\MongoODM\Facades\DocumentManager;
 use Delta4op\MongoODM\Traits\HasDefaultAttributes;
 use Delta4op\MongoODM\Traits\HasTimestamps;
+use Doctrine\Common\Collections\ArrayCollection;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\embedded\PromotionApplicableSpace;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\embedded\PromotionApplicableSpaceDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Repositories\PromotionsRepository;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
@@ -118,6 +121,17 @@ class Promotion extends Document
      * @ODM\Field(type="carbon")
      */
     public $stayEndDate;
+
+    /**
+     * @var ?PromotionApplicableSpaceDetails
+     * @ODM\EmbedOne (targetDocument=PromotionApplicableSpaceDetails::class)
+     */
+    public $applicableSpaceDetails;
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 
     /**
      * @var ?Carbon
