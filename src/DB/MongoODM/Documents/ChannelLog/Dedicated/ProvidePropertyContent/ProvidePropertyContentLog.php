@@ -13,14 +13,14 @@ use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 class ProvidePropertyContentLog extends ChannelLog
 {
     /**
-     * @var PushBookingLogDetails
+     * @var ProvidePropertyContentLogDetails
      * @ODM\EmbedOne(targetDocument=ProvidePropertyContentLogDetails::class)
      */
     public $details;
 
     public function __construct(array $attributes = [])
     {
-        $this->details = new PushBookingLogDetails;
+        $this->details = new ProvidePropertyContentLogDetails;
 
         parent::__construct($attributes);
     }
