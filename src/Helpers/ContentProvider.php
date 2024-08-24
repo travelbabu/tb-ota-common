@@ -192,7 +192,7 @@ class ContentProvider
     public static function productPaymentModes(): array
     {
         return self::idTextArray([
-            PropertyProduct::PAYMENT_MODE_PAY_NOW => 'Pay Now',
+            PropertyProduct::PAYMENT_MODE_PAY_NOW => 'Prepaid',
 //            PropertyProduct::PAYMENT_MODE_PAY_AT_PROPERTY => 'Pay @ Property',
             PropertyProduct::PAYMENT_MODE_PAY_PARTIAL => 'Pay Partial',
         ]);
