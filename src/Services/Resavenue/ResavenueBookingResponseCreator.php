@@ -4,6 +4,7 @@ namespace SYSOTEL\OTA\Common\Services\Resavenue;
 
 
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\Booking;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\PaymentDetails\BookingPaymentDetails;
 use SYSOTEL\OTA\Common\Helpers\Enums;
 
 class ResavenueBookingResponseCreator
@@ -25,7 +26,7 @@ class ResavenueBookingResponseCreator
             'UniqueID' => $this->getUniqueId(),
             'ResStatus' => $this->getBookingStatusCode(),
             'CreatedDateTime' => $booking->createdAt->format('y-m-d h:i:s'),
-            'PayAtHotel' => 'N',
+            'PayAtHotel' => $booking->paymentDetails?->paymentMode === BookingPaymentDetails::PAYMENT_MODE_PAY_AT_PROPERTY ? 'Y' : 'N',
             'ResGlobalInfo' => $this->getGlobalInfo(),
             'RoomStays' => [],
             'ResGuests' => [],
@@ -129,7 +130,8 @@ class ResavenueBookingResponseCreator
                                                 'GivenName' => $guestProfile->firstName,
                                                 'Surname' => $guestProfile->lastName
                                             ],
-                                            'Email' => $this->booking->contactDetails?->email?->id
+                                            'Email' => $this->booking->contactDetails?->email?->id,
+                                            'PhoneNumber' => $this->booking->contactDetails?->mobile?->value
                                         ]
                                     ]
                                 ]
@@ -172,7 +174,7 @@ class ResavenueBookingResponseCreator
             'Total' => [
                 'CurrencyCode' => $this->booking->baseCurrency,
                 'TotalTax' => $this->booking?->guestCalculations?->spaceCharges?->tax?->amount,
-                'TaxType' => 'Exclusive',
+                'TaxType' => 'Inclusive',
                 'TotalBookingAmount' => $this->booking?->guestCalculations?->payableAmount,
                 'Commission' => $this->booking?->propertyCalculations?->spaceCharges?->otaCommission?->amount,
                 'CommissionType' => 'Exclusive',
