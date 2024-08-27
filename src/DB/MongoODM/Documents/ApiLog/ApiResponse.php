@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 use Psr\Http\Message\ResponseInterface;
+use function SYSOTEL\OTA\Common\Helpers\isPositiveNumber;
 
 /**
  * @ODM\EmbeddedDocument
@@ -46,14 +47,14 @@ class ApiResponse extends EmbeddedDocument
     public static function createFromResponse(ResponseInterface $response): ApiResponse
     {
         $response->getBody()->rewind();
-        
+
         $instance = new self;
         $instance->httpStatusCode = $response->getStatusCode();
         $instance->payload = $response->getBody()->getContents();
         $instance->setHeadersFromResponse($response);
-        
+
         $response->getBody()->rewind();
-        
+
         return $instance;
     }
 
@@ -95,7 +96,7 @@ class ApiResponse extends EmbeddedDocument
         foreach ($response->getHeaders() as $key => $value) {
             $this->headers[$key] = is_array($value) ? implode(',', $value) : $value;
         }
-        
+
         return $this;
     }
 
@@ -112,6 +113,16 @@ class ApiResponse extends EmbeddedDocument
         }
 
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSuccessful(): bool
+    {
+        return isPositiveNumber($this->httpStatusCode) &&
+            $this->httpStatusCode >= 200 &&
+            $this->httpStatusCode < 300;
     }
 
     /**

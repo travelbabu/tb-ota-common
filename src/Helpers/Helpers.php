@@ -405,3 +405,18 @@ if (!function_exists('readableConstant')) {
         return ucwords(strtolower(Str::replace('_', ' ', $value)));
     }
 }
+
+if (!function_exists('isPositiveNumber')) {
+    /**
+     * @param $value
+     * @param bool $includeZero
+     * @return bool
+     */
+    function isPositiveNumber($value, bool $includeZero = false): bool
+    {
+        if ($includeZero) {
+            return is_numeric($value) && $value >= 0;
+        }
+        return is_numeric($value) && $value > 0;
+    }
+}
