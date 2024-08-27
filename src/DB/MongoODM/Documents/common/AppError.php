@@ -2,7 +2,6 @@
 
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\common;
 
-use Carbon\Carbon;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
@@ -18,28 +17,28 @@ class AppError extends EmbeddedDocument
      * @ODM\Field(type="string")
      */
     public $message;
-    
+
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
     public $code;
-    
+
     /**
      * @var ?string
      * @ODM\Field(type="string")
      */
     public $file;
-    
+
     /**
      * @var ?int
      * @ODM\Field(type="int")
      */
     public $line;
-    
+
     /**
-     * @var ?string
-     * @ODM\Field(type="string")
+     * @var ?string[]
+     * @ODM\Field(type="collection")
      */
     public $trace;
 
@@ -47,7 +46,7 @@ class AppError extends EmbeddedDocument
     {
         $instance = new self();
         $instance->message = $throwable->getMessage();
-        $instance->code = $throwable->getCode();    
+        $instance->code = $throwable->getCode();
         $instance->file = $throwable->getFile();
         $instance->line = $throwable->getLine();
         $instance->trace = $throwable->getTrace();
@@ -61,7 +60,7 @@ class AppError extends EmbeddedDocument
     public function toArray(): array
     {
         return arrayFilter([
-            
+
         ]);
     }
 }
