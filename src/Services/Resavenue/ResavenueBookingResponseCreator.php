@@ -26,7 +26,7 @@ class ResavenueBookingResponseCreator
             'UniqueID' => $this->getUniqueId(),
             'ResStatus' => $this->getBookingStatusCode(),
             'CreatedDateTime' => $booking->createdAt->format('y-m-d h:i:s'),
-            'PayAtHotel' => $booking->paymentDetails?->paymentMode === BookingPaymentDetails::PAYMENT_MODE_PAY_AT_PROPERTY ? 'Y' : 'N',
+            'PayAtHotel' => $booking->paymentDetails?->paymentMode === BookingPaymentDetails::PAYMENT_MODE_PAY_NOW ? 'N' : 'Y',
             'ResGlobalInfo' => $this->getGlobalInfo(),
             'RoomStays' => [],
             'ResGuests' => [],
