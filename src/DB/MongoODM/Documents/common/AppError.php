@@ -18,6 +18,7 @@ class AppError extends EmbeddedDocument
      */
     public $message;
 
+
     /**
      * @var ?string
      * @ODM\Field(type="string")
