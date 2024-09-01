@@ -2,7 +2,6 @@
 
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\ApiLog;
 
-use Carbon\Carbon;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
@@ -87,7 +86,7 @@ class ApiRequest extends EmbeddedDocument
         $instance = new self();
 
         $instance->httpMethod = $request->getMethod();
-        $instance->payloadFormat = $request->getBody()->getContents() ?? '';
+        $instance->payload = $request->getBody()->getContents() ?? '';
         $instance->host = $request->getUri()->getHost();
         $instance->path = $request->getUri()->getPath();
         $instance->port = $request->getUri()->getPort();
@@ -107,7 +106,7 @@ class ApiRequest extends EmbeddedDocument
     {
         $apiRequest = new self;
         $apiRequest->httpMethod = Str::upper($request->getMethod());
-        $apiRequest->payloadFormat = $request->getContent();
+        $apiRequest->payload = $request->getContent();
         $apiRequest->host = $request->getHost();
         $apiRequest->path = $request->path();
         $apiRequest->url = $request->url();
