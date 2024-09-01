@@ -159,8 +159,7 @@ class ResavenueBookingResponseCreator
 
             'ID' => $this->booking->id,
             'OTA' => 'TRAVELBABU',
-            'BookingSource' => $this->booking->marketSegment,
-
+            'BookingSource' => $this->booking->source,
         ];
     }
 
