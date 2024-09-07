@@ -65,9 +65,9 @@ class PromotionsRepository extends DocumentRepository
             ],
             $criteria);
 
-        $sort = array_merge([
+        $sort = array_merge($sort, [
             'createdAt' => -1
-        ], $sort);
+        ]);
 
         return $this->getCollectionBy($criteria, $sort);
     }
@@ -87,9 +87,9 @@ class PromotionsRepository extends DocumentRepository
             ],
             $criteria);
 
-        $sort = array_merge([
+        $sort = array_merge($sort, [
             'createdAt' => -1
-        ], $sort);
+        ]);
 
         return $this->getCollectionBy($criteria, $sort);
     }
@@ -111,9 +111,9 @@ class PromotionsRepository extends DocumentRepository
             ],
             $criteria);
 
-        $sort = array_merge([
+        $sort = array_merge($sort, [
             'createdAt' => -1
-        ], $sort);
+        ]);
 
         return $this->getCollectionBy($criteria, $sort);
     }
@@ -135,9 +135,9 @@ class PromotionsRepository extends DocumentRepository
             ],
             $criteria);
 
-        $sort = array_merge([
+        $sort = array_merge($sort, [
             'createdAt' => -1
-        ], $sort);
+        ]);
 
         return $this->getCollectionBy($criteria, $sort);
     }
@@ -158,9 +158,9 @@ class PromotionsRepository extends DocumentRepository
             ],
             $criteria);
 
-        $sort = array_merge([
+        $sort = array_merge($sort, [
             'createdAt' => -1
-        ], $sort);
+        ]);
 
         return $this->getCollectionBy($criteria, $sort);
     }
@@ -181,9 +181,9 @@ class PromotionsRepository extends DocumentRepository
             'category' => Enums::PROMOTION_CATEGORY_OFFER,
         ], $criteria);
 
-        $sort = array_merge([
+        $sort = array_merge($sort, [
             'createdAt' => -1
-        ], $sort);
+        ]);
 
         return $this->findOneBy($criteria, $sort);
     }
@@ -204,9 +204,9 @@ class PromotionsRepository extends DocumentRepository
             'category' => Enums::PROMOTION_CATEGORY_PROMO_CODE,
         ], $criteria);
 
-        $sort = array_merge([
+        $sort = array_merge($sort, [
             'createdAt' => -1
-        ], $sort);
+        ]);
 
         return $this->findOneBy($criteria, $sort);
     }
@@ -224,9 +224,9 @@ class PromotionsRepository extends DocumentRepository
             'promoID' => $promoID, 'type' => $type, 'isExpired' => false
         ], $criteria);
 
-        $sort = array_merge([
+        $sort = array_merge($sort, [
             'createdAt' => -1
-        ], $sort);
+        ]);
 
         return $this->findOneBy($criteria, $sort);
     }
