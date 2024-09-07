@@ -7,8 +7,6 @@ use Delta4op\MongoODM\Documents\Document;
 use Delta4op\MongoODM\Facades\DocumentManager;
 use Delta4op\MongoODM\Traits\HasDefaultAttributes;
 use Delta4op\MongoODM\Traits\HasTimestamps;
-use Doctrine\Common\Collections\ArrayCollection;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\embedded\PromotionApplicableSpace;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\embedded\PromotionApplicableSpaceDetails;
 use SYSOTEL\OTA\Common\DB\MongoODM\Repositories\PromotionsRepository;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
@@ -44,10 +42,22 @@ class Promotion extends Document
     public $id;
 
     /**
+     * @var ?string
+     * @ODM\Field(type="string")
+     */
+    public $category;
+
+    /**
      * @var ?int
      * @ODM\Field(type="int")
      */
     public $promoID;
+
+    /**
+     * @var ?string
+     * @ODM\Field(type="string")
+     */
+    public $promoCode;
 
     /**
      * @var ?int
