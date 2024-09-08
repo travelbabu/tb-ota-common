@@ -33,12 +33,6 @@ class SpaceDiscountItem extends EmbeddedDocument
      * @var ?string
      * @ODM\Field(type="string")
      */
-    public $promoCode;
-
-    /**
-     * @var ?string
-     * @ODM\Field(type="string")
-     */
     public $type;
 
     /**

@@ -65,6 +65,7 @@ class SpaceDiscount extends EmbeddedDocument
         $itemCopy->code = $discountItem->code;
         $itemCopy->amount = $discountItem->amount;
         $itemCopy->percentage = $discountItem->percentage;
+        $itemCopy->category = $discountItem->category;
         $itemCopy->description = $discountItem->description;
 
         foreach ($this->breakup as $breakupItem) {
@@ -74,6 +75,14 @@ class SpaceDiscount extends EmbeddedDocument
 
                 if ($breakupItem->percentage !== $itemCopy->percentage) {
                     $breakupItem->percentage = null;
+                }
+
+                if($breakupItem->category !== $itemCopy->category) {
+                    $breakupItem->category = null;
+                }
+
+                if($breakupItem->code !== $itemCopy->code) {
+                    $breakupItem->code = null;
                 }
 
                 $matchFound = true;
