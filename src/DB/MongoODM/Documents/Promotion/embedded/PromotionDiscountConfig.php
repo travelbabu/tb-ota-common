@@ -26,12 +26,24 @@ class PromotionDiscountConfig extends EmbeddedDocument
     public $value;
 
     /**
+     * @return string
+     */
+    public function valueString(): string
+    {
+        if (!isset($this->value) || !isset($this->type)) {
+            return '';
+        }
+
+        return $this->type === self::TYPE_FLAT ? "$this->value INR" : ($this->type === self::TYPE_PERC ? "$this->value %" : $this->value);
+    }
+
+    /**
      * @inheritDoc
      */
     public function toArray(): array
     {
         return arrayFilter([
-            'type'  => $this->type,
+            'type' => $this->type,
             'value' => $this->value,
         ]);
     }
