@@ -3,9 +3,9 @@
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\types;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\embedded\PromotionDiscountConfig;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\Promotion;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\Promotion;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\embedded\PromotionDiscountConfig;
 
 /**
  * @ODM\Document
