@@ -61,7 +61,7 @@ class ResavenueBookingResponseCreator
                 ],
                 'RoomTypes' => [
                     'RoomType' => [
-                        'NumberOfUnits' => $bookingSpace->spaceNo,
+                        'NumberOfUnits' => 1,
                         'RoomDescription' => [
                             'Name' => $bookingSpace->spaceName,
                         ],
