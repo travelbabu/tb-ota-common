@@ -34,7 +34,7 @@ class PromotionDiscountConfig extends EmbeddedDocument
             return '';
         }
 
-        return $this->type === self::TYPE_FLAT ? "$this->value INR" : ($this->type === self::TYPE_PERC ? "$this->value %" : $this->value);
+        return $this->type === self::TYPE_FLAT ? "$this->value INR" : ($this->type === self::TYPE_PERC ? "$this->value%" : $this->value);
     }
 
     /**
