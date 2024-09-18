@@ -28,7 +28,9 @@ class ResavenueBookingResponseCreator
             'CreatedDateTime' => $booking->createdAt->format('y-m-d h:i:s'),
             'PayAtHotel' => $booking->paymentDetails?->paymentMode === BookingPaymentDetails::PAYMENT_MODE_PAY_NOW ? 'N' : 'Y',
             'ResGlobalInfo' => $this->getGlobalInfo(),
-            'RoomStays' => [],
+            'RoomStays' => [
+                'RoomStay' => []
+            ],
             'ResGuests' => [],
         ];
 
@@ -107,10 +109,7 @@ class ResavenueBookingResponseCreator
                 $roomStayData['RoomRates']['RoomRate']['Rates'][] = $roomStay;
             }
 
-            $data['RoomStays'] = [
-                'RoomStay' => [$roomStayData]
-            ];
-
+            $data['RoomStays']['RoomStay'][] = $roomStayData;
 
             foreach ($bookingSpace->guestIDs as $guestNo) {
 
