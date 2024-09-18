@@ -415,6 +415,44 @@ class Promotion extends Document
         return DocumentManager::getRepository(self::class);
     }
 
+    public function getStayDateValidityString()
+    {
+        if(!$this->stayStartDate && !$this->stayEndDate) {
+            return 'Valid Forever';
+        }
+
+        if($this->stayStartDate && !$this->stayEndDate) {
+            return "From {$this->stayStartDate->format('d M Y')}";
+        }
+
+        if(!$this->stayStartDate && $this->stayEndDate) {
+            return "Till {$this->stayEndDate->format('d M Y')}";
+        }
+
+        if($this->stayEndDate && $this->stayStartDate) {
+            return "{$this->stayStartDate->format('d M Y')} to {$this->stayEndDate->format('d M Y')}";
+        }
+    }
+
+    public function getBookingDateValidityString()
+    {
+        if(!$this->bookingStartDate && !$this->bookingEndDate) {
+            return 'Valid Forever';
+        }
+
+        if($this->bookingStartDate && !$this->bookingEndDate) {
+            return "From {$this->bookingStartDate->format('d M Y')}";
+        }
+
+        if(!$this->bookingStartDate && $this->bookingEndDate) {
+            return "Till {$this->bookingEndDate->format('d M Y')}";
+        }
+
+        if($this->bookingEndDate && $this->bookingStartDate) {
+            return "{$this->bookingStartDate->format('d M Y')} to {$this->bookingEndDate->format('d M Y')}";
+        }
+    }
+
     /**
      * @return array
      */
