@@ -8,6 +8,7 @@ use Delta4op\MongoODM\Facades\DocumentManager;
 use Delta4op\MongoODM\Traits\HasDefaultAttributes;
 use Delta4op\MongoODM\Traits\HasTimestamps;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyReview\Comment;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Review\embedded\Rating;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Review\embedded\Review;
 use SYSOTEL\OTA\Common\DB\MongoODM\Repositories\PropertyReviewRepository;
@@ -99,6 +100,15 @@ class PropertyReview extends Document
      * @ODM\Field(type="carbon")
      */
     public $reviewedAt;
+
+
+    /**
+     * @return Comment|null
+     */
+    public function getFirstComment(): Comment|null
+    {
+        return $this->review?->comments?->first();
+    }
 
     /**
      * @inheritDoc
