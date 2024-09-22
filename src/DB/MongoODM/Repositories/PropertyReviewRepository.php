@@ -24,26 +24,26 @@ class PropertyReviewRepository extends DocumentRepository
     }
 
     /**
-     * @param int $propertyId
+     * @param int $propertyID
      * @return PropertyReview[]
      */
-    public function getActivePropertyReviews(int $propertyId): array
+    public function getActivePropertyReviews(int $propertyID): array
     {
         return $this->findBy([
-            'propertyID' => $propertyId,
+            'propertyID' => $propertyID,
             'status' => PropertyReviewStatus::ACTIVE->value
-        ], ['reviewedAt', -1]);
+        ], ['reviewedAt' => -1]);
     }
 
     /**
-     * @param int $propertyId
+     * @param int $propertyID
      * @return PropertyReview[]
      */
-    public function getAllPropertyReviews(int $propertyId): array
+    public function getAllPropertyReviews(int $propertyID): array
     {
         return $this->findBy([
-            'propertyID' => $propertyId,
-        ], ['reviewedAt', -1]);
+            'propertyID' => $propertyID,
+        ], ['reviewedAt'=> -1]);
     }
 
     /**
@@ -52,11 +52,11 @@ class PropertyReviewRepository extends DocumentRepository
      */
     public function getByGuest(int|Guest $guest): array
     {
-        $guestId = Guest::resolveID($guest);
+        $guestID = Guest::resolveID($guest);
 
         return $this->findBy([
-            'guestID' => $guestId,
-        ], ['reviewedAt', -1]);
+            'guestID' => $guestID,
+        ], ['reviewedAt'=> -1]);
     }
 
     /**
@@ -65,11 +65,11 @@ class PropertyReviewRepository extends DocumentRepository
      */
     public function getByBooking(int|Booking $booking): array
     {
-        $bookingId = Guest::resolveID($booking);
+        $bookingID = Guest::resolveID($booking);
 
         return $this->findBy([
-            'bookingID' => $bookingId,
-        ], ['reviewedAt', -1]);
+            'bookingID' => $bookingID,
+        ], ['reviewedAt'=> -1]);
     }
 
     /**
@@ -79,12 +79,12 @@ class PropertyReviewRepository extends DocumentRepository
      */
     public function getByBookingIdAndGuestId(int|Guest $guest, int|Booking $booking): ?PropertyReview
     {
-        $guestId = Guest::resolveID($guest);
-        $bookingId = Guest::resolveID($booking);
+        $guestID = Guest::resolveID($guest);
+        $bookingID = Guest::resolveID($booking);
 
         return $this->findOneBy([
-            'guestID' => $guestId,
-            'bookingID' => $bookingId,
+            'guestID' => $guestID,
+            'bookingID' => $bookingID,
         ]);
     }
 }
