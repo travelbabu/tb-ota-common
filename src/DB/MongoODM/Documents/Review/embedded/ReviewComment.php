@@ -35,21 +35,26 @@ class ReviewComment extends EmbeddedDocument
     public $body;
     /**
      * @var ?int
+     * @ODM\Field(type="int")
+     */
+    public $commenterID;
+    /**
+     * @var ?string
      * @ODM\Field(type="string")
      */
     public $commenterFirstName;
     /**
-     * @var ?int
+     * @var ?string
      * @ODM\Field(type="string")
      */
     public $commenterLastName;
     /**
-     * @var ?int
+     * @var ?string
      * @ODM\Field(type="string")
      */
     public $commenterFullName;
     /**
-     * @var ?int
+     * @var ?string
      * @ODM\Field(type="string")
      */
     public $commenterType;

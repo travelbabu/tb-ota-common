@@ -35,31 +35,43 @@ class PropertyReview extends Document
     protected string $keyType = 'int';
 
     /**
-     * @var int
+     * @var ?string
      * @ODM\Id
      */
     public $id;
 
     /**
-     * @var int
+     * @var ?int
      * @ODM\Field(type="int")
      */
     public $propertyID;
 
     /**
-     * @var int
+     * @var ?int
      * @ODM\Field(type="int")
      */
     public $bookingID;
 
     /**
-     * @var string
+     * @var ?Carbon
+     * @ODM\Field(type="carbon")
+     */
+    public $checkIn;
+
+    /**
+     * @var ?Carbon
+     * @ODM\Field(type="carbon")
+     */
+    public $checkOut;
+
+    /**
+     * @var ?string
      * @ODM\Field(type="string")
      */
     public $propertyName;
 
     /**
-     * @var int
+     * @var ?int
      * @ODM\Field(type="int")
      */
     public $guestID;
