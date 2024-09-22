@@ -4,6 +4,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking;
 
 use Delta4op\MongoODM\Documents\Document;
 use Delta4op\MongoODM\Facades\DocumentManager;
+use Delta4op\MongoODM\Traits\CanResolveIntegerID;
 use Delta4op\MongoODM\Traits\HasDefaultAttributes;
 use Delta4op\MongoODM\Traits\HasTimestamps;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -29,7 +30,7 @@ use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
  */
 class Booking extends Document
 {
-    use HasTimestamps, HasDefaultAttributes;
+    use CanResolveIntegerID, HasTimestamps, HasDefaultAttributes;
 
     /**
      * @inheritdoc
