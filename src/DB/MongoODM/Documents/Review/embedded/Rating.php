@@ -32,7 +32,7 @@ class Rating extends EmbeddedDocument
 
     /**
      * @var ArrayCollection & CategoryRating[]
-     * @ODM\EmbeddedDocument (targetDocument=CategoryRating::class)
+     * @ODM\EmbedMany  (targetDocument=CategoryRating::class)
      */
     public $categoryRatings;
 

@@ -2,10 +2,8 @@
 
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Review\embedded;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
-use SYSOTEL\OTA\Common\Enums\ReviewCommenterType;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 
 /**

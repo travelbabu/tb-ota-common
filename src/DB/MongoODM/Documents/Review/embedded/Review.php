@@ -33,7 +33,7 @@ class Review extends EmbeddedDocument
 
     /**
      * @var ArrayCollection & ReviewComment[]
-     * @ODM\EmbeddedDocument (targetDocument=ReviewComment::class)
+     * @ODM\EmbedMany (targetDocument=ReviewComment::class)
      */
     public ArrayCollection $comments;
 

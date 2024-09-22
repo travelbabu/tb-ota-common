@@ -8,15 +8,15 @@ use Delta4op\MongoODM\Facades\DocumentManager;
 use Delta4op\MongoODM\Traits\HasDefaultAttributes;
 use Delta4op\MongoODM\Traits\HasTimestamps;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\PropertyReview\Comment;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Review\embedded\Rating;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Review\embedded\Review;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Review\embedded\ReviewComment;
 use SYSOTEL\OTA\Common\DB\MongoODM\Repositories\PropertyReviewRepository;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 
 /**
  * @ODM\Document(
- *     collection="propertySpaces",
+ *     collection="propertyReviews",
  *     repositoryClass=SYSOTEL\OTA\Common\DB\MongoODM\Repositories\PropertyReviewRepository::class
  * ),
  * @ODM\HasLifecycleCallbacks
@@ -33,7 +33,7 @@ class PropertyReview extends Document
     /**
      * @inheritdoc
      */
-    protected string $keyType = 'int';
+    protected string $keyType = 'string';
 
     /**
      * @var ?string
@@ -103,9 +103,9 @@ class PropertyReview extends Document
 
 
     /**
-     * @return Comment|null
+     * @return ReviewComment|null
      */
-    public function getFirstComment(): Comment|null
+    public function getFirstComment(): ReviewComment|null
     {
         return $this->review?->comments?->first();
     }
