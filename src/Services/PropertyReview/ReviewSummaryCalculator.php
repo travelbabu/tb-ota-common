@@ -59,8 +59,8 @@ class ReviewSummaryCalculator
 //                    ];
 //                }
 
-                $categoryRatingsData[$categoryRating->category->value]['ratingCount']++;
-                $categoryRatingsData[$categoryRating->category->value]['ratings'][] = [
+                $categoryRatingsData[$categoryRating->category]['ratingCount']++;
+                $categoryRatingsData[$categoryRating->category]['ratings'][] = [
                     'ratingGiven' => $categoryRating->ratingGiven
                 ];
             }
