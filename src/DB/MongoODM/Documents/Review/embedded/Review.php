@@ -35,7 +35,7 @@ class Review extends EmbeddedDocument
      * @var ArrayCollection & ReviewComment[]
      * @ODM\EmbedMany (targetDocument=ReviewComment::class)
      */
-    public ArrayCollection $comments;
+    public $comments;
 
     public function __construct(array $attributes = [])
     {

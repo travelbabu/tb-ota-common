@@ -43,7 +43,7 @@ class PropertyReviewRepository extends DocumentRepository
     {
         return $this->findBy([
             'propertyID' => $propertyID,
-        ], ['reviewedAt'=> -1]);
+        ], ['reviewedAt' => -1]);
     }
 
     /**
@@ -56,7 +56,7 @@ class PropertyReviewRepository extends DocumentRepository
 
         return $this->findBy([
             'guestID' => $guestID,
-        ], ['reviewedAt'=> -1]);
+        ], ['reviewedAt' => -1]);
     }
 
     /**
@@ -69,7 +69,7 @@ class PropertyReviewRepository extends DocumentRepository
 
         return $this->findBy([
             'bookingID' => $bookingID,
-        ], ['reviewedAt'=> -1]);
+        ], ['reviewedAt' => -1]);
     }
 
     /**
