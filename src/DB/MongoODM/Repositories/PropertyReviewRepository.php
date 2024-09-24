@@ -80,7 +80,7 @@ class PropertyReviewRepository extends DocumentRepository
     public function getByBookingIdAndGuestId(int|Guest $guest, int|Booking $booking): ?PropertyReview
     {
         $guestID = Guest::resolveID($guest);
-        $bookingID = Guest::resolveID($booking);
+        $bookingID = Booking::resolveID($booking);
 
         return $this->findOneBy([
             'guestID' => $guestID,
