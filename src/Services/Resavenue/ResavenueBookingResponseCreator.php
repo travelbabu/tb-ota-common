@@ -102,7 +102,11 @@ class ResavenueBookingResponseCreator
 
             foreach ($spaceBreakupItem->timelyBreakup as $timelyBreakupItem) {
                 $roomStay = [
+                    'AmountBeforeDiscount' => $timelyBreakupItem->spaceCharges->total,
+                    'Discount' => $timelyBreakupItem->spaceCharges->spaceDiscount?->amount ?? 0,
                     'Amount' => $timelyBreakupItem->spaceCharges->amountAfterDiscount,
+                    'Tax' => $timelyBreakupItem->spaceCharges->tax?->amount ?? 0,
+                    'AmountIncludingTax' => $timelyBreakupItem->spaceCharges->amountAfterTax,
                     'EffectiveDate' => $timelyBreakupItem->startTime->format('Y-m-d')
                 ];
 
