@@ -85,7 +85,7 @@ class PromotionsRepository extends DocumentRepository
         $criteria = array_merge(
             [
                 'propertyID' => Property::resolveID($property),
-                'visibility' => PromotionVisibility::PUBLIC,
+                'visibility' => PromotionVisibility::PUBLIC->value,
                 'category' => Enums::PROMOTION_CATEGORY_PROMO_CODE,
                 'isExpired' => false,
             ],
