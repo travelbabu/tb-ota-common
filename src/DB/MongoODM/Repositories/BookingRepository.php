@@ -21,7 +21,7 @@ class BookingRepository extends DocumentRepository
     {
         $criteria = array_merge([
             'bookingID' => $bookingID
-        ],$filters);
+        ], $filters);
 
         $orderBy = ['version' => -1];
 
@@ -60,12 +60,25 @@ class BookingRepository extends DocumentRepository
     {
         $filters = array_merge([
             'agentDetails.accountID' => AgentAccount::resolveID($account)
-        ],$filters);
+        ], $filters);
 
         $criteria = array_merge([
             'createdAt' => -1
         ], $criteria);
 
         return $this->findBy($filters, $criteria);
+    }
+
+    /**
+     * @param int $propertyID
+     * @param int $promotionID
+     * @return Booking[]
+     */
+    public function findByPromotionId(int $propertyID, int $promotionID): array
+    {
+        return $this->findBy([
+            'property.id' => $propertyID,
+            'guestCalculations.spaceCharges.spaceDiscount.breakup.promotionID' => $promotionID
+        ]);
     }
 }

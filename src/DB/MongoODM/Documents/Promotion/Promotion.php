@@ -81,6 +81,12 @@ class Promotion extends Document
      * @var ?string
      * @ODM\Field(type="string")
      */
+    public $visibility;
+
+    /**
+     * @var ?string
+     * @ODM\Field(type="string")
+     */
     public $applicableOn;
     public const APPLICABLE_ON_SPACE_BASE_AMOUNT = 'SPACE_BASE_AMOUNT';
     public const APPLICABLE_ON_SPACE_FINAL_AMOUNT = 'SPACE_FINAL_AMOUNT';
