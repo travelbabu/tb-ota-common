@@ -25,7 +25,7 @@ class PropertySpaceCalculation extends EmbeddedDocument
     public $spaceCharges;
 
     /**
-     * @var ArrayCollection<PropertyTimelyCalculation>
+     * @var ArrayCollection<PropertyTimelyCalculation> | PropertyTimelyCalculation[]
      * @ODM\EmbedMany(targetDocument=PropertyTimelyCalculation::class)
      */
     public $timelyBreakup;

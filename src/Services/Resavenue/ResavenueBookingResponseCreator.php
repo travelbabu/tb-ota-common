@@ -3,6 +3,7 @@
 namespace SYSOTEL\OTA\Common\Services\Resavenue;
 
 
+use Exception;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\Booking;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\PaymentDetails\BookingPaymentDetails;
 use SYSOTEL\OTA\Common\Helpers\Enums;
@@ -34,7 +35,7 @@ class ResavenueBookingResponseCreator
             'ResGuests' => [],
         ];
 
-        foreach ($this->booking->guestCalculations->spaceWiseBreakup as $spaceBreakupItem) {
+        foreach ($this->booking->guestCalculations->spaceWiseBreakup as $i => $spaceBreakupItem) {
 
             $bookingSpace = $this->booking->spaceDetails->getSpaceForSpaceNo($spaceBreakupItem->spaceNo);
 
@@ -97,14 +98,23 @@ class ResavenueBookingResponseCreator
                         $roomStayData['ResGuestRPHs']['ResGuestRPH'] = $ResGuestRPH;
                     }
                 }
-
             }
 
-            foreach ($spaceBreakupItem->timelyBreakup as $timelyBreakupItem) {
+            foreach ($spaceBreakupItem->timelyBreakup as $j => $timelyBreakupItem) {
+
+                $netAmount = 0;
+                try {
+                    $tds = (float)bcdiv(bcmul($booking->propertyCalculations->spaceWiseBreakup[$i]->timelyBreakup[$j]->spaceCharges->amountAfterDiscount, 0.5), 100, 2);
+                    $tcs = (float)bcdiv(bcmul($booking->propertyCalculations->spaceWiseBreakup[$i]->timelyBreakup[$j]->spaceCharges->amountAfterDiscount, 1), 100, 2);
+                    $netAmount = $booking->propertyCalculations->spaceWiseBreakup[$i]->timelyBreakup[$j]->spaceCharges->amountAfterOtaCommission - $tds - $tcs;
+                } catch (Exception) {
+                }
+
                 $roomStay = [
                     'AmountBeforeDiscount' => $timelyBreakupItem->spaceCharges->total,
                     'Discount' => $timelyBreakupItem->spaceCharges->spaceDiscount?->amount ?? 0,
                     'Amount' => $timelyBreakupItem->spaceCharges->amountAfterDiscount,
+                    'NetAmount' => $netAmount,
                     'Tax' => $timelyBreakupItem->spaceCharges->tax?->amount ?? 0,
                     'AmountIncludingTax' => $timelyBreakupItem->spaceCharges->amountAfterTax,
                     'EffectiveDate' => $timelyBreakupItem->startTime->format('Y-m-d')

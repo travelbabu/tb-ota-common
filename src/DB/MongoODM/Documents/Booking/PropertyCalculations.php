@@ -12,7 +12,7 @@ use Delta4op\MongoODM\Documents\EmbeddedDocument;
 class PropertyCalculations extends EmbeddedDocument
 {
     /**
-     * @var ArrayCollection<PropertySpaceCalculation>
+     * @var ArrayCollection<PropertySpaceCalculation> & PropertySpaceCalculation[]
      * @ODM\EmbedMany  (targetDocument=PropertySpaceCalculation::class)
      */
     public $spaceWiseBreakup;

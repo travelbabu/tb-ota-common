@@ -3,6 +3,8 @@
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Repositories;
 
 use Illuminate\Support\Collection;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\types\BasicPromotion;
+use SYSOTEL\OTA\Common\Enums\PromotionVisibility;
 use SYSOTEL\OTA\Common\Helpers\Enums;
 use Delta4op\MongoODM\DocumentRepositories\DocumentRepository;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Property\Property;
@@ -60,6 +62,30 @@ class PromotionsRepository extends DocumentRepository
         $criteria = array_merge(
             [
                 'propertyID' => Property::resolveID($property),
+                'category' => Enums::PROMOTION_CATEGORY_PROMO_CODE,
+                'isExpired' => false,
+            ],
+            $criteria);
+
+        $sort = array_merge($sort, [
+            'createdAt' => -1
+        ]);
+
+        return $this->getCollectionBy($criteria, $sort);
+    }
+
+    /**
+     * @param int|Property $property
+     * @param array $criteria
+     * @param array $sort
+     * @return Collection<Promotion> & BasicPromotion[]
+     */
+    public function getAllPublicPromoCodesForProperty(int|Property $property, array $criteria = [], array $sort = []): Collection
+    {
+        $criteria = array_merge(
+            [
+                'propertyID' => Property::resolveID($property),
+                'visibility' => PromotionVisibility::PUBLIC,
                 'category' => Enums::PROMOTION_CATEGORY_PROMO_CODE,
                 'isExpired' => false,
             ],
