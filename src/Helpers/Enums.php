@@ -53,6 +53,9 @@ class Enums
     const PROMOTION_TYPE_LAST_MINUTE = 'LAST_MINUTE';
     const PROMOTION_TYPE_EARLY_BIRD = 'EARLY_BIRD';
 
+    const PROMOTION_VISIBILITY_PUBLIC = 'PUBLIC';
+    const PROMOTION_VISIBILITY_HIDDEN = 'HIDDEN';
+
     const PROMOTION_CATEGORY_OFFER = 'OFFER';
     const PROMOTION_CATEGORY_PROMO_CODE = 'PROMO_CODE';
 
@@ -231,6 +234,17 @@ class Enums
             static::PROMOTION_TYPE_BASIC,
             static::PROMOTION_TYPE_LAST_MINUTE,
             static::PROMOTION_TYPE_EARLY_BIRD,
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public static function promotionVisibility(): array
+    {
+        return [
+            static::PROMOTION_VISIBILITY_PUBLIC,
+            static::PROMOTION_VISIBILITY_HIDDEN,
         ];
     }
 
