@@ -8,6 +8,7 @@ use Delta4op\MongoODM\Facades\DocumentManager;
 use Delta4op\MongoODM\Traits\HasDefaultAttributes;
 use Delta4op\MongoODM\Traits\HasTimestamps;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\embedded\PromotionApplicableSpaceDetails;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Promotion\embedded\PromotionBlackoutDates;
 use SYSOTEL\OTA\Common\DB\MongoODM\Repositories\PromotionsRepository;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
@@ -143,6 +144,12 @@ class Promotion extends Document
      * @ODM\EmbedOne (targetDocument=PromotionApplicableSpaceDetails::class)
      */
     public $applicableSpaceDetails;
+
+    /**
+     * @var ?PromotionBlackoutDates
+     * @ODM\EmbedOne (targetDocument=PromotionBlackoutDates::class)
+     */
+    public $blackoutDates;
 
     public function __construct(array $attributes = [])
     {
