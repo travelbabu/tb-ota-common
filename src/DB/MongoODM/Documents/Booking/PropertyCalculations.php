@@ -140,7 +140,7 @@ class PropertyCalculations extends EmbeddedDocument
         $this->spaceCharges->otaCommission = $otaCommission;
         $this->spaceCharges->calculateAmountAfterOtaCommission();
 
-        $this->tds = (float) bcdiv(bcmul($this->spaceCharges->amountAfterDiscount, 0.5), 100, 2);
+        $this->tds = (float) bcdiv(bcmul($this->spaceCharges->amountAfterDiscount, 0.1), 100, 2);
         $this->tcs = (float) bcdiv(bcmul($this->spaceCharges->amountAfterDiscount, 1), 100, 2);
         $this->otaToPayPropertyAmount = round($this->spaceCharges->amountAfterDiscount - $this->spaceCharges->otaCommission->amount - $this->tds - $this->tcs);
 
