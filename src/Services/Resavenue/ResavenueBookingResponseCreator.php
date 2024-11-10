@@ -104,7 +104,7 @@ class ResavenueBookingResponseCreator
 
                 $netAmount = 0;
                 try {
-                    $tds = (float)bcdiv(bcmul($booking->propertyCalculations->spaceWiseBreakup[$i]->timelyBreakup[$j]->spaceCharges->amountAfterDiscount, 0.5), 100, 2);
+                    $tds = (float)bcdiv(bcmul($booking->propertyCalculations->spaceWiseBreakup[$i]->timelyBreakup[$j]->spaceCharges->amountAfterDiscount, 0.1), 100, 2);
                     $tcs = (float)bcdiv(bcmul($booking->propertyCalculations->spaceWiseBreakup[$i]->timelyBreakup[$j]->spaceCharges->amountAfterDiscount, 1), 100, 2);
                     $netAmount = $booking->propertyCalculations->spaceWiseBreakup[$i]->timelyBreakup[$j]->spaceCharges->amountAfterOtaCommission - $tds - $tcs;
                 } catch (Exception) {
@@ -114,6 +114,9 @@ class ResavenueBookingResponseCreator
                     'AmountBeforeDiscount' => $timelyBreakupItem->spaceCharges->total,
                     'Discount' => $timelyBreakupItem->spaceCharges->spaceDiscount?->amount ?? 0,
                     'Amount' => $timelyBreakupItem->spaceCharges->amountAfterDiscount,
+                    'Commission' => $timelyBreakupItem->spaceCharges->amountAfterDiscount,
+                    'TDS' => $tds,
+                    'TCS' => $tcs,
                     'NetAmount' => $netAmount,
                     'Tax' => $timelyBreakupItem->spaceCharges->tax?->amount ?? 0,
                     'AmountIncludingTax' => $timelyBreakupItem->spaceCharges->amountAfterTax,
@@ -188,6 +191,7 @@ class ResavenueBookingResponseCreator
                 'TotalTax' => $this->booking?->guestCalculations?->spaceCharges?->tax?->amount,
                 'TaxType' => 'Inclusive',
                 'TotalBookingAmount' => $this->booking?->guestCalculations?->payableAmount,
+                'OtaToPropertyAmount' => $this->booking?->propertyCalculations?->otaToPayPropertyAmount,
                 'Commission' => $this->booking?->propertyCalculations?->spaceCharges?->otaCommission?->amount,
                 'CommissionType' => 'Exclusive',
             ]
