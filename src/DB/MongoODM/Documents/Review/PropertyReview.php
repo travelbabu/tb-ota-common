@@ -111,6 +111,14 @@ class PropertyReview extends Document
     }
 
     /**
+     * @return ReviewComment|null
+     */
+    public function getFirstReply(): ReviewComment|null
+    {
+        return $this->review?->comments[1];
+    }
+
+    /**
      * @inheritDoc
      */
     public function toArray(): array
