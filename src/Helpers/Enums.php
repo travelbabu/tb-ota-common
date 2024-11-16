@@ -143,6 +143,8 @@ class Enums
     public const RESAVENUE_AGE_CODE_ADULT = '10';
     public const RESAVENUE_AGE_CODE_CHILD = '8';
 
+    public const REVIEW_COMMENTER_TYPE_PROPERTY_REPRESENTATIVE = 'PROPERTY_REPRESENTATIVE';
+    public const REVIEW_COMMENTER_TYPE_GUEST = 'GUEST';
 
     /**
      * @return string[]
