@@ -464,6 +464,8 @@ class Promotion extends Document
         if($this->bookingEndDate && $this->bookingStartDate) {
             return "{$this->bookingStartDate->format('d M Y')} to {$this->bookingEndDate->format('d M Y')}";
         }
+
+        return '';
     }
 
     /**
