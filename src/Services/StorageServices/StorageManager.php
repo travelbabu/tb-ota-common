@@ -51,7 +51,7 @@ abstract class StorageManager
         $this->storage()->put(
             $fullPath,
             $file->getContent(),
-            $this->isPublicVisibility() ? 'PUBLIC' : "PRIVATE"
+            $this->isPublicVisibility() ? 'PUBLIC' : []
     );
     }
 
