@@ -3,8 +3,10 @@
 namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\PaymentDetails;
 
 use Carbon\Carbon;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\FileV2;
 use SYSOTEL\OTA\Common\Helpers\Enums;
 
 /**
@@ -84,6 +86,22 @@ abstract class BookingPayment extends EmbeddedDocument
      * @ODM\Field(type="string")
      */
     public $remark;
+
+    /**
+     * @var ArrayCollection<FileV2>
+     * @ODM\EmbedMany(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\FileV2::class)
+     */
+    public $attachments;
+
+    /**
+     * CONSTRUCTOR
+     */
+    public function __construct(array $attributes = [])
+    {
+        $this->attachments = new ArrayCollection;
+
+        parent::__construct($attributes);
+    }
 
     public function markAsAcknowledge(string $status = Enums::BOOKING_PAYMENT_TRANSACTION_STATUS_PAID): static
     {
