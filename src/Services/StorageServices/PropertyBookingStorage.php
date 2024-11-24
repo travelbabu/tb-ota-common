@@ -17,7 +17,7 @@ class PropertyBookingStorage extends PropertyPrivateStorage
     public function storePaymentAttachment(UploadedFile $uploadedFile, int $propertyId, int $bookingId, string $paymentId): FileV2
     {
         $path = "$propertyId/bookings/$bookingId/payments/$paymentId";
-        $fileName = "bp_{$propertyId}_{$bookingId}_$paymentId";
+        $fileName = "bp_{$propertyId}_{$bookingId}_{$paymentId}." . $uploadedFile->extension();
 
         return $this->store(
             $uploadedFile,
