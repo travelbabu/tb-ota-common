@@ -5,7 +5,7 @@ namespace SYSOTEL\OTA\Common\Services\StorageServices;
 use Illuminate\Http\UploadedFile;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\FileV2;
 
-class PropertyBookingStorage extends StorageManager
+class PropertyBookingStorage extends PropertyPrivateStorage
 {
     /**
      * @param UploadedFile $uploadedFile
