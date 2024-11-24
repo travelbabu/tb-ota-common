@@ -20,6 +20,8 @@ abstract class StorageManager
         $this->driver = $driver;
     }
 
+    public abstract function isPublicVisibility(): bool;
+
     /**
      * @param UploadedFile $uploadFile
      * @param string $path
@@ -46,7 +48,11 @@ abstract class StorageManager
      */
     protected function upload($fullPath, UploadedFile $file): void
     {
-        $this->storage()->put($fullPath, $file->getContent());
+        $this->storage()->put(
+            $fullPath,
+            $file->getContent(),
+            $this->isPublicVisibility() ? 'PUBLIC' : "PRIVATE"
+    );
     }
 
     /**
