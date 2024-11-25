@@ -72,7 +72,7 @@ class BookingPaymentDetails extends EmbeddedDocument
     public function getPaymentById(string|int $id): BookingPayment|null
     {
         foreach ($this->payments as $payment) {
-            if ($payment->id == $id) {
+            if ($payment->_id == $id) {
                 return $payment;
             }
         }
