@@ -36,6 +36,16 @@ class BookingSpaceDetails extends EmbeddedDocument
     public $spaces;
 
     /**
+     * CONSTRUCTOR
+     */
+    public function __construct(array $attributes = [])
+    {
+        $this->spaces = new ArrayCollection;
+
+        parent::__construct($attributes);
+    }
+
+    /**
      * @param BookingSpace $space
      * @return $this
      */

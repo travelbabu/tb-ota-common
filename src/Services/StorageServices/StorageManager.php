@@ -52,7 +52,7 @@ abstract class StorageManager
             $fullPath,
             $file->getContent(),
             $this->isPublicVisibility() ? 'PUBLIC' : []
-    );
+        );
     }
 
     /**
