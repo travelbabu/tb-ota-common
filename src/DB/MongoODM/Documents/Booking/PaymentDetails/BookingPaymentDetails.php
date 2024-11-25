@@ -69,7 +69,7 @@ class BookingPaymentDetails extends EmbeddedDocument
         parent::__construct($attributes);
     }
 
-    public function getPaymentById(int $id): BookingPayment|null
+    public function getPaymentById(string|int $id): BookingPayment|null
     {
         foreach ($this->payments as $payment) {
             if ($payment->id == $id) {
