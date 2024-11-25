@@ -103,6 +103,17 @@ abstract class BookingPayment extends EmbeddedDocument
         parent::__construct($attributes);
     }
 
+
+    public function getAttachmentById(string $id): FileV2|null
+    {
+        foreach ($this->attachments as $attachment) {
+            if ($attachment->id == $id) {
+                return $attachment;
+            }
+        }
+        return null;
+    }
+
     public function markAsAcknowledge(string $status = Enums::BOOKING_PAYMENT_TRANSACTION_STATUS_PAID): static
     {
         $this->acknowledgeAt = now();

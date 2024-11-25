@@ -69,11 +69,21 @@ class BookingPaymentDetails extends EmbeddedDocument
         parent::__construct($attributes);
     }
 
+    public function getPaymentById(int $id): BookingPayment|null
+    {
+        foreach ($this->payments as $payment) {
+            if ($payment->id == $id) {
+                return $payment;
+            }
+        }
+        return null;
+    }
+
     public function getNewGuestPaymentID(): int
     {
         $id = 1;
-        foreach($this->payments as $payment) {
-            if($payment->id > $id) {
+        foreach ($this->payments as $payment) {
+            if ($payment->id > $id) {
                 $id = $payment->id;
             }
         }
@@ -90,9 +100,9 @@ class BookingPaymentDetails extends EmbeddedDocument
             'paymentMode' => $this->paymentMode,
             'partialPayment' => toArrayOrNull($this->partialPayment),
             'amountToBePaid' => $this->amountToBePaid,
-            'amountPaid'     => $this->amountPaid,
-            'status'         => $this->status,
-            'items'          => collect($this->payments)->toArray(),
+            'amountPaid' => $this->amountPaid,
+            'status' => $this->status,
+            'items' => collect($this->payments)->toArray(),
         ];
     }
 }
