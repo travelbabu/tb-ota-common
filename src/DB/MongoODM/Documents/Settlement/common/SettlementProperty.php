@@ -5,6 +5,7 @@ namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Settlement\common;
 use Carbon\Carbon;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\Booking;
 use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Property\Property;
 
 /**
@@ -24,10 +25,10 @@ class SettlementProperty extends EmbeddedDocument
      */
     public $displayName;
 
-    public static function createFromBooking(Property $property): SettlementProperty {
+    public static function createFromBooking(Booking $booking): SettlementProperty {
         $propertyRef = new self;
-        $propertyRef->_id = $property->id;
-        $propertyRef->displayName = $property->displayName;
+        $propertyRef->_id = $booking->property->id;
+        $propertyRef->displayName = $booking->property->displayName;
 
         return $propertyRef;
     }
