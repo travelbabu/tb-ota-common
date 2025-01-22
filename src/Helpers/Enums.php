@@ -146,6 +146,10 @@ class Enums
     public const REVIEW_COMMENTER_TYPE_PROPERTY_REPRESENTATIVE = 'PROPERTY_REPRESENTATIVE';
     public const REVIEW_COMMENTER_TYPE_GUEST = 'GUEST';
 
+    public const SETTLEMENT_STATUS_SETTLED = 'SETTLED';
+    public const SETTLEMENT_STATUS_CANCELLED = 'CANCELLED';
+    public const SETTLEMENT_STATUS_PENDING = 'PENDING';
+
     /**
      * @return string[]
      */
@@ -261,6 +265,18 @@ class Enums
             static::CHANNEL_ID_INTERNAL_CORP,
             static::CHANNEL_ID_GOOGLE_HOTEL_CENTER,
             static::CHANNEL_ID_RESAVENUE,
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public static function settlementStatuses(): array
+    {
+        return [
+            static::SETTLEMENT_STATUS_CANCELLED,
+            static::SETTLEMENT_STATUS_SETTLED,
+            static::SETTLEMENT_STATUS_PENDING
         ];
     }
 }
