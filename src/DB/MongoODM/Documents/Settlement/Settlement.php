@@ -9,8 +9,6 @@ use Delta4op\MongoODM\Traits\HasTimestamps;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
-use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
-
 /**
  * @ODM\Document(
  *     collection="settlements",
@@ -61,8 +59,7 @@ abstract class Settlement extends Document
     public function toArray(): array
     {
         return arrayFilter([
-            'id'         => $this->id,
-            
+            'id' => $this->id,
         ]);
     }
 }
