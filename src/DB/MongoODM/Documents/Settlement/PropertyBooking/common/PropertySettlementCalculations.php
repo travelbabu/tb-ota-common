@@ -108,7 +108,7 @@ class PropertySettlementCalculations extends EmbeddedDocument
         $calculations->bookingAmount = $booking->propertyCalculations->spaceCharges->amountAfterTax;
         $calculations->commission = $booking->propertyCalculations->spaceCharges->otaCommission->amount;
         $calculations->commissionPercentage = $booking->propertyCalculations->spaceCharges->otaCommission->percentage;
-        $calculations->commissionTax = $booking->propertyCalculations->spaceCharges->otaCommission->tax;
+        $calculations->commissionTax = $booking->propertyCalculations->spaceCharges->otaCommission->tax->amount;
         $calculations->totalCommission = $booking->propertyCalculations->spaceCharges->amountAfterOtaCommission;
         $calculations->tds = $booking->propertyCalculations->tds ?? 0;
         $calculations->tdsPercentage = $booking->propertyCalculations->tdsPercentage ?? 0;

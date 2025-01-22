@@ -20,8 +20,8 @@ class SettlementProperty extends EmbeddedDocument
     public $_id;
 
     /**
-     * @var ?Carbon
-     * @ODM\Field(type="carbon")
+     * @var ?string
+     * @ODM\Field(type="string")
      */
     public $displayName;
 
