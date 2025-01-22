@@ -17,7 +17,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  * @ODM\InheritanceType("SINGLE_COLLECTION")
  * @ODM\DiscriminatorField("type")
  * @ODM\DiscriminatorMap({
- *     "BOOKING_PROPERTY":SYSOTEL\OTA\Common\DB\MongoODM\Documents\Settlement\PropertyBooking\PropertySettlementCalculations::class,
+ *     "BOOKING_PROPERTY": SYSOTEL\OTA\Common\DB\MongoODM\Documents\Settlement\PropertyBooking\common\PropertySettlementCalculations::class,
  * })
  */
 abstract class Settlement extends Document
