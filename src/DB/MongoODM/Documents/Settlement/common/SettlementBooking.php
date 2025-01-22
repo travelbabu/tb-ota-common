@@ -61,8 +61,8 @@ class SettlementBooking extends EmbeddedDocument
     public $paymentMode;
 
     /**
-     * @var ?Carbon
-     * @ODM\Field(type="carbon")
+     * @var ?string
+     * @ODM\Field(type="string")
      */
     public $status;
 
