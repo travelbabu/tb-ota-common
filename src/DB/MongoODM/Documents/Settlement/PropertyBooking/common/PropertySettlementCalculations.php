@@ -1,6 +1,6 @@
 <?php
 
-namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\SettlementPropertyBooking\PropertyBooking\common;
+namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Settlement\PropertyBooking\common;
 
 use Delta4op\MongoODM\Documents\EmbeddedDocument;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
