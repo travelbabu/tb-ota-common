@@ -6,10 +6,8 @@ use Carbon\Carbon;
 use Delta4op\MongoODM\Documents\Document;
 use Delta4op\MongoODM\Traits\HasRepository;
 use Delta4op\MongoODM\Traits\HasTimestamps;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\UserReference;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use SYSOTEL\OTA\Common\DB\MongoODM\Documents\Settlement\common\SettlementBooking;
 
 use function SYSOTEL\OTA\Common\Helpers\toArrayOrNull;
 
@@ -34,16 +32,28 @@ abstract class Settlement extends Document
     protected string $collection = 'settlements';
 
     /**
-     * @var string
+     * @var ?string
      * @ODM\Id
      */
     public $id;
 
     /**
-     * @var string
+     * @var ?float
+     * @ODM\Field(type="float")
+     */
+    public $settlementAmount;
+
+    /**
+     * @var ?string
      * @ODM\Field(type="string")
      */
     public $status;
+
+    /**
+     * @var ?Carbon
+     * @ODM\Field(type="carbon")
+     */
+    public $settledOn;
 
     /**
      * @inheritDoc

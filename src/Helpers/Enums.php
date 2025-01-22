@@ -150,6 +150,10 @@ class Enums
     public const SETTLEMENT_STATUS_CANCELLED = 'CANCELLED';
     public const SETTLEMENT_STATUS_PENDING = 'PENDING';
 
+    public const PAYMENT_MODE_PAY_NOW = 'PAY_NOW';
+    public const PAYMENT_MODE_PAY_AT_PROPERTY = 'PAY_AT_PROPERTY';
+    public const PAYMENT_MODE_PAY_PARTIAL = 'PAY_PARTIAL';
+
     /**
      * @return string[]
      */

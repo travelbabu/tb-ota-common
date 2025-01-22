@@ -33,7 +33,19 @@ class PropertyCalculations extends EmbeddedDocument
      * @var float
      * @ODM\Field(type="float")
      */
+    public $tdsPercentage = 0;
+
+    /**
+     * @var float
+     * @ODM\Field(type="float")
+     */
     public $tcs = 0;
+
+    /**
+     * @var float
+     * @ODM\Field(type="float")
+     */
+    public $tcsPercentage = 0;
 
     /**
      * @var float
