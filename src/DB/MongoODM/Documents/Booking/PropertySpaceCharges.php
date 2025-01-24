@@ -166,7 +166,7 @@ class PropertySpaceCharges extends EmbeddedDocument
      */
     public function calculateAmountAfterOtaCommission(): static
     {
-        $this->amountAfterOtaCommission = round($this->amountAfterTax + $this->otaCommission->amountAfterTax, 2);
+        $this->amountAfterOtaCommission = round($this->amountAfterTax - $this->otaCommission->amountAfterTax, 2);
 
         return $this;
     }
