@@ -122,10 +122,12 @@ class PropertySettlementCalculations extends EmbeddedDocument
             $calculations->prepaidAmount = $calculations->bookingAmount;
             $calculations->payAtPropertyAmount = 0;
             $calculations->settlementAmount = round($calculations->bookingAmount - $calculations->totalCommission, 2);
+            $calculations->isOtaPayable = true;
         } else if ($booking->paymentDetails->paymentMode === Enums::PAYMENT_MODE_PAY_AT_PROPERTY) {
             $calculations->prepaidAmount = 0;
             $calculations->payAtPropertyAmount = $calculations->bookingAmount;
             $calculations->settlementAmount = $calculations->totalCommission;
+            $calculations->isOtaPayable = false;
         } else {
             // todo
         }
