@@ -102,9 +102,10 @@ class PropertySettlementCalculations extends EmbeddedDocument
      */
     public $settlementAmount;
 
-    public static function createFromBooking(Booking $booking): PropertySettlementCalculations {
+    public static function createFromBooking(Booking $booking): PropertySettlementCalculations
+    {
         $calculations = new self;
-        
+
         $calculations->bookingAmount = $booking->propertyCalculations->spaceCharges->amountAfterTax;
         $calculations->commission = $booking->propertyCalculations->spaceCharges->otaCommission->amount;
         $calculations->commissionPercentage = $booking->propertyCalculations->spaceCharges->otaCommission->percentage;
@@ -115,14 +116,16 @@ class PropertySettlementCalculations extends EmbeddedDocument
         $calculations->tcs = $booking->propertyCalculations->tcs ?? 0;
         $calculations->tcsPercentage = $booking->propertyCalculations->tcsPercentage ?? 0;
         $calculations->otaToPropertyPayable = $booking->propertyCalculations->otaToPayPropertyAmount;
-        
 
-        if($booking->paymentDetails->paymentMode === Enums::PAYMENT_MODE_PAY_NOW) {
+
+        if ($booking->paymentDetails->paymentMode === Enums::PAYMENT_MODE_PAY_NOW) {
             $calculations->prepaidAmount = $calculations->bookingAmount;
             $calculations->payAtPropertyAmount = 0;
-        } else if($booking->paymentDetails->paymentMode === Enums::PAYMENT_MODE_PAY_AT_PROPERTY) {
+            $calculations->settlementAmount = round($calculations->bookingAmount - $calculations->totalCommission, 2);
+        } else if ($booking->paymentDetails->paymentMode === Enums::PAYMENT_MODE_PAY_AT_PROPERTY) {
             $calculations->prepaidAmount = 0;
             $calculations->payAtPropertyAmount = $calculations->bookingAmount;
+            $calculations->settlementAmount = $calculations->totalCommission;
         } else {
             // todo
         }
