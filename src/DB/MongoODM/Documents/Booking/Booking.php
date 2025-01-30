@@ -200,6 +200,18 @@ class Booking extends Document
     public $browserDetails;
 
     /**
+     * @var ?BookingNoShowDetails
+     * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\BookingNoShowDetails::class)
+     */
+    public $noShowDetails;
+
+    /**
+     * @var ?BookingCheckInDetails
+     * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\BookingCheckInDetails::class)
+     */
+    public $checkInDetails;
+
+    /**
      * @var ArrayCollection & ApiLogReference[]
      * @ODM\EmbedMany(targetDocument=ApiLogReference::class)
      */
@@ -416,6 +428,8 @@ class Booking extends Document
             'cancellationDetails' => toArrayOrNull($this->cancellationDetails),
             'browserDetails' => toArrayOrNull($this->browserDetails),
             'policy' => toArrayOrNull($this->policy),
+            'noShowDetails' => toArrayOrNull($this->noShowDetails),
+            'checkInDetails' => toArrayOrNull($this->checkInDetails),
             'createdAt' => $this->createdAt,
         ]);
     }
