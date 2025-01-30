@@ -26,7 +26,7 @@ class BookingNoShowDetails extends EmbeddedDocument
 
     /**
      * @var ?UserReference
-     * @ODM\EmbedOne (targetDocument=)
+     * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\common\UserReference::class)
      */
     public $noShowMarkedBy;
 
