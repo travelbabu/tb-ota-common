@@ -206,6 +206,12 @@ class Booking extends Document
     public $noShowDetails;
 
     /**
+     * @var ?BookingWebCheckInDetails
+     * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\BookingWebCheckInDetails::class)
+     */
+    public $webCheckInDetails;
+
+    /**
      * @var ?BookingCheckInDetails
      * @ODM\EmbedOne (targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\Booking\BookingCheckInDetails::class)
      */

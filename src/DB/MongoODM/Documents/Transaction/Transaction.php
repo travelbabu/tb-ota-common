@@ -1,6 +1,6 @@
 <?php
 
-namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Settlement;
+namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Transaction;
 
 use Carbon\Carbon;
 use Delta4op\MongoODM\Documents\Document;
@@ -20,7 +20,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
  *     "BOOKING_PROPERTY": SYSOTEL\OTA\Common\DB\MongoODM\Documents\Settlement\PropertyBooking\PropertyBookingSettlement::class,
  * })
  */
-abstract class Settlement extends Document
+abstract class Transaction extends Document
 {
     use HasRepository, HasTimestamps;
 
@@ -34,12 +34,6 @@ abstract class Settlement extends Document
      * @ODM\Id
      */
     public $id;
-
-    /**
-     * @var ?string
-     * @ODM\Field(type="string")
-     */
-    public $type;
 
     /**
      * @var ?float
@@ -58,18 +52,6 @@ abstract class Settlement extends Document
      * @ODM\Field(type="carbon")
      */
     public $settledOn;
-
-//    /**
-//     * @var
-//     * @ODM\EmbedMany (
-//     *   discriminatorField="type",
-//     *   discriminatorMap={
-//     *     "PAYMENT_TRANSACTION"=SettlementTransactionTypeTransaction::class,
-//     *     "OTHER_SETTLEMENT_ADJUSTMENT"=SettlementTransactionTypeSettlementAdjustment::class
-//     *   }
-//     * )
-//     */
-//    public $transactions;
 
     /**
      * @inheritDoc
