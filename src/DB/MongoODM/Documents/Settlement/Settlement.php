@@ -36,12 +36,6 @@ abstract class Settlement extends Document
     public $id;
 
     /**
-     * @var ?string
-     * @ODM\Field(type="string")
-     */
-    public $type;
-
-    /**
      * @var ?float
      * @ODM\Field(type="float")
      */
