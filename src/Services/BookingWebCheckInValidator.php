@@ -39,6 +39,10 @@ class BookingWebCheckInValidator
             $response['errorDescription'] = 'Web check in is not allowed for this booking';
         }
 
+        else if ($this->booking->webCheckInDetails->status === Enums::BOOKING_WEB_CHECKIN_STATUS_COMPLETED) {
+            $response['errorDescription'] = 'Web check in is already completed';
+        }
+
         if($response['errorDescription']) {
             $response['checkInAllowed'] = false;
         }
