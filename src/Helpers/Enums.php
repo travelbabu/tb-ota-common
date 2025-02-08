@@ -146,7 +146,6 @@ class Enums
     public const REVIEW_COMMENTER_TYPE_PROPERTY_REPRESENTATIVE = 'PROPERTY_REPRESENTATIVE';
     public const REVIEW_COMMENTER_TYPE_GUEST = 'GUEST';
 
-<<<<<<< Updated upstream
     public const SETTLEMENT_STATUS_SETTLED = 'SETTLED';
     public const SETTLEMENT_STATUS_CANCELLED = 'CANCELLED';
     public const SETTLEMENT_STATUS_PENDING = 'PENDING';
@@ -163,7 +162,6 @@ class Enums
 
     public const BOOKING_WEB_CHECKIN_STATUS_COMPLETED = 'COMPLETED';
     public const BOOKING_WEB_CHECKIN_STATUS_PENDING = 'PENDING';
-=======
 
     public const SETTLEMENT_PAYMENT_STATUS_COMPLETED = 'COMPLETED';
     public const SETTLEMENT_PAYMENT_STATUS_PENDING = 'PENDING';
@@ -171,7 +169,6 @@ class Enums
 
     public const OTA_BANK_ACCOUNT_STATUS_ACTIVE = 'ACTIVE';
     public const OTA_BANK_ACCOUNT_STATUS_INACTIVE = 'INACTIVE';
->>>>>>> Stashed changes
 
     /**
      * @return string[]
