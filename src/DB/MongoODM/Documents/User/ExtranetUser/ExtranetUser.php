@@ -14,6 +14,18 @@ class ExtranetUser extends User
     public $type = self::TYPE_EXTRANET_USER;
 
     /**
+     * @var string
+     * @ODM\Field(type="string")
+     */
+    public $propertyName;
+
+    /**
+     * @var string
+     * @ODM\Field(type="string")
+     */
+    public $propertyLocation;
+
+    /**
      * @inheritDoc
      */
     public function toArray(): array
