@@ -27,20 +27,20 @@ class BookingWebCheckInValidator
             'errorDescription' => ''
         ];
 
-        if(today()->gt($this->booking->stayDates->checkInDate)) {
-            $response['errorDescription'] = 'Web check in is not after date of check in';
+        if ($this->booking->status === Enums::BOOKING_STATUS_CANCELLED) {
+            $response['errorDescription'] = 'Web check in is not allowed for cancelled booking';
         }
 
-        else if ($this->booking->status === Enums::BOOKING_STATUS_CANCELLED) {
-            $response['errorDescription'] = 'Web check in is not allowed for cancelled booking';
+        else if ($this->booking->webCheckInDetails->status === Enums::BOOKING_WEB_CHECKIN_STATUS_COMPLETED) {
+            $response['errorDescription'] = 'Web check in is already completed';
         }
 
         else if (!in_array($this->booking->status, [Enums::BOOKING_STATUS_CONFIRMED, Enums::BOOKING_STATUS_MODIFIED])) {
             $response['errorDescription'] = 'Web check in is not allowed for this booking';
         }
 
-        else if ($this->booking->webCheckInDetails->status === Enums::BOOKING_WEB_CHECKIN_STATUS_COMPLETED) {
-            $response['errorDescription'] = 'Web check in is already completed';
+        else if(today()->gt($this->booking->stayDates->checkInDate)) {
+            $response['errorDescription'] = 'Web check in is not after date of check in';
         }
 
         if($response['errorDescription']) {
