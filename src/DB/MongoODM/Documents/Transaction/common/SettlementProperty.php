@@ -1,6 +1,6 @@
 <?php
 
-namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Settlement\common;
+namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Transaction\common;
 
 use Carbon\Carbon;
 use Delta4op\MongoODM\Documents\EmbeddedDocument;

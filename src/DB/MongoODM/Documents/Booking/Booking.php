@@ -372,11 +372,11 @@ class Booking extends Document
      */
     public function createRefundID(): string
     {
-        if (!$this->bookingID) {
+        if (!$this->id) {
             abort(500, 'bookingID not set');
         }
 
-        return 'refund_' . $this->bookingID . '_' . (count($this->refunds) + 1) . '_' . Str::random(5);
+        return 'refund_' . $this->id . '_' . (count($this->refunds) + 1) . '_' . Str::random(5);
     }
 
     /**

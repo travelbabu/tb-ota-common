@@ -1,33 +1,28 @@
 <?php
 
-namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\Transaction;
+namespace SYSOTEL\OTA\Common\DB\MongoODM\Documents\OtaPayment;
 
-use Carbon\Carbon;
 use Delta4op\MongoODM\Documents\Document;
 use Delta4op\MongoODM\Traits\HasRepository;
 use Delta4op\MongoODM\Traits\HasTimestamps;
+use SYSOTEL\OTA\Common\DB\MongoODM\Documents\BookingSettlement\embedded\SettlementBooking;
 use function SYSOTEL\OTA\Common\Helpers\arrayFilter;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
  * @ODM\Document(
- *     collection="settlements",
+ *     collection="settlementPayments",
  * )
  * @ODM\HasLifecycleCallbacks
- * @ODM\InheritanceType("SINGLE_COLLECTION")
- * @ODM\DiscriminatorField("type")
- * @ODM\DiscriminatorMap({
- *     "BOOKING_PROPERTY": SYSOTEL\OTA\Common\DB\MongoODM\Documents\Transaction\PropertyBooking\PropertyBookingSettlement::class,
- * })
  */
-abstract class Transaction extends Document
+class OtaPayment extends Document
 {
     use HasRepository, HasTimestamps;
 
     /**
      * @inheritdoc
      */
-    protected string $collection = 'settlements';
+    protected string $collection = 'settlementPayments';
 
     /**
      * @var ?string
@@ -36,10 +31,10 @@ abstract class Transaction extends Document
     public $id;
 
     /**
-     * @var ?float
-     * @ODM\Field(type="float")
+     * @var ?SettlementBooking
+     * @ODM\EmbedOne(targetDocument=SYSOTEL\OTA\Common\DB\MongoODM\Documents\SettlementPayment\embedded\SettlementBooking::class)
      */
-    public $settlementAmount;
+    public $booking;
 
     /**
      * @var ?string
@@ -47,11 +42,10 @@ abstract class Transaction extends Document
      */
     public $status;
 
-    /**
-     * @var ?Carbon
-     * @ODM\Field(type="carbon")
-     */
-    public $settledOn;
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 
     /**
      * @inheritDoc
@@ -59,7 +53,7 @@ abstract class Transaction extends Document
     public function toArray(): array
     {
         return arrayFilter([
-            'id' => $this->id,
+
         ]);
     }
 }
