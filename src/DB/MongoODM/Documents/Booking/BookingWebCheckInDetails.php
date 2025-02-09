@@ -24,6 +24,12 @@ class BookingWebCheckInDetails extends EmbeddedDocument
     public $checkedInAt;
 
     /**
+     * @var ?Carbon
+     * @ODM\Field(type="carbon")
+     */
+    public $guestArrivalTime;
+
+    /**
      * @var ?string
      * @ODM\Field(type="string")
      */
